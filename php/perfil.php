@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <?php include "nav.php" ?>
+
     <main>
         <div class="logo">
             <h1>Perfil</h1>

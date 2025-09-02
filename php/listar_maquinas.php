@@ -11,8 +11,10 @@
 </head>
 
 <body>
+    <?php include "nav.php" ?>
+
     <main>
-        <div class="Pesquisar">
+        <div class="pesquisa">
             <h1>Máquinas Listadas</h1>
             <input type="search" name="" id="" placeholder="Pesquisar">
         </div>
@@ -23,27 +25,121 @@
         </div>
 
         <div class="container_maquinas">
-            <div class="maquina_1">
-                <div class="foto_maquina">
-                    <p>IMAGEM</p>
-                </div>
-                <div class="info">
-                    <h1>Nome:<span>Torneadora</span></h1>
-                    <h1>Modelo:<span>ASMOTIC</span></h1>
-                    <h1>Operação:<span>ATIVA</span></h1>
-                    <h1>ID:<span>8769534</span></h1>
-                    <h1>Setor: <span>1</span></h1>
-                </div>
-                <div class="acoes">
-                    <div class="editar">
-                        <button>Editar</button>
+            <div class="maquinas">
+                <div class="maquina_1">
+                    <div class="foto_maquina">
+                        <img src="../img/LOGO_SMI.png" alt="">
                     </div>
-                    <div class="relatorio">
-                        <button>Relatório</button>
+                    <div class="info">
+                        <div class="item">
+                            <h1>Nome:</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="item">
+                            <h1>Modelo:</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="item">
+                            <h1>Operação:</h1>
+                            <p>ATIVA</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="item">
+                            <h1>ID:</h1>
+                            <p>8769534</p>
+                        </div>
+                        <div class="item">
+                            <h1>Setor:</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="acoes">
+                        <div class="editar">
+                            <button>Editar</button>
+                        </div>
+                        <div class="relatorio">
+                            <button>Relatório</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="maquina_1">
+                    <div class="foto_maquina">
+                        <img src="../img/LOGO_SMI.png" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="item">
+                            <h1>Nome:</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="item">
+                            <h1>Modelo:</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="item">
+                            <h1>Operação:</h1>
+                            <p>ATIVA</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="item">
+                            <h1>ID:</h1>
+                            <p>8769534</p>
+                        </div>
+                        <div class="item">
+                            <h1>Setor:</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="acoes">
+                        <div class="editar">
+                            <button>Editar</button>
+                        </div>
+                        <div class="relatorio">
+                            <button>Relatório</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="maquina_1">
+                    <div class="foto_maquina">
+                        <img src="../img/LOGO_SMI.png" alt="">
+                    </div>
+                    <div class="info">
+                        <div class="item">
+                            <h1>Nome:</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="item">
+                            <h1>Modelo:</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="item">
+                            <h1>Operação:</h1>
+                            <p>ATIVA</p>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="item">
+                            <h1>ID:</h1>
+                            <p>8769534</p>
+                        </div>
+                        <div class="item">
+                            <h1>Setor:</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="acoes">
+                        <div class="editar">
+                            <button>Editar</button>
+                        </div>
+                        <div class="relatorio">
+                            <button>Relatório</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
 
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,8 +13,6 @@
 
     <main id="conteudo">
         <?php include "inicio.php"; ?>
-        <?php include "listar_maquinas.php"; ?>
-
     </main>
 
     <div id="bottom_tabs">
@@ -66,4 +64,4 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-</html>
+</html> -->

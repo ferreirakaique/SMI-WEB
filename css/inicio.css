@@ -1,158 +1,55 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
     margin: 0;
-    box-sizing: border-box;
     padding: 0;
-    font-family: 'Poppins';
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-#apresentacao_smi {
-    margin: 20px;
-    text-align: justify;
+main {
+    margin-left: 20%;
+    padding: 30px;
+    min-height: 100vh;
 }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.main-header {
+    margin-bottom: 30px;
 }
 
-.logo img {
-    width: 200px;
+.main-header h1 {
+    font-size: 2rem;
+    color: #001943;
 }
 
-#missao_smi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.main-header p {
+    color: #555;
+    margin-top: 5px;
 }
 
-#missao_smi #titulo_missao {
-    font-size: 50px;
-    color: #000d22;
+/* Dashboard Grid */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-#missao_smi hr {
-    width: 80%;
-    background-color: #001943;
-    height: 2px;
-    border-radius: 20px;
-    margin: 20px;
-}
-
-#missao_smi .container_missao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#missao_smi .container_missao .box_missao {
-    padding: 10px;
-    width: 250px;
-    height: 200px;
-    color: white;
-    background: linear-gradient(150deg, #001943, #003FA9, #001943);
-    box-shadow: 0 5px 20px #001943;
-    border-radius: 20px;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#dashboard_smi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 40px;
-}
-
-#dashboard_smi #titulo_dashboard {
-    font-size: 50px;
-    color: #000d22;
-    text-align: center;
-}
-
-#dashboard_smi .teste {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#dashboard_smi .box {
-    color: white;
-    background: linear-gradient(60deg, #001943, #003FA9);
-    border-radius: 20px;
+/* Cards */
+.card {
+    background: white;
+    border-radius: 15px;
     padding: 20px;
-    margin: 10px;
-    width: 175px;
-    height: 200px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-#dashboard_smi .box:nth-child(2) {
-    background: linear-gradient(-60deg, #001943, #003FA9);
-}
-
-#dashboard_smi .box .info {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-#dashboard_smi .box h1 {
-    font-size: 45px;
-    font-weight: 550;
-}
-
-#dashboard_smi .box h2 {
-    font-size: 15px;
-    font-weight: 550;
-}
-
-#dashboard_smi .box p {
-    font-size: 9px;
     text-align: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-#dashboard_smi .box_dashboard_3 {
-    background: linear-gradient(60deg, #001943, #003FA9);
-    border-radius: 20px;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    margin: 10px;
+.card i {
+    font-size: 2rem;
+    color: #003FA9;
+    margin-bottom: 10px;
 }
 
-#dashboard_smi .box_dashboard_3 .info h1 {
-    font-size: 55px;
-    font-weight: 550;
-}
-
-#dashboard_smi .box_dashboard_3 .info {
-    font-size: 13px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 10px;
-    font-weight: 550;
-}
-
-#dashboard_smi .texto {
-    margin: 20px;
-    padding: 10px;
-    height: 200px;
-    text-align: justify;
-}
-
-@media screen and (max-width: 1024px) {
-    #missao_smi .container_missao {
-        flex-direction: column !important;
-    }
+.card:hover {
+    transform: translateY(-5px);
 }
