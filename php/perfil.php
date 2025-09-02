@@ -11,8 +11,6 @@
 </head>
 
 <body>
-    <?php include 'bottom_tabs.php'; ?>
-
     <main>
         <div class="logo">
             <h1>Perfil</h1>

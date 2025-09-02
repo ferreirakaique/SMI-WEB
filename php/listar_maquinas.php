@@ -11,14 +11,41 @@
 </head>
 
 <body>
-    <?php include 'bottom_tabs.php';?>
-
     <main>
-        <div class="logo">
-            <h1>Listar Maquinas</h1>
-            <img src="../img/SMI_LOGO.png" alt="">
+        <div class="Pesquisar">
+            <h1>Máquinas Listadas</h1>
+            <input type="search" name="" id="" placeholder="Pesquisar">
+        </div>
+
+        <div class="opcoes">
+            <button>Todas</button>
+            <button>Salvas</button>
+        </div>
+
+        <div class="container_maquinas">
+            <div class="maquina_1">
+                <div class="foto_maquina">
+                    <p>IMAGEM</p>
+                </div>
+                <div class="info">
+                    <h1>Nome:<span>Torneadora</span></h1>
+                    <h1>Modelo:<span>ASMOTIC</span></h1>
+                    <h1>Operação:<span>ATIVA</span></h1>
+                    <h1>ID:<span>8769534</span></h1>
+                    <h1>Setor: <span>1</span></h1>
+                </div>
+                <div class="acoes">
+                    <div class="editar">
+                        <button>Editar</button>
+                    </div>
+                    <div class="relatorio">
+                        <button>Relatório</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
 </body>
 
 </html>
