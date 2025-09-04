@@ -7,17 +7,148 @@
     font-family: 'Poppins';
 }
 
-@media screen and (max-width:1024px) {
+main {
+    margin-left: 20%;
+    padding: 30px;
+    background: #f5f7fa;
+    height: 100vh;
+}
 
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
+.container .titulo h1 {
+    font-size: 40px;
+    color: #001943;
+    text-align: center;
+}
 
-    .logo img {
-        width: 200px;
-    }
+.container .notificacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
+.container .notificacoes {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.container .notificacoes .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .notificacoes button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 100px;
+    width: 70%;
+    border-radius: 10px;
+    border: none;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.container .notificacoes p {
+    font-size: 16px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.container .notificacoes i {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.container .notificacoes p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+}
+
+/* ---- Ícones e texto (p) ---- */
+.container .notificacoes i {
+    font-size: 30px;
+    flex-shrink: 0;
+}
+
+.container .notificacoes #sucesso {
+    background-color: #28a7468c;
+}
+
+.container .notificacoes #sucesso i,
+.container .notificacoes #sucesso p,
+.container .notificacoes #sucesso h1 {
+    color: #0f7e29;
+}
+
+.container .notificacoes #erro {
+    background-color: #dc354685;
+}
+
+.container .notificacoes #erro i,
+.container .notificacoes #erro p,
+.container .notificacoes #erro h1 {
+    color: #8b0000;
+}
+
+.container .notificacoes #aviso {
+    background-color: #ffc10788;
+}
+
+.container .notificacoes #aviso i,
+.container .notificacoes #aviso p,
+.container .notificacoes #aviso h1 {
+    color: #856404;
+}
+
+.container .notificacoes #info {
+    background-color: #007bff83;
+}
+
+.container .notificacoes #info i,
+.container .notificacoes #info p,
+.container .notificacoes #info h1 {
+    color: #004085;
+}
+
+.container .notificacoes #limpar {
+    background-color: #6c757d85;
+    display: flex;
+    justify-content: center;
+}
+
+.container .notificacoes #limpar i,
+.container .notificacoes #limpar p,
+.container .notificacoes #limpar h1 {
+    color: #343a40;
+}
+
+
+.container .notificacoes #sucesso:hover {
+    background-color: #28a74659;
+}
+
+.container .notificacoes #erro:hover {
+    background-color: #dc354657;
+}
+
+.container .notificacoes #aviso:hover {
+    background-color: #ffc10754;
+}
+
+.container .notificacoes #info:hover {
+    background-color: #007bff4d;
+}
+
+.container .notificacoes #limpar:hover {
+    background-color: #6c757d59;
 }

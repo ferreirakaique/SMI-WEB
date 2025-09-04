@@ -7,18 +7,13 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    display: flex;
-    background: #f5f7fa;
-}
 
-/* Sidebar */
 nav {
-    background: linear-gradient(180deg, #003FA9, #001943);
+    background: linear-gradient(180deg, #003FA9, #002566, #001943);
     padding: 20px 10px;
     position: fixed;
     width: 20%;
-    height: 100vh;
+    height: 100%;
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
     top: 0;
@@ -30,27 +25,28 @@ nav ul {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
 }
 
-nav ul .logo {
-    width: 100%;
+nav ul .avatar {
     text-align: center;
-    margin-bottom: 30px;
 }
 
-nav ul .logo img {
+nav ul .avatar img {
     width: 120px;
-    transition: 0.3s ease-in-out;
+    filter: drop-shadow(7px 7px 5px #001943);
+    border-radius: 50%;
 }
 
-nav ul .logo img:hover {
-    filter: drop-shadow(0 0 10px #00aaff);
+nav ul .avatar p {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 nav ul li {
-    list-style: none;
+    list-style-type: none;
     width: 100%;
+    margin-top: 15px;
 }
 
 nav ul li a {
@@ -66,4 +62,24 @@ nav ul li a {
 
 nav ul li a:hover {
     background: rgba(255, 255, 255, 0.15);
+}
+
+nav .logo {
+    width: 100%;
+}
+
+nav .logo img {
+    width: 150px;
+    transition: 0.3s ease-in-out;
+    margin-top: 50px;
+}
+
+nav .logo img:hover {
+    filter: drop-shadow(5px 5px 3px black);
+}
+
+@media screen and (max-width:1024px) {
+    nav {
+        display: none;
+    }
 }

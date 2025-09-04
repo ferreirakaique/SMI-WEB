@@ -1,0 +1,261 @@
+@media screen and (max-width: 1024px) {
+
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    /* INÍCIO TAGS */
+
+    .dev,
+    .link-href {
+        text-decoration: none;
+        color: white;
+    }
+
+    .dev:hover,
+    .link-href:hover {
+        background-position: 0;
+    }
+
+    .dev:hover::before,
+    .link-href:hover::before {
+        width: 100%;
+    }
+
+
+    /* FIM TAGS */
+    /* INICIO CLASSES E IDS */
+    .link-href {
+        background: linear-gradient(180deg, white, white);
+        background-size: 200% 100%;
+        background-position: -100%;
+        display: inline-block;
+        padding: 5px 0;
+        position: relative;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .link-href:before {
+        content: '';
+        background-color: #044285;
+        display: block;
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    #btn-mobile {
+        display: none;
+    }
+
+    .navbar {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4rem;
+        display: none;
+        z-index: 300;
+    }
+
+    .navbar .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .navbar .links {
+        display: flex;
+        gap: 2rem;
+        font-size: 1rem;
+    }
+
+    .logo-mobile {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 22px;
+    }
+
+    /* FIM CLASSES E IDS */
+    /* INÍCIO MEDIA QUERIES */
+
+
+    body {
+        margin: 0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    header {
+        display: flex;
+        background: linear-gradient(180deg, #003FA9, #002566, #001943);
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .link-href-hidden {
+        display: block;
+    }
+
+    .button {
+        display: none;
+    }
+
+    .links li .link-href {
+        font-size: 20px;
+        padding: 12px;
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .links {
+        padding: 0;
+    }
+
+    .links li {
+        list-style-type: none;
+    }
+
+
+    .link {
+        gap: 40px;
+        margin-top: 50px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .link i {
+        display: inline-flex;
+        margin-right: 1px;
+        padding: 0;
+        height: 40px;
+        min-width: 40px;
+    }
+
+    #menu {
+        display: block;
+        position: absolute;
+        width: 100%;
+        top: 95px;
+        right: 0px;
+        background: linear-gradient(180deg, #001943, #001943, #001943);
+        transition: 0.6s;
+        z-index: 1000;
+        height: 0px;
+        visibility: hidden;
+        overflow-y: hidden;
+        padding: 20px;
+    }
+
+    #nav.active #menu {
+        height: calc(100vh - 70px);
+        visibility: visible;
+        overflow-y: auto;
+    }
+
+    #menu a {
+        padding: 1rem 0;
+        margin: 0 1rem;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+        font-weight: 300;
+    }
+
+    #btn-mobile {
+        display: flex;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        gap: 0.5rem;
+        color: white;
+    }
+
+    #hamburger {
+        border-top: 2px solid;
+        margin-top: 3.5px;
+        width: 20px;
+    }
+
+    #hamburger::after,
+    #hamburger::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+        margin-top: 5px;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    #nav.active #hamburger {
+        border-top-color: transparent;
+    }
+
+    #nav.active #hamburger::before {
+        transform: rotate(135deg);
+    }
+
+    #nav.active #hamburger::after {
+        transform: rotate(-135deg);
+        top: -7px;
+    }
+
+    .navbar .links {
+        display: none;
+        /* Oculta os links no modo responsivo, caso necessário */
+    }
+
+    .navbar {
+        padding: 0;
+        display: flex;
+    }
+
+    .dev {
+        font-size: 16px;
+    }
+
+    .button {
+        visibility: hidden;
+    }
+
+    .link-href-login {
+        visibility: visible;
+    }
+
+
+
+    @keyframes fade-in {
+        5% {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        95% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes progress {
+        to {
+            transform: scaleX(1);
+        }
+    }
+}
