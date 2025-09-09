@@ -20,7 +20,7 @@
                 <img src="../img/LOGO_SMI_BRANCA.png" width="130px" alt="">
             </div>
             <ul class="links" id="menu" role="menu">
-                <li><a href="inicio.php" class="link link-href"><i class='bx bx-home'></i> Início</a></li>
+                <li><a href="inicio.php" class="link link-href"><i class='bx bx-home'></i>Início</a></li>
                 <li><a href="listar_maquinas.php" class="link link-href"><i class='bx bx-list-ul'></i>Listar Máquinas</a></li>
                 <li><a href="qr_code.php" class="link link-href"><i class='bx bx-qr'></i>QR Code</a></li>
                 <li><a href="notificacoes.php" class="link link-href"><i class='bx bx-bell'></i>Notificações</a></li>
@@ -36,18 +36,6 @@
     </header>
 
     <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const navbar = document.querySelector('header');
-        //     window.addEventListener('scroll', function() {
-        //         // Verifica se a página foi rolada mais de 50 pixels
-        //         if (window.scrollY > 50) {
-        //             navbar.classList.add('scrolled');
-        //         } else {
-        //             navbar.classList.remove('scrolled');
-        //         }
-        //     });
-
-        // });
 
         const btnMobile = document.getElementById('btn-mobile');
 

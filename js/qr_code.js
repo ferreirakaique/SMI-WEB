@@ -1,7 +1,3 @@
-if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
-    console.log('Boa')
-}
-
 feather.replace();
 
 const controls = document.querySelector('.controls');

@@ -1,3 +1,7 @@
+#header {
+    display: none;
+}
+
 @media screen and (max-width: 1024px) {
 
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
@@ -102,7 +106,7 @@
     }
 
     header {
-        display: flex;
+        display: flex !important;
         background: linear-gradient(180deg, #003FA9, #002566, #001943);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
