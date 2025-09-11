@@ -1,3 +1,16 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
@@ -10,12 +23,12 @@
 main {
     margin-left: 20%;
     padding: 30px;
-    background: #f5f7fa;
+    background: linear-gradient(180deg, #033070, #001943);
 }
 
 .dashboard .titulo h1 {
     font-size: 40px;
-    color: #001943;
+    color: white;
     margin-bottom: 30px;
 }
 
@@ -31,58 +44,123 @@ main {
 }
 
 .card {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
     width: 270px;
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #003FA9;
     border-radius: 8px;
     padding: 20px;
-    text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
+    color: white;
 }
 
-.card i {
-    font-size: 2rem;
-    color: #003FA9;
-    margin-bottom: 10px;
+.card .titulo {
+    display: flex;
+    align-items: center;
 }
+
+.card .titulo i {
+    font-size: 35px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.card .titulo h2 {
+    font-weight: 100;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.card p {
+    font-size: 40px;
+}
+
+.card p span {
+    font-size: 25px;
+}
+
 
 .card:hover {
     transform: translateY(-5px);
 }
 
-.graficos_grandes {
+.card_maquinas_ativas {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 135px;
+}
+
+.card .titulo_card_3 {
     display: flex;
     flex-direction: column;
+    align-items: baseline;
+    margin-left: 10px;
+}
+
+
+.card .titulo_card_3 #maquinas_ativas {
+    font-size: 18px;
+}
+
+.card #icone_maquina_ativa {
+    font-size: 50px;
+}
+
+.card_maquinas_ativas #icone_maquina_ativa {
+    font-size: 55px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 10px;
+}
+
+.graficos_grandes {
+    display: flex;
     gap: 30px;
 }
 
 .card_grafico {
-    width: 870px;
-    height: 175px;
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #003FA9;
     border-radius: 8px;
     padding: 20px;
     text-align: center;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
+    color: white;
 }
 
 .card_grafico:hover {
     transform: translateY(-5px);
 }
 
-.card_vertical {
-    width: 270px;
-    height: 380px;
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+.temperatura {
+    width: 870px;
+    height: 350px;
 }
 
-.card_vertical:hover {
-    transform: translateY(-5px);
+.porcentagem {
+    width: 270px;
+    height: 350px;
+
+}
+
+.consumo_energetico {
+    width: 570px;
+    height: 500px;
+}
+
+.umidade_ambiente {
+    width: 570px;
+    height: 500px;
+}
+
+.ativos {
+    width: 1170px;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
 }

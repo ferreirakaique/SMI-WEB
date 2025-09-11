@@ -24,48 +24,79 @@
             <div class="card_container">
                 <div class="mini_cards">
                     <div class="card">
-                        <i class='bx bx-bar-chart'></i>
-                        <h2>Relatórios</h2>
-                        <p>Visualizar estatísticas</p>
+                        <div class="titulo">
+                            <i class='bx bx-bolt-circle'></i>
+                            <h2>Consumo médio</h2>
+                        </div>
+                        <p><strong>350</strong> <span>KWH</span></p>
                     </div>
 
                     <div class="card">
-                        <i class='bx bx-cog'></i>
-                        <h2>Configurações</h2>
-                        <p>Gerencie seu sistema</p>
+                        <div class="titulo">
+                            <i class='bx bx-bolt-circle'></i>
+                            <h2>Consumo semanal</h2>
+                        </div>
+                        <p><strong>1350</strong> <span>KWH</span></p>
                     </div>
 
-                    <div class="card">
-                        <i class='bx bx-message-rounded-dots'></i>
-                        <h2>Mensagens</h2>
-                        <p>Converse com a equipe</p>
+                    <div class="card card_maquinas_ativas">
+                        <div class="titulo_card_3">
+                            <p><strong>350</strong></p>
+                            <span id="maquinas_ativas">Máquinas <br>Ativas</span>
+                        </div>
+                        <i id="icone_maquina_ativa" class='bx bx-cog'></i>
                     </div>
 
-                    <div class="card">
-                        <i class='bx bx-bell'></i>
-                        <h2>Notificações</h2>
-                        <p>Últimos alertas recebidos</p>
+                    <div class="card card_maquinas_ativas">
+                        <div class="titulo_card_3">
+                            <p><strong>1080</strong></p>
+                            <span id="maquinas_ativas">Funcionarios <br>Ativos</span>
+                        </div>
+                        <i id="icone_maquina_ativa" class='bx bx-group'></i>
                     </div>
                 </div>
 
 
                 <div class="graficos_grandes">
-                    <div class="card_grafico">
-                        <h2>Grafico 1</h2>
+                    <div class="card_grafico temperatura">
+                        <h2>Temperatura</h2>
                         <p></p>
                     </div>
-                    <div class="card_grafico">
-                        <h2>Grafico 2</h2>
+                    <div class="card_grafico porcentagem">
+                        <h2>Produção sustentavel</h2>
                         <p></p>
                     </div>
                 </div>
 
-                <div class="grafico_porcentagem">
-                    <div class="card_vertical">
-                        <h2>PORCENTAGEM</h2>
-                        <p>Últimos alertas recebidos</p>
+                <div class="graficos_grandes">
+                    <div class="card_grafico consumo_energetico">
+                        <h2>Consumo energetico</h2>
+                        <p></p>
+                    </div>
+                    <div class="card_grafico umidade_ambiente">
+                        <h2>Umidade do ambiente</h2>
+                        <p></p>
                     </div>
                 </div>
+
+                <div class="graficos_grandes">
+                    <div class="card_grafico ativos">
+                        <div class="producao_ativa">
+                            <p>producao_ativa</p>
+                        </div>
+                        <div class="ia_produtiva">
+                            <p>ia_produtiva</p>
+                        </div>
+                        <div class="produto_descartados">
+                            <p>produto_descartados</p>
+                        </div>
+                        <div class="exportacao_internacional">
+                            <p>exportacao_internacional</p>
+                        </div>
+                    </div>
+                </div>
+
+
 
             </div>
 

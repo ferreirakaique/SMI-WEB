@@ -10,7 +10,7 @@
 main {
     margin-left: 20%;
     padding: 30px;
-    background: #f5f7fa;
+    background: linear-gradient(180deg, #033070, #001943);
     height: 100vh;
 }
 

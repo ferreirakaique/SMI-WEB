@@ -9,7 +9,7 @@
 
 main {
     margin-left: 20%;
-    background: #f5f7fa;
+    background: linear-gradient(180deg, #033070, #001943);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -21,6 +21,10 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.container_qrcode h1 {
+    color: white;
 }
 
 .screenshot-image {

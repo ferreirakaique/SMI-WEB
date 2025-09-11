@@ -17,96 +17,28 @@
     <main>
         <section class="maquinas_listadas">
 
-            <div class="container">
-                <div class="pesquisa">
-                    <h1>Máquinas Listadas</h1>
-                    <input type="search" name="" id="" placeholder="Pesquisar">
-                </div>
+            <div class="titulo">
+                <h1>Máquinas Listadas</h1>
+            </div>
 
-                <div class="container_maquinas">
-                    <div class="maquinas">
-                        <div class="maquina_1">
-                            <div class="foto_maquina">
-                                <img src="../img/LOGO_SMI_BRANCA.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="item">
-                                    <h1>Nome:</h1>
-                                    <p>Torneadora</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Modelo:</h1>
-                                    <p>ASMOTIC</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Operação:</h1>
-                                    <p>ATIVA</p>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="item">
-                                    <h1>ID:</h1>
-                                    <p>8769534</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Setor:</h1>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div class="acoes">
-                                <div class="editar">
-                                    <button>Editar</button>
-                                </div>
-                                <div class="relatorio">
-                                    <button>Relatório</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="maquina_1">
-                            <div class="foto_maquina">
-                                <img src="../img/LOGO_SMI_BRANCA.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="item">
-                                    <h1>Nome:</h1>
-                                    <p>Torneadora</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Modelo:</h1>
-                                    <p>ASMOTIC</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Operação:</h1>
-                                    <p>ATIVA</p>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="item">
-                                    <h1>ID:</h1>
-                                    <p>8769534</p>
-                                </div>
-                                <div class="item">
-                                    <h1>Setor:</h1>
-                                    <p>1</p>
-                                </div>
-                            </div>
-                            <div class="acoes">
-                                <div class="editar">
-                                    <button>Editar</button>
-                                </div>
-                                <div class="relatorio">
-                                    <button>Relatório</button>
-                                </div>
-                            </div>
-                        </div>
+            <div class="pesquisa">
+                <input type="search" name="" id="" placeholder="Pesquisar">
+            </div>
+
+            <div class="container_maquina">
+                <div class="maquina">
+                    <div class="imagem_logo">
+                        <img src="../img/maquina_imagem.png" alt="">
                     </div>
-                </div>
-                <div class="opcoes">
-                    <button id="adicionar_maquina">Adicionar Máquina</button>
+
+                    <div class="info"></div>
                 </div>
             </div>
 
+
+            <div class="opcoes">
+                <button id="adicionar_maquina">Adicionar Máquina</button>
+            </div>
 
         </section>
 

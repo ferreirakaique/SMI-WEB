@@ -10,16 +10,17 @@
 main {
     margin-left: 20%;
     padding: 30px;
-    background: #f5f7fa;
+    background: linear-gradient(180deg, #033070, #001943);
     min-height: 100vh;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+.maquinas_listadas .titulo h1 {
+    color: white;
+    text-align: center;
+    font-size: 40px;
 }
 
-.pesquisa {
+.maquinas_listadas .pesquisa {
     margin: 20px;
     display: flex;
     justify-content: center;
@@ -27,169 +28,30 @@ main {
     flex-direction: column;
 }
 
-.pesquisa h1 {
+.maquinas_listadas .pesquisa h1 {
     font-size: 40px;
-    color: #001943;
+    color: white;
     margin-bottom: 30px;
     text-align: center;
 }
 
-.pesquisa input {
+.maquinas_listadas .pesquisa input {
     width: 80%;
     border-radius: 30px;
     border: none;
     padding: 8px;
-    background: #e1e3e6;
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #001943;
     transition: 0.2s ease-in-out;
 }
 
-.pesquisa input:focus {
+.maquinas_listadas .pesquisa input:focus {
     outline: none;
     border-color: #005eff;
     box-shadow: 0 6px 14px rgba(0, 94, 255, 0.2);
 }
 
-.pesquisa ::-webkit-input-placeholder {
+.maquinas_listadas .pesquisa ::-webkit-input-placeholder {
     color: #001943;
-}
-
-.opcoes {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.opcoes #adicionar_maquina {
-    padding: 5px 20px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-    background-color: #001943;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-}
-
-.opcoes #adicionar_maquina:hover {
-    transform: translateY(-3px);
-}
-
-.teste {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.container_maquinas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 30px;
-}
-
-.container_maquinas .maquinas {
-    background: linear-gradient(135deg, #001943, #003fa9);
-    width: 80%;
-    color: white;
-    border-radius: 25px;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
-    padding: 5px;
-
-}
-
-.container_maquinas .maquinas .maquina_1 {
-    margin: 10px;
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.2s ease-in-out;
-    border-radius: 25px;
-}
-
-.container_maquinas .maquinas .maquina_1:hover {
-    background-color: #000c22a8;
-}
-
-.container_maquinas .maquinas .maquina_1 .foto_maquina img {
-    width: 120px;
-}
-
-.container_maquinas .maquinas .maquina_1 .info {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 17%;
-}
-
-.container_maquinas .maquinas .maquina_1 .info .item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.container_maquinas .maquinas .maquina_1 .info h1 {
-    font-size: 15px;
-}
-
-.container_maquinas .maquinas .maquina_1 .info p {
-    font-size: 15px;
-}
-
-.container_maquinas .maquinas .maquina_1 .acoes {
-    display: flex;
-    align-items: center;
-}
-
-
-.container_maquinas .maquinas .maquina_1 .acoes .editar button {
-    padding: 5px 20px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease-in-out;
-    background-color: #005eff;
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-}
-
-.container_maquinas .maquinas .maquina_1 .acoes .editar button:hover {
-    background-color: #003da5;
-    transform: translateY(-2px);
-}
-
-.container_maquinas .maquinas .maquina_1 .acoes .relatorio button {
-    padding: 5px 20px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgb(0, 148, 0);
-    color: #fff;
-
-}
-
-.container_maquinas .maquinas .maquina_1 .acoes .relatorio button:hover {
-    background-color: rgb(0, 75, 0);
-
-    transform: translateY(-2px);
-}
-
-@media screen and (max-width:1024px) {
-    .container_maquinas .maquinas .maquina_1 {
-        flex-direction: column;
-    }
 }
