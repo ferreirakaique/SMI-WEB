@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/notification.css">
     <script src="../js/notification.js" defer></script>
-    <title>Notification</title>
+    <title>Notificações</title>
 </head>
 
 <body>
@@ -15,71 +15,90 @@
     <?php include "nav_mobile.php" ?>
 
     <main>
-        <section class="section_notificacoes">
-
-            <div class="container">
-                <div class="titulo">
-                    <h1>Notificações</h1>
+        <h1>Notificações</h1>
+        <input type="text" placeholder="Pesquisar">
+        <div id="filtros">
+            <button class="botao-filtro" id="todas">Todas</button>
+            <button class="botao-filtro" id="sucesso">Sucesso</button>
+            <button class="botao-filtro" id="falha">Falha</button>
+            <button class="botao-filtro" id="aviso">Aviso</button>
+            <button class="botao-filtro" id="informacao">Informação</button>
+            <button class="botao-filtro" id="sugestao">Sugestão</button>
+        </div>
+        <div id="notificacoes">
+            <div class="notificacao" id="sucesso">
+                <div class="status">
+                    <img src="../img/success.png" alt="Sucesso!">
+                    <h2>Sucesso</h2>
                 </div>
-                <div class="notificacoes">
-                    <button id="sucesso">
-                        <div class="info">
-                            <i class='bx bx-check-circle'></i>
-                            <h1>Sucesso</h1>
-                        </div>
-                        <div class="info_2">
-                            <p><strong>MÁQUINA ID:</strong> 9974245</p>
-                            <p><strong>SETOR:</strong> 15</p>
-                            <p><strong>OBS:</strong> Produto Finalizado</p>
-                        </div>
-                    </button>
-
-                    <button id="erro">
-                        <div class="info">
-                            <i class='bx bx-x-circle'></i>
-                            <h1>Erro</h1>
-                        </div>
-                        <div class="info_2">
-                            <p><strong>MÁQUINA ID:</strong> 8769534</p>
-                            <p><strong>SETOR:</strong> 5</p>
-                            <p><strong>OBS:</strong> Alta temperatura</p>
-                        </div>
-                    </button>
-
-                    <button id="aviso">
-                        <div class="info">
-                            <i class='bx bx-error-circle'></i>
-                            <h1>Aviso</h1>
-                        </div>
-                        <div class="info_2">
-                            <p><strong>MÁQUINA ID:</strong> 1256123</p>
-                            <p><strong>SETOR:</strong> 1</p>
-                            <p><strong>OBS:</strong> Medida Protetiva desativada</p>
-                        </div>
-                    </button>
-
-                    <button id="info">
-                        <div class="info">
-                            <i class='bx bx-info-circle'></i>
-                            <h1>Info</h1>
-                        </div>
-                        <div class="info_2">
-                            <p><strong>MÁQUINA ID:</strong> 5641234</p>
-                            <p><strong>SETOR:</strong> 6</p>
-                            <p><strong>OBS:</strong> Produção em andamento</p>
-                        </div>
-                    </button>
-
-                    <button id="limpar">
-                        <div class="info">
-                            <i class='bx bx-trash'></i>
-                            <p><strong>Limpar todas as notificações</strong></p>
-                        </div>
-                    </button>
+                <div class="stats">
+                    <h3>NOME_MÁQUINA</h3>
+                    <h4><b>ID:</b> 998654</h4>
+                    <h4><b>Setor:</b> 3</h4>
                 </div>
-
+                <div class="info">
+                    <h3>INFORMAÇÃO</h3>
+                    <h4><b>ID:</b>998654</h4>
+                </div>
+                <div class="data-e-hora">
+                    <h6>14/09/2025 10h41</h6>
+                </div>
             </div>
-        </section>
+            <div class="notificacao" id="sucesso1">
+                <div class="status">
+                    <img src="../img/success.png" alt="Sucesso!">
+                    <h2>Erro</h2>
+                </div>
+                <div class="stats">
+                    <h3>NOME_MÁQUINA</h3>
+                    <h4><b>ID:</b> 998654</h4>
+                    <h4><b>Setor:</b> 3</h4>
+                </div>
+                <div class="info">
+                    <h3>INFORMAÇÃO</h3>
+                    <h4><b>ID:</b>998654</h4>
+                </div>
+                <div class="data-e-hora">
+                    <h6>14/09/2025 10h41</h6>
+                </div>
+            </div>
+            <div class="notificacao" id="sucesso1">
+                <div class="status">
+                    <img src="../img/success.png" alt="Sucesso!">
+                    <h2>Sucesso</h2>
+                </div>
+                <div class="stats">
+                    <h3>NOME_MÁQUINA</h3>
+                    <h4><b>ID:</b> 998654</h4>
+                    <h4><b>Setor:</b> 3</h4>
+                </div>
+                <div class="info">
+                    <h3>INFORMAÇÃO</h3>
+                    <h4><b>ID:</b>998654</h4>
+                </div>
+                <div class="data-e-hora">
+                    <h6>14/09/2025 10h41</h6>
+                </div>
+            </div>
+            <div class="notificacao" id="sucesso1">
+                <div class="status">
+                    <img src="../img/success.png" alt="Sucesso!">
+                    <h2>Sucesso</h2>
+                </div>
+                <div class="stats">
+                    <h3>NOME_MÁQUINA</h3>
+                    <h4><b>ID:</b> 998654</h4>
+                    <h4><b>Setor:</b> 3</h4>
+                </div>
+                <div class="info">
+                    <h3>INFORMAÇÃO</h3>
+                    <h4><b>ID:</b>998654</h4>
+                </div>
+                <div class="data-e-hora">
+                    <h6>14/09/2025 10h41</h6>
+                </div>
+            </div>
+        </div>
     </main>
 
 </body>

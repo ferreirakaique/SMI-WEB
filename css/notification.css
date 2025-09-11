@@ -11,144 +11,87 @@ main {
     margin-left: 20%;
     padding: 30px;
     background: linear-gradient(180deg, #033070, #001943);
-    height: 100vh;
-}
-
-.container .titulo h1 {
-    font-size: 40px;
-    color: #001943;
-    text-align: center;
-}
-
-.container .notificacoes {
+    height: 200vh;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.container .notificacoes {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.container .notificacoes .info {
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.container .notificacoes button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 100px;
-    width: 70%;
-    border-radius: 10px;
+main h1 {
+    color: white;
+}
+
+main input {
+    height: 40px;
+    width: 500px;
+    border-radius: 50px;
+    color: black;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+main #filtros {
+    margin-top: 10px;
+}
+
+main #filtros .botao-filtro {
+    padding: 10px;
+    border-radius: 20px;
+    color: white;
     border: none;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #fff;
     cursor: pointer;
-    transition: 0.3s ease;
 }
 
-.container .notificacoes p {
-    font-size: 16px;
-    font-weight: 500;
-    text-align: right;
+main #filtros #todas {
+    background-color: #005EFF;
 }
 
-.container .notificacoes i {
-    font-size: 30px;
-    margin-right: 10px;
+main #filtros #sucesso {
+    background-color: #008727;
 }
 
-.container .notificacoes p {
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0;
-    text-align: left;
+main #filtros #falha {
+    background-color: #E63946;
 }
 
-/* ---- Ícones e texto (p) ---- */
-.container .notificacoes i {
-    font-size: 30px;
-    flex-shrink: 0;
+main #filtros #aviso {
+    background-color: #BFB900;
 }
 
-.container .notificacoes #sucesso {
-    background-color: #28a7468c;
+main #filtros #informacao {
+    background-color: #005EFF;
 }
 
-.container .notificacoes #sucesso i,
-.container .notificacoes #sucesso p,
-.container .notificacoes #sucesso h1 {
-    color: #0f7e29;
+main #filtros #sugestao {
+    background-color: #011838;
 }
 
-.container .notificacoes #erro {
-    background-color: #dc354685;
-}
-
-.container .notificacoes #erro i,
-.container .notificacoes #erro p,
-.container .notificacoes #erro h1 {
-    color: #8b0000;
-}
-
-.container .notificacoes #aviso {
-    background-color: #ffc10788;
-}
-
-.container .notificacoes #aviso i,
-.container .notificacoes #aviso p,
-.container .notificacoes #aviso h1 {
-    color: #856404;
-}
-
-.container .notificacoes #info {
-    background-color: #007bff83;
-}
-
-.container .notificacoes #info i,
-.container .notificacoes #info p,
-.container .notificacoes #info h1 {
-    color: #004085;
-}
-
-.container .notificacoes #limpar {
-    background-color: #6c757d85;
+main #notificacoes {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-.container .notificacoes #limpar i,
-.container .notificacoes #limpar p,
-.container .notificacoes #limpar h1 {
-    color: #343a40;
+main #notificacoes .notificacao {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #003FA9;
+    width: 800px;
+    justify-content: space-between;
+    color: white;
 }
 
-
-.container .notificacoes #sucesso:hover {
-    background-color: #28a74659;
+main #notificacoes .notificacao .status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
 }
 
-.container .notificacoes #erro:hover {
-    background-color: #dc354657;
-}
-
-.container .notificacoes #aviso:hover {
-    background-color: #ffc10754;
-}
-
-.container .notificacoes #info:hover {
-    background-color: #007bff4d;
-}
-
-.container .notificacoes #limpar:hover {
-    background-color: #6c757d59;
+main #notificacoes #sucesso {
+    background-color: #076454;
 }
