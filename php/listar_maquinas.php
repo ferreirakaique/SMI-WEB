@@ -22,20 +22,113 @@
             </div>
 
             <div class="pesquisa">
-                <input type="search" name="" id="" placeholder="Pesquisar">
+                <i class='bx bx-search'></i>
+                <input type="search" placeholder="Pesquisar">
             </div>
 
-            <div class="container_maquina">
+
+            <div class="container_maquinas">
                 <div class="maquina">
                     <div class="imagem_logo">
                         <img src="../img/maquina_imagem.png" alt="">
+                        <div class="estado_maquina">
+                            <button>Ativa</button>
+                        </div>
+                    </div>
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Nome</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="info">
+                            <h1>ID</h1>
+                            <p>8769534</p>
+                        </div>
                     </div>
 
-                    <div class="info"></div>
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Modelo</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="info">
+                            <h1>Setor</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="acoes">
+                        <button id="editar">Editar</button>
+                        <button id="relatorio">Relatório</button>
+                    </div>
+                </div>
+                <div class="maquina">
+                    <div class="imagem_logo">
+                        <img src="../img/maquina_imagem.png" alt="">
+                        <div class="estado_maquina">
+                            <button>Ativa</button>
+                        </div>
+                    </div>
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Nome</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="info">
+                            <h1>ID</h1>
+                            <p>8769534</p>
+                        </div>
+                    </div>
+
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Modelo</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="info">
+                            <h1>Setor</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+                    <div class="acoes">
+                        <button id="editar">Editar</button>
+                        <button id="relatorio">Relatório</button>
+                    </div>
+                </div>
+                <div class="maquina">
+                    <div class="imagem_logo">
+                        <img src="../img/maquina_imagem.png" alt="">
+                        <div class="estado_maquina">
+                            <button>Ativa</button>
+                        </div>
+                    </div>
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Nome</h1>
+                            <p>Torneadora</p>
+                        </div>
+                        <div class="info">
+                            <h1>ID</h1>
+                            <p>8769534</p>
+                        </div>
+                    </div>
+
+                    <div class="informacoes_maquina">
+                        <div class="info">
+                            <h1>Modelo</h1>
+                            <p>ASMOTIC</p>
+                        </div>
+                        <div class="info">
+                            <h1>Setor</h1>
+                            <p>1</p>
+                        </div>
+                    </div>
+
+                    <div class="acoes">
+                        <button id="editar">Editar</button>
+                        <button id="relatorio">Relatório</button>
+                    </div>
                 </div>
             </div>
-
-
             <div class="opcoes">
                 <button id="adicionar_maquina">Adicionar Máquina</button>
             </div>
