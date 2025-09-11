@@ -59,7 +59,7 @@
             </div>
             <div class="acoes">
                 <button id="editar">Editar</button>
-                <button id="desconectar">Desconectar</button>
+                <a href="../php/login.php"><button id="desconectar">Desconectar</button></a>
             </div>
         </div>
 

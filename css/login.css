@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../img/FundoLogin.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  position: relative; 
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(88, 196, 255, 0.8); 
+  border-radius: 15px;
+  padding: 30px;
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.25); 
+  color: #e0f7ff;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #e0f7ff;
+  font-size: 35px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(97, 195, 227, 0.5);
+  background: rgba(255, 255, 255, 0.2); 
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.login-container input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: rgba(173, 216, 230, 0.8); 
+  color: #003366; 
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.login-container button:hover {
+  background: rgba(173, 216, 230, 1);
+}
