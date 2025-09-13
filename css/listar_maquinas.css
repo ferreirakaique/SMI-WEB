@@ -148,7 +148,7 @@ main {
     margin-top: 20px;
 }
 
-.container_maquinas .maquina .acoes #editar {
+.container_maquinas .maquina .acoes .editar {
     padding: 4px 15px;
     background-color: #005eff;
     border-radius: 15px;
@@ -170,6 +170,7 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
 
 }
 
@@ -180,7 +181,8 @@ main {
     margin-top: 50px;
 }
 
-.opcoes button {
+.opcoes a {
+    text-decoration: none;
     padding: 8px 15px;
     background-color: #005eff;
     border-radius: 15px;
@@ -190,4 +192,166 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Modal de editar */
+#modal_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+@keyframes modalHide {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+#modal_content.hide {
+    animation: modalHide 0.3s ease forwards;
+}
+
+#modal_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+#modal_content {
+    width: 35%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border: 2px solid #005eff;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    transform: scale(0.8);
+    opacity: 0;
+    animation: modalShow 0.3s ease forwards;
+}
+
+@keyframes modalShow {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+#sair_modal {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    left: 180px;
+}
+
+#sair_modal i {
+    font-size: 50px;
+    filter: drop-shadow(2px 2px 2px #005eff);
+}
+
+#sair_modal p {
+    font-size: 18px;
+}
+
+#modal_content .titulo h1 {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+#modal_content .salvar #salvar_maquina {
+    padding: 10px 25px;
+    background-color: #005eff;
+    border-radius: 20px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+}
+
+.inputbox {
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.inputbox input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0d72ff;
+    border-radius: 15px;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    background-color: #0D274F;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1rem;
+    color: white;
+    transition: 0.2s;
+}
+
+.inputbox input:valid~span,
+.inputbox input:focus~span {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.inputbox input:valid,
+.inputbox input:focus {
+    border: 1px solid #0d72ff;
+}
+
+.inputbox #imagem_maquina {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+@media screen and (max-width:1024px) {
+    main {
+        margin-left: 0;
+    }
 }

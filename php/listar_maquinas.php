@@ -57,8 +57,8 @@
                         </div>
                     </div>
                     <div class="acoes">
-                        <button id="editar">Editar</button>
-                        <button id="relatorio">Relatório</button>
+                        <button class="editar">Editar</button>
+                        <a href="relatorio.php" id="relatorio">Relatório</a>
                     </div>
                 </div>
                 <div class="maquina">
@@ -90,8 +90,8 @@
                         </div>
                     </div>
                     <div class="acoes">
-                        <button id="editar">Editar</button>
-                        <button id="relatorio">Relatório</button>
+                        <button class="editar">Editar</button>
+                        <a href="relatorio.php" id="relatorio">Relatório</a>
                     </div>
                 </div>
                 <div class="maquina">
@@ -124,15 +124,49 @@
                     </div>
 
                     <div class="acoes">
-                        <button id="editar">Editar</button>
-                        <button id="relatorio">Relatório</button>
+                        <button class="editar">Editar</button>
+                        <a href="relatorio.php" id="relatorio">Relatório</a>
                     </div>
                 </div>
             </div>
             <div class="opcoes">
-                <button id="adicionar_maquina">Adicionar Máquina</button>
+                <a href="adicionar_maquina.php" id="adicionar_maquina">Adicionar Máquina</a>
             </div>
 
+            <!-- MODAL DE EDITAR -->
+
+            <div id="modal_overlay">
+                <div id="modal_container">
+                    <div id="modal_content">
+                        <div id="sair_modal">
+                            <i class='bx bx-x'></i>
+                        </div>
+                        <div class="titulo">
+                            <h1>Editar Máquina</h1>
+                            <h1>ID:8769534</h1>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" name="nome_maquina_digitado" required>
+                            <span>Nome</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" name="modelo_digitado" required>
+                            <span>Modelo</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="number" name="id_digitado" required>
+                            <span>ID</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="number" name="setor_digitado" required>
+                            <span>Setor</span>
+                        </div>
+                        <div class="salvar">
+                            <button id="salvar_maquina">Salvar Máquina</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
