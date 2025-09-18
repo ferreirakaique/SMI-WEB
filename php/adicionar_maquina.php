@@ -38,19 +38,52 @@
                     </div>
                     <div class="inputbox">
                         <input type="text" name="descricao_digitado" required>
-                        <span>Descrição</span>
-                    </div>
-                    <div class="inputbox">
-                        <input type="text" name="localizacao_digitado" required>
-                        <span>Localização</span>
+                        <span>Modelo</span>
                     </div>
                     <div class="inputbox">
                         <input type="number" name="id_digitado" required>
                         <span>Número de serie/ID interno</span>
                     </div>
+                    <div class="inputbox">
+                        <input type="text" name="localizacao_digitado" required>
+                        <span>Setor</span>
+                    </div>
+                    <div class="inputbox">
+                        <select name="operante_digitado" id="" required>
+                            <option value="">Kaique</option>
+                            <option value="">Yago</option>
+                            <option value="">Mamute</option>
+                        </select>
+                        <span id="span_operante">Operante</span>
+                    </div>
+                    <div class="inputbox">
+                        <select name="status_digitado" id="" required>
+                            <option value="">ATIVA</option>
+                            <option value="">INATIVA</option>
+                            <option value="">EM MANUTENÇÃO</option>
+                        </select>
+                        <span id="status_span">Status atual</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" name="observacao_digitado" required>
+                        <span>Observação</span>
+                    </div>
+                    <div class="inputbox">
+                        <input type="file" name="imagem_digitado" required>
+                        <span id="imagem_maquina">Imagem da maquina</span>
+                    </div>
                 </div>
 
-                <div class="configuracao_sensores">
+                <div class="opcoes">
+                    <button id="salvar_maquina">Salvar Máquina</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+<!-- <div class="configuracao_sensores">
                     <div class="titulo">
                         <h1>Configuração de sensores</h1>
                     </div>
@@ -75,30 +108,6 @@
                             <span>Vibração</span>
                         </div>
                     </div>
-                    <div class="inputbox">
-                        <input type="text" name="observacao_digitado" required>
-                        <span>Observação</span>
-                    </div>
-                </div>
-
-                <div class="informacoes_adicionais">
-                    <div class="titulo">
-                        <h1>Informações adicionais</h1>
-                    </div>
-                    <div class="inputbox">
-                        <input type="file" name="imagem_digitado" required>
-                        <span id="imagem_maquina">Imagem da maquina</span>
-                    </div>
-                </div>
-
-                <div class="opcoes">
-                    <button id="salvar_maquina">Salvar Máquina</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-</body>
+                </div> -->
 
 </html>

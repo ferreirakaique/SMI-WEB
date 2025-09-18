@@ -59,7 +59,7 @@
 
                 <div class="graficos_grandes">
                     <div class="card_grafico temperatura">
-                        <h2>Temperatura</h2>
+                        <h2>Temperatura da maquina</h2>
                         <p></p>
                     </div>
                     <div class="card_grafico porcentagem">

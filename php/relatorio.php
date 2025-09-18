@@ -47,7 +47,7 @@
                                 <p>Asmotic</p>
                             </div>
                             <div class="info_maquina">
-                                <h1>ID</h1>
+                                <h1>ID interno</h1>
                                 <p>8769534</p>
                             </div>
                             <div class="info_maquina">

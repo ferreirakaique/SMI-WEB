@@ -83,7 +83,8 @@ main {
     width: 100%;
 }
 
-.inputbox input {
+.inputbox input,
+.inputbox select {
     width: 100%;
     padding: 8px;
     border: 1px solid #0d72ff;
@@ -105,7 +106,9 @@ main {
 }
 
 .inputbox input:valid~span,
-.inputbox input:focus~span {
+.inputbox input:focus~span,
+.inputbox select:valid~span,
+.inputbox select:focus~span {
     color: #0d72ff;
     transform: translateX(10px) translateY(-10px);
     background: #0D274F;
@@ -115,11 +118,15 @@ main {
 }
 
 .inputbox input:valid,
-.inputbox input:focus {
+.inputbox input:focus,
+.inputbox select:valid,
+.inputbox select:focus {
     border: 1px solid #0d72ff;
 }
 
-.inputbox #imagem_maquina {
+.inputbox #imagem_maquina,
+.inputbox #span_operante,
+.inputbox #status_span {
     color: #0d72ff;
     transform: translateX(10px) translateY(-10px);
     background: #0D274F;
