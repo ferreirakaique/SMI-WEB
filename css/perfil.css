@@ -28,20 +28,22 @@ main {
     display: flex;
     gap: 30px;
     flex-direction: column;
-    background: #f5f7fa;
+    background: #032F6F;
 }
 
 .container_perfil {
-    background: #fff;
+    background: #1D427A;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     transition: transform .2s ease-in-out;
+    border: 1px solid #003FA9;
+    color: #ffffff;
 }
 
 .container_perfil .titulo h1 {
     font-size: 40px;
-    color: #001943;
+    color: #ffffff;
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -57,7 +59,12 @@ main {
     flex: 1;
     min-width: 200px;
 }
-
+.container_perfil .info_grupo h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+   
+}
 .container_perfil .info h1 {
     font-size: 20px;
     font-weight: bold;
@@ -108,16 +115,19 @@ main {
 }
 
 .certificacoes {
-    background: #fff;
+   background: #1D427A;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform .2s ease-in-out;
+    border: 1px solid #003FA9;
+    color: #ffffff;
 }
 
 .certificacoes h1 {
     text-align: center;
     font-size: 28px;
-    color: #001943;
+    color: #ffffff;
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -132,9 +142,9 @@ main {
 .certificacoes .card {
     width: 220px;
     height: 220px;
-    background: linear-gradient(135deg, #001943, #003fa9);
+    background: linear-gradient(135deg, #042e78, #003fa9);
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #076c97;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,7 +153,7 @@ main {
 
 .certificacoes .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 30px black;
+    box-shadow: 0 8px 20px rgb(255, 255, 255);
 }
 
 .certificacoes .card h1 {
