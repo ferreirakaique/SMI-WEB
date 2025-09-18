@@ -27,7 +27,7 @@ body {
   border-radius: 10px;
   padding: 30px;
   width: 400px;
-  height: 490px;
+  height: 510px;
   text-align: center;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.25); 
   color: #e0f7ff;
@@ -47,7 +47,7 @@ body {
 .login-container button {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
+  margin-top: 20px;
   background: rgba(255, 255, 255, 0.8); 
   color: #003366; 
   border: none;
@@ -63,7 +63,7 @@ body {
   background: rgba(255, 255, 255, 0.933);
 }
 #formulario-login {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .input-container {
@@ -103,4 +103,17 @@ body {
   font-size: 14px;
   color: #fff;
   background: #0a2c61; 
+}
+.voltar {
+margin-top: 5px;
+font-size: 14px;
+display: flex;
+justify-content: left;
+}
+.voltar a {
+color: #fff;
+text-decoration: none;
+}
+.voltar a:hover {
+text-decoration: underline;
 }

@@ -3,58 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/login.css">
-  <title>Tela de Login</title>
+  <link rel="stylesheet" href="../css/cadastrar.css">
+  <title>Tela de Cadastro</title>
   <style>
     body {
       opacity: 0;
-      transition: opacity 0.4s ease-in-out;
+      transition: opacity 0.6s ease-in-out;
     }
     body.loaded {
       opacity: 1;
     }
 
-    .links-login {
+    .voltar {
       display: flex;
-      justify-content: space-between;
-      margin: 5px 0 15px 0;
-      font-size: 13px;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
+      margin-bottom: 15px;
     }
-    .links-login a {
-      color: #fff; 
+    .voltar a {
+      color: #fff;
       text-decoration: none;
     }
-    .links-login a:hover {
+    .voltar a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <img src="../img/LOGO_SMI_BRANCA.png" alt="">
+    <img src="../img/LOGO_SMI_BRANCA.png" alt="Logo">
+
+    <div class="voltar">
+      <a href="login.php" class="transition-link">⬅ Voltar</a>
+    </div>
+
     <div id="formulario-login">
-      <h2>ENTRAR</h2>
-      <form method="POST" action="../php/inicio.php">
+      <h2>CADASTRAR</h2>
+      <form method="POST" action="">
+        
         <div class="input-container">
-          <input type="text" name="usuario" id="usuario" placeholder=" " required>
-          <label for="usuario">CPF</label>
+          <input type="text" name="usuario" placeholder=" " required>
+          <label>Nome Completo</label>
         </div>
 
         <div class="input-container">
-          <input type="password" name="senha" id="senha" placeholder=" " required>
-          <label for="senha">Senha</label>
+          <input type="text" name="cpf" placeholder=" " required>
+          <label>CPF</label>
         </div>
 
-        <div class="links-login">
-          <a href="../php/esqueci_senha.php" class="transition-link">Esqueci a senha</a>
-          <a href="../php/cadastrar.php" class="transition-link">Cadastrar conta</a>
+        <div class="input-container">
+          <input type="password" name="senha" placeholder=" " required>
+          <label>Senha</label>
         </div>
-        <button type="submit">Entrar</button>
+
+        <button type="submit">Criar conta</button>    
       </form>
     </div>
   </div>
 
   <script>
+    
     window.onload = () => document.body.classList.add("loaded");
 
     document.querySelectorAll(".transition-link").forEach(link => {
@@ -64,7 +73,7 @@
         document.body.classList.remove("loaded");
         setTimeout(() => {
           window.location.href = destino;
-        }, 400); 
+        }, 600); 
       });
     });
   </script>
