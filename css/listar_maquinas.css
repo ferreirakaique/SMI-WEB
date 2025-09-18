@@ -1,3 +1,17 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 * {
@@ -22,24 +36,27 @@ main {
 
 .maquinas_listadas .pesquisa {
     margin: 20px;
+    position: relative;
+    width: 100%;
+    gap: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-.maquinas_listadas .pesquisa h1 {
-    font-size: 40px;
-    color: white;
-    margin-bottom: 30px;
-    text-align: center;
+.maquinas_listadas .pesquisa i {
+    position: absolute;
+    top: 50%;
+    left: 130px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #001943;
 }
 
 .maquinas_listadas .pesquisa input {
     width: 80%;
     border-radius: 30px;
     border: none;
-    padding: 8px;
+    padding: 8px 12px 8px 40px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #001943;
@@ -54,4 +71,287 @@ main {
 
 .maquinas_listadas .pesquisa ::-webkit-input-placeholder {
     color: #001943;
+}
+
+
+.container_maquinas {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.container_maquinas .maquina {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #003FA9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    color: white;
+    margin-top: 100px;
+}
+
+.container_maquinas .maquina .imagem_logo {
+    margin-top: -120px;
+    display: flex;
+    align-items: center;
+}
+
+.container_maquinas .maquina .imagem_logo img {
+    width: 200px;
+    filter: drop-shadow(3px 3px 10px #003FA9);
+}
+
+.container_maquinas .maquina .estado_maquina {
+    margin-top: 65px;
+}
+
+.container_maquinas .maquina .estado_maquina button {
+    padding: 4px 12px;
+    background-color: #009400;
+    border-radius: 15px;
+    font-size: 10px;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.container_maquinas .maquina .informacoes_maquina {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 10px 0;
+}
+
+.container_maquinas .maquina .informacoes_maquina .info h1 {
+    color: #005eff;
+}
+
+.container_maquinas .maquina .informacoes_maquina .info h1,
+.container_maquinas .maquina .informacoes_maquina .info p {
+    font-size: 18px;
+}
+
+.container_maquinas .maquina .acoes {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.container_maquinas .maquina .acoes .editar {
+    padding: 4px 15px;
+    background-color: #005eff;
+    border-radius: 15px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.container_maquinas .maquina .acoes #relatorio {
+    padding: 4px 15px;
+    background-color: #009400;
+    border-radius: 15px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+
+}
+
+.opcoes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.opcoes a {
+    text-decoration: none;
+    padding: 8px 15px;
+    background-color: #005eff;
+    border-radius: 15px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Modal de editar */
+#modal_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+}
+
+@keyframes modalHide {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+#modal_content.hide {
+    animation: modalHide 0.3s ease forwards;
+}
+
+#modal_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+#modal_content {
+    width: 35%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border: 2px solid #005eff;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    transform: scale(0.8);
+    opacity: 0;
+    animation: modalShow 0.3s ease forwards;
+}
+
+@keyframes modalShow {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+#sair_modal {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    left: 180px;
+}
+
+#sair_modal i {
+    font-size: 50px;
+    filter: drop-shadow(2px 2px 2px #005eff);
+}
+
+#sair_modal p {
+    font-size: 18px;
+}
+
+#modal_content .titulo h1 {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+#modal_content .salvar #salvar_maquina {
+    padding: 10px 25px;
+    background-color: #005eff;
+    border-radius: 20px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    margin-top: 40px;
+}
+
+.inputbox {
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.inputbox input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0d72ff;
+    border-radius: 15px;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    background-color: #0D274F;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1rem;
+    color: white;
+    transition: 0.2s;
+}
+
+.inputbox input:valid~span,
+.inputbox input:focus~span {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.inputbox input:valid,
+.inputbox input:focus {
+    border: 1px solid #0d72ff;
+}
+
+.inputbox #imagem_maquina {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+@media screen and (max-width:1024px) {
+    main {
+        margin-left: 0;
+    }
 }

@@ -1,0 +1,426 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    margin-left: 20%;
+    padding: 30px;
+    background: linear-gradient(180deg, #033070, #001943);
+    min-height: 100vh;
+}
+
+.relatorio_maquina {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.relatorio_maquina .titulo_relatorio h1 {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+.container_relatorio_maquina {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #003FA9;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    color: white;
+    margin-top: 50px;
+    width: 90%;
+}
+
+.container_relatorio_maquina #voltar {
+    display: flex;
+    align-items: center;
+    right: 520px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.container_relatorio_maquina #voltar i {
+    font-size: 50px;
+}
+
+.container_relatorio_maquina #voltar p {
+    font-size: 18px;
+}
+
+.container_relatorio_maquina .identificacao_maquina {
+    width: 100%;
+}
+
+.container_relatorio_maquina .identificacao_maquina .titulo_identificacao h1 {
+    font-size: 35px;
+    text-align: center;
+    margin-top: -20px;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin-top: 50px;
+    width: 100%;
+    gap: 20px;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .imagem_maquina {
+    border: 1px solid #005eff;
+    background: radial-gradient(#005eff20, rgba(0, 0, 0, 0.8));
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.6s ease;
+    perspective: 500px;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+    animation: flutuar 2s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.02);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .imagem_maquina:hover {
+    transform: rotateX(25deg) rotateY(-25deg);
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .imagem_maquina img {
+    width: 100%;
+    object-fit: contain;
+    transition: transform 0.6s ease, filter 0.3s ease;
+    transform: translateZ(40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .imagem_maquina:hover img {
+    transform: translateZ(60px) scale(1.05);
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas {
+    padding: 20px;
+    background: linear-gradient(90deg, #033070, #001943);
+    box-shadow: 0 0 3px black;
+    border: 1px solid #005eff;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina h1 {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina p {
+    color: #BFD7FF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina #ativa {
+    background-color: #009400;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    border: none;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .dados_real_maquina {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.container_relatorio_maquina .dados_real_maquina .titulo_dados h1 {
+    font-size: 35px;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin-top: 50px;
+    width: 100%;
+    gap: 20px;
+}
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina {
+    padding: 25px 15px 15px 15px;
+    background: linear-gradient(90deg, #033070, #001943);
+    box-shadow: 0 0 3px black;
+    border: 1px solid #005eff;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_titulo,
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_numero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_titulo i {
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_titulo h1 {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_numero h1 {
+    font-size: 40px;
+}
+
+.container_relatorio_maquina .dados_real_maquina .cards_dados_real .dados_maquina .dado_numero span {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+
+.container_relatorio_maquina .producao_atual {
+    width: 100%;
+    margin-top: 50px;
+    padding: 25px;
+    background: linear-gradient(90deg, #033070, #001943);
+    box-shadow: 0 0 3px black;
+    border: 1px solid #005eff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container_relatorio_maquina .producao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.container_relatorio_maquina .producao h1 {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.container_relatorio_maquina .producao i {
+    font-size: 40px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+.container_relatorio_maquina .producao_numeros {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.container_relatorio_maquina .producao_numeros .produtos h1 {
+    font-size: 60px;
+}
+
+.container_relatorio_maquina .producao_numeros .produtos span {
+    font-size: 20px;
+    font-weight: 100;
+    margin-left: 5px;
+}
+
+.container_relatorio_maquina .historico_grafico {
+    margin-top: 50px;
+}
+
+
+.container_relatorio_maquina .historico_grafico .graficos {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+
+}
+
+.container_relatorio_maquina .historico_grafico .titulo_historico_grafico h1 {
+    font-size: 35px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .historico_grafico .graficos .eficiencia_energetica,
+.container_relatorio_maquina .historico_grafico .graficos .manutencao_inteligente {
+    padding: 30px;
+    background: linear-gradient(90deg, #033070, #001943);
+    box-shadow: 0 0 3px black;
+    border: 1px solid #005eff;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_relatorio_maquina .historico_grafico .graficos .eficiencia_energetica .titulo_eficiencia h1 {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+
+.container_relatorio_maquina .historico_grafico .graficos .eficiencia_energetica .grafico_pizza {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #005eff;
+    align-self: center;
+    margin-top: 40px;
+}
+
+
+.container_relatorio_maquina .historico_grafico .graficos .manutencao_inteligente .titulo_manutencao h1 {
+    font-size: 25px;
+    font-weight: 400;
+}
+
+
+.container_relatorio_maquina .historico_grafico .graficos .manutencao_inteligente .grafico_coluna {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #005eff;
+    align-self: center;
+    margin-top: 40px;
+}
+
+
+
+.container_relatorio_maquina .sugestoes .titulo_sugestoes {
+    margin-top: 40px;
+}
+
+
+.container_relatorio_maquina .sugestoes .titulo_sugestoes h1 {
+    font-size: 35px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .cards {
+    margin-top: 30px;
+}
+
+
+
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(180deg, #02224e, #000f28);
+    box-shadow: 0 0 3px black;
+    border: 1px solid #005eff;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia i,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao i {
+    font-size: 40px;
+}
+
+
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia h1,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao h1 {
+    font-size: 18px;
+}
+
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .info_maquina_eficiencia h1,
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .sugestao_ia_eficiencia h1,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .info_maquina_manutencao h1,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .sugestao_ia_manutencao h1 {
+    font-size: 25px;
+}
+
+
+.container_relatorio_maquina .opcoes {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container_relatorio_maquina .opcoes button {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    padding: 10px 22px;
+    background-color: #005eff;
+    border-radius: 20px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}

@@ -54,7 +54,6 @@
 
         btnMobile.addEventListener('click', toggleMenu);
         btnMobile.addEventListener('touchstart', toggleMenu);
-        console.log(typeof Swal);
         document.addEventListener("DOMContentLoaded", () => {
             const logoutBtn = document.getElementById('sair');
             if (logoutBtn) {
