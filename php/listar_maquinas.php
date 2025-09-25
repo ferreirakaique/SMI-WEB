@@ -1,3 +1,18 @@
+<?php
+include('conexao.php');
+session_start();
+
+$id_usuario = $_SESSION['id_usuario'];
+$nome_usuario = $_SESSION['nome_usuario'];
+$email_usuario = $_SESSION['email_usuario'];
+$cpf_usuario = $_SESSION['cpf_usuario'];
+
+$stmt_listar_maquinas = $conexao->prepare('SELECT * FROM listar_maquinas');
+$stmt_listar_maquinas->execute();
+$result_listar_maquinas = $stmt_listar_maquinas->get_result();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,148 +40,58 @@
                 <i class='bx bx-search'></i>
                 <input type="search" placeholder="Pesquisar">
             </div>
+            <?php if ($result_listar_maquinas->num_rows > 0): ?>
+                <div class="container_maquinas">
+                    <?php while ($maquina = $result_listar_maquinas->fetch_assoc()): ?>
+                        <?php $foto_maquina = base64_encode($maquina['imagem_listar_maquina']) ?>
 
-
-            <div class="container_maquinas">
-                <div class="maquina">
-                    <div class="imagem_logo">
-                        <img src="../img/maquina_imagem.png" alt="">
-                        <div class="estado_maquina">
-                            <button>Ativa</button>
+                        <div class="maquina">
+                            <div class="imagem_logo">
+                                <img src="data:/image;base64,<?php echo htmlspecialchars($foto_maquina) ?>" alt="">
+                                <?php if ($maquina['status_listar_maquina'] === 'ATIVA'): ?>
+                                    <div class="estado_maquina">
+                                        <button><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    </div>
+                                <?php elseif ($maquina['status_listar_maquina'] === 'INATIVA'): ?>
+                                    <div class="estado_maquina">
+                                        <button style="background-color: red;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    </div>
+                                <?php elseif ($maquina['status_listar_maquina'] === 'MANUTENÇÃO'): ?>
+                                    <div class="estado_maquina">
+                                        <button style="background-color: orange;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="informacoes_maquina">
+                                <div class="info">
+                                    <h1>Nome</h1>
+                                    <p><?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?></p>
+                                </div>
+                                <div class="info">
+                                    <h1>ID</h1>
+                                    <p><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></p>
+                                </div>
+                            </div>
+                            <div class="informacoes_maquina">
+                                <div class="info">
+                                    <h1>Modelo</h1>
+                                    <p><?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?></p>
+                                </div>
+                                <div class="info">
+                                    <h1>Setor</h1>
+                                    <p><?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?></p>
+                                </div>
+                            </div>
+                            <div class="acoes">
+                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>" class="editar">Editar</a>
+                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>" id="relatorio">Relatório</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Nome</h1>
-                            <p>Torneadora</p>
-                        </div>
-                        <div class="info">
-                            <h1>ID</h1>
-                            <p>8769534</p>
-                        </div>
-                    </div>
-
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Modelo</h1>
-                            <p>ASMOTIC</p>
-                        </div>
-                        <div class="info">
-                            <h1>Setor</h1>
-                            <p>1</p>
-                        </div>
-                    </div>
-                    <div class="acoes">
-                        <button class="editar">Editar</button>
-                        <a href="relatorio.php" id="relatorio">Relatório</a>
-                    </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+                <div class="opcoes">
+                    <a href="adicionar_maquina.php" id="adicionar_maquina">Adicionar Máquina</a>
                 </div>
-                <div class="maquina">
-                    <div class="imagem_logo">
-                        <img src="../img/maquina_imagem.png" alt="">
-                        <div class="estado_maquina">
-                            <button>Ativa</button>
-                        </div>
-                    </div>
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Nome</h1>
-                            <p>Torneadora</p>
-                        </div>
-                        <div class="info">
-                            <h1>ID</h1>
-                            <p>8769534</p>
-                        </div>
-                    </div>
-
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Modelo</h1>
-                            <p>ASMOTIC</p>
-                        </div>
-                        <div class="info">
-                            <h1>Setor</h1>
-                            <p>1</p>
-                        </div>
-                    </div>
-                    <div class="acoes">
-                        <button class="editar">Editar</button>
-                        <a href="relatorio.php" id="relatorio">Relatório</a>
-                    </div>
-                </div>
-                <div class="maquina">
-                    <div class="imagem_logo">
-                        <img src="../img/maquina_imagem.png" alt="">
-                        <div class="estado_maquina">
-                            <button>Ativa</button>
-                        </div>
-                    </div>
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Nome</h1>
-                            <p>Torneadora</p>
-                        </div>
-                        <div class="info">
-                            <h1>ID</h1>
-                            <p>8769534</p>
-                        </div>
-                    </div>
-
-                    <div class="informacoes_maquina">
-                        <div class="info">
-                            <h1>Modelo</h1>
-                            <p>ASMOTIC</p>
-                        </div>
-                        <div class="info">
-                            <h1>Setor</h1>
-                            <p>1</p>
-                        </div>
-                    </div>
-
-                    <div class="acoes">
-                        <button class="editar">Editar</button>
-                        <a href="relatorio.php" id="relatorio">Relatório</a>
-                    </div>
-                </div>
-            </div>
-            <div class="opcoes">
-                <a href="adicionar_maquina.php" id="adicionar_maquina">Adicionar Máquina</a>
-            </div>
-
-            <!-- MODAL DE EDITAR -->
-
-            <div id="modal_overlay">
-                <div id="modal_container">
-                    <div id="modal_content">
-                        <div id="sair_modal">
-                            <i class='bx bx-x'></i>
-                        </div>
-                        <div class="titulo">
-                            <h1>Editar Máquina</h1>
-                            <h1>ID:8769534</h1>
-                        </div>
-                        <div class="inputbox">
-                            <input type="text" name="nome_maquina_digitado" required>
-                            <span>Nome</span>
-                        </div>
-                        <div class="inputbox">
-                            <input type="text" name="modelo_digitado" required>
-                            <span>Modelo</span>
-                        </div>
-                        <div class="inputbox">
-                            <input type="number" name="id_digitado" required>
-                            <span>ID</span>
-                        </div>
-                        <div class="inputbox">
-                            <input type="number" name="setor_digitado" required>
-                            <span>Setor</span>
-                        </div>
-                        <div class="salvar">
-                            <button id="salvar_maquina">Salvar Máquina</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>

@@ -1,0 +1,208 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+main {
+    margin-left: 20%;
+    padding: 30px;
+    background: linear-gradient(180deg, #033070, #001943);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.adicionar_maquinas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.adicionar_maquinas .titulo h1 {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+.container_adicionar_maquinas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #003FA9;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    color: white;
+    margin-top: 50px;
+    text-align: center;
+    width: 65%;
+}
+
+#voltar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 520px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+#voltar i {
+    font-size: 50px;
+}
+
+#voltar p {
+    font-size: 18px;
+}
+
+.container_adicionar_maquinas .informacoes_basicas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+.container_adicionar_maquinas .informacoes_basicas .titulo h1 {
+    font-size: 25px;
+}
+
+.inputbox {
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.inputbox #imagem_maquina {
+    width: 350px;
+}
+
+.inputbox input,
+.inputbox select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #0d72ff;
+    border-radius: 15px;
+    outline: none;
+    color: white;
+    font-size: 1rem;
+    background-color: #0D274F;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1rem;
+    color: white;
+    transition: 0.2s;
+}
+
+.inputbox input:valid~span,
+.inputbox input:focus~span,
+.inputbox select:valid~span,
+.inputbox select:focus~span {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.inputbox input:valid,
+.inputbox input:focus,
+.inputbox select:valid,
+.inputbox select:focus {
+    border: 1px solid #0d72ff;
+}
+
+.inputbox #span_operante,
+.inputbox #status_span {
+    color: #0d72ff;
+    transform: translateX(10px) translateY(-10px);
+    background: #0D274F;
+    font-size: 0.90rem;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.configuracao_sensores {
+    margin-top: 50px;
+    width: 90%;
+}
+
+.configuracao_sensores .titulo h1 {
+    font-size: 25px;
+}
+
+.configuracao_sensores .subtitulo {
+    margin-top: 5px;
+}
+
+.configuracao_sensores .subtitulo h1 {
+    font-size: 20px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.configuracao_sensores .input_sensores {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.configuracao_sensores .input_sensores .input {
+    width: 15%;
+}
+
+.informacoes_adicionais {
+    margin-top: 50px;
+}
+
+.informacoes_adicionais .titulo h1 {
+    font-size: 25px;
+}
+
+.opcoes {
+    margin-top: 80px;
+}
+
+.opcoes #salvar_maquina {
+    padding: 10px 25px;
+    background-color: #005eff;
+    border-radius: 20px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}

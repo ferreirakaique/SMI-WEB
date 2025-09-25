@@ -1,3 +1,13 @@
+<?php
+include('conexao.php');
+
+$id_usuario = $_SESSION['id_usuario'];
+$nome_usuario = $_SESSION['nome_usuario'];
+$email_usuario = $_SESSION['email_usuario'];
+$cpf_usuario = $_SESSION['cpf_usuario'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +23,8 @@
             <ul>
                 <div class="avatar">
                     <a href="perfil.php"><img id="user_avatar" src="../img/user.png" alt="Logo"></a>
-                    <p>Kaique Ferreira</p>
-                    <p>kaiqueteste@gmail.com</p>
+                    <p><?php echo htmlspecialchars($nome_usuario) ?></p>
+                    <p><?php echo htmlspecialchars($email_usuario) ?></p>
                 </div>
                 <li><a href="../php/inicio.php"><i class='bx bx-home'></i> Início</a></li>
                 <li><a href="../php/listar_maquinas.php"><i class='bx bx-list-ul'></i>Listar Máquinas</a></li>

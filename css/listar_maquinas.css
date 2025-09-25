@@ -87,7 +87,7 @@ main {
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    width: 300px;
+    width: 28%;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #003FA9;
     border-radius: 8px;
@@ -117,7 +117,7 @@ main {
     padding: 4px 12px;
     background-color: #009400;
     border-radius: 15px;
-    font-size: 10px;
+    font-size: 9px;
     color: white;
     border: none;
     text-transform: uppercase;
@@ -136,9 +136,12 @@ main {
     color: #005eff;
 }
 
-.container_maquinas .maquina .informacoes_maquina .info h1,
-.container_maquinas .maquina .informacoes_maquina .info p {
+.container_maquinas .maquina .informacoes_maquina .info h1 {
     font-size: 18px;
+}
+
+.container_maquinas .maquina .informacoes_maquina .info p {
+    font-size: 12px;
 }
 
 .container_maquinas .maquina .acoes {
@@ -158,6 +161,7 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
 }
 
 .container_maquinas .maquina .acoes #relatorio {

@@ -1,3 +1,14 @@
+<?php
+include('conexao.php');
+session_start();
+
+$id_usuario = $_SESSION['id_usuario'];
+$nome_usuario = $_SESSION['nome_usuario'];
+$email_usuario = $_SESSION['email_usuario'];
+$cpf_usuario = $_SESSION['cpf_usuario'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

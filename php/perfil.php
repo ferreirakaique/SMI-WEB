@@ -1,3 +1,15 @@
+<?php
+include('conexao.php');
+session_start();
+
+$id_usuario = $_SESSION['id_usuario'];
+$nome_usuario = $_SESSION['nome_usuario'];
+$email_usuario = $_SESSION['email_usuario'];
+$cpf_usuario = $_SESSION['cpf_usuario'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +35,7 @@
                 <div class="info_grupo">
                     <div class="info">
                         <h1>Nome</h1>
-                        <p>Kaique Ferreira</p>
+                        <p><?php echo htmlspecialchars($nome_usuario) ?></p>
                     </div>
                     <div class="info">
                         <h1>ID</h1>
@@ -33,7 +45,7 @@
                 <div class="info_grupo">
                     <div class="info">
                         <h1>Email</h1>
-                        <p>kaique12@gmail.com</p>
+                        <p><?php echo htmlspecialchars($email_usuario) ?></p>
                     </div>
                     <div class="info">
                         <h1>Profissão</h1>
