@@ -36,7 +36,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     width: 100%;
 }
 
@@ -66,10 +66,10 @@ main {
 #voltar {
     display: flex;
     align-items: center;
-    position: relative;
-    right: 520px;
-    bottom: 10px;
+    align-self: flex-end;
     cursor: pointer;
+    width: 100%;
+    
 }
 
 #voltar i {

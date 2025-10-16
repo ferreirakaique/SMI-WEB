@@ -2,6 +2,10 @@
 include('conexao.php');
 session_start();
 
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location:login.php');
+}
+
 $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];

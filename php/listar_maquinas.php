@@ -33,7 +33,11 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
         <section class="maquinas_listadas">
 
             <div class="titulo">
-                <h1>Máquinas Listadas</h1>
+                <div class="icone">
+                    <i class='bx bx-buildings'></i>
+                    <h1>Máquinas em Operação</h1>
+                </div>
+                <p>Visualize, monitore e gerencie o status das máquinas de produção</p>
             </div>
 
             <div class="pesquisa">
@@ -46,21 +50,21 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                         <?php $foto_maquina = base64_encode($maquina['imagem_listar_maquina']) ?>
 
                         <div class="maquina">
+                            <?php if ($maquina['status_listar_maquina'] === 'ATIVA'): ?>
+                                <div class="estado_maquina">
+                                    <button><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                </div>
+                            <?php elseif ($maquina['status_listar_maquina'] === 'INATIVA'): ?>
+                                <div class="estado_maquina">
+                                    <button style="background-color: red;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                </div>
+                            <?php elseif ($maquina['status_listar_maquina'] === 'MANUTENÇÃO'): ?>
+                                <div class="estado_maquina">
+                                    <button style="background-color: orange;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                </div>
+                            <?php endif; ?>
                             <div class="imagem_logo">
                                 <img src="data:/image;base64,<?php echo htmlspecialchars($foto_maquina) ?>" alt="">
-                                <?php if ($maquina['status_listar_maquina'] === 'ATIVA'): ?>
-                                    <div class="estado_maquina">
-                                        <button><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
-                                    </div>
-                                <?php elseif ($maquina['status_listar_maquina'] === 'INATIVA'): ?>
-                                    <div class="estado_maquina">
-                                        <button style="background-color: red;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
-                                    </div>
-                                <?php elseif ($maquina['status_listar_maquina'] === 'MANUTENÇÃO'): ?>
-                                    <div class="estado_maquina">
-                                        <button style="background-color: orange;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                             <div class="informacoes_maquina">
                                 <div class="info">

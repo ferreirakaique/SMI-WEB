@@ -12,7 +12,7 @@ nav {
     background: linear-gradient(180deg, #033070, #001943);
     padding: 20px 10px;
     position: fixed;
-    width: 20%;
+    width: 16%;
     height: 100%;
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
@@ -23,8 +23,12 @@ nav {
 
 nav ul {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 nav ul .avatar {
@@ -32,14 +36,14 @@ nav ul .avatar {
 }
 
 nav ul .avatar img {
-    width: 120px;
+    width: 100px;
     filter: drop-shadow(7px 7px 5px #001943);
     border-radius: 50%;
 }
 
 nav ul .avatar p {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
 }
 
