@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Out-2025 às 16:44
+-- Tempo de geração: 16-Out-2025 às 21:22
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -74,22 +74,22 @@ INSERT INTO `listar_maquinas` (`id_listar_maquina`, `nome_listar_maquina`, `mode
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
-  `nome_usuario` varchar(255) NOT NULL,
-  `email_usuario` varchar(255) NOT NULL,
+  `nome_usuario` varchar(100) NOT NULL,
+  `email_usuario` varchar(100) NOT NULL,
   `senha_usuario` varchar(255) NOT NULL,
-  `cpf_usuario` bigint(255) NOT NULL
+  `cpf_usuario` varchar(14) NOT NULL,
+  `tipo_usuario` enum('adm','funcionario') NOT NULL,
+  `setor` varchar(100) NOT NULL,
+  `data_admissao` date NOT NULL,
+  `status_usuario` enum('ativo','inativo') NOT NULL DEFAULT 'ativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `cpf_usuario`) VALUES
-(1, 'Kaique Ferreira', 'kaique1245br@gmail.com', '$2y$10$HZKFJTTu2IIJ1IvV5Hg3zujW/zD7OgJNuuej8cWPbX7l0GGsaq5LG', 47572623883),
-(2, 'Joao gustavo', 'joaogustavo2202@gmail.com', '$2y$10$Zb7aeLNQk6GPJ7H.gnIg6uPc947h4V/5RujaD6qUL73r9H5ScoMae', 20321408828),
-(3, 'Joao Pedro', 'jotapepe.machado@gmail.com', '$2y$10$qc0opWY4uc8bjtqOSGV3D.S8QYrsqSHrUcuiwZgG7rtdKsIm3Xkj2', 47847633841),
-(4, 'Yago Moraes', 'yago.roberto2008@gmail.com', '$2y$10$Sen.fVQmN4qGkSTU0pI2wepyF3HcY7IvTjVU.tBw07TtLeGxOQbWm', 47853445806),
-(5, 'Murilo Henrique', 'timao.alenda@gmail.com', '$2y$10$gofxzRaNfLQqGHw6xYvljuvuTlfOfqTm5VJf5tOfVKKlD4CqvUmDe', 48006933812);
+INSERT INTO `usuarios` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `cpf_usuario`, `tipo_usuario`, `setor`, `data_admissao`, `status_usuario`) VALUES
+(1, 'João Gustavo', 'joaogustavo2202@gmail.com', '$2y$10$118zdMFfA83B130fqftwreKCiYZHfJKp5Zht8Vn8q79P0FBlupjRm', '41351408828', 'adm', 'Administração - RH', '2025-10-16', 'ativo');
 
 --
 -- Índices para tabelas despejadas
@@ -105,7 +105,9 @@ ALTER TABLE `listar_maquinas`
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email_usuario` (`email_usuario`),
+  ADD UNIQUE KEY `cpf_usuario` (`cpf_usuario`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -121,7 +123,7 @@ ALTER TABLE `listar_maquinas`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
