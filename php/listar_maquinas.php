@@ -2,6 +2,10 @@
 include('conexao.php');
 session_start();
 
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location:login.php');
+}
+
 $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
@@ -52,15 +56,15 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                         <div class="maquina">
                             <?php if ($maquina['status_listar_maquina'] === 'ATIVA'): ?>
                                 <div class="estado_maquina">
-                                    <button><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #009400;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
                                 </div>
                             <?php elseif ($maquina['status_listar_maquina'] === 'INATIVA'): ?>
                                 <div class="estado_maquina">
-                                    <button style="background-color: red;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #bc1223ff;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
                                 </div>
                             <?php elseif ($maquina['status_listar_maquina'] === 'MANUTENÇÃO'): ?>
                                 <div class="estado_maquina">
-                                    <button style="background-color: orange;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #c39200ff;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
                                 </div>
                             <?php endif; ?>
                             <div class="imagem_logo">

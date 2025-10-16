@@ -2,10 +2,26 @@
 include('conexao.php');
 session_start();
 
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location:login.php');
+}
+
 $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
 $cpf_usuario = $_SESSION['cpf_usuario'];
+
+if (!isset($_GET['id'])) {
+    header('location:listar_maquinas.php');
+}
+
+$id_maquina = $_GET['id'];
+
+$stmt_maquina = $conexao->prepare('SELECT * FROM listar_maquinas WHERE id_listar_maquina = ?');
+$stmt_maquina->bind_param('i', $id_maquina);
+$stmt_maquina->execute();
+$result_maquina = $stmt_maquina->get_result();
+$maquina = $result_maquina->fetch_assoc();
 
 ?>
 
@@ -28,9 +44,14 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <main>
         <section class="relatorio_maquina">
 
-            <div class="titulo_relatorio">
-                <h1>Relatório Máquina ID:<span>8769534</span></h1>
+            <div class="titulo">
+                <div class="icone">
+                    <i class='bx bx-file icone'></i>
+                    <h1>Relatório de Máquinas</h1>
+                </div>
+                <p>Visualize, monitore e gerencie o status das máquinas de produção em tempo real</p>
             </div>
+
 
 
             <div class="container_relatorio_maquina">
@@ -45,36 +66,60 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                     </div>
 
                     <div class="cards_identificacao">
+                        <?php $foto_maquina = base64_encode($maquina['imagem_listar_maquina']); ?>
                         <div class="imagem_maquina">
-                            <img src="../img/maquina_imagem.png" alt="">
+                            <img src="data:image/jpeg;base64,<?= $foto_maquina ?>" alt="Imagem da máquina">
                         </div>
                         <div class="informacoes_basicas">
                             <div class="info_maquina">
                                 <h1>Nome</h1>
-                                <p>Torneadora</p>
+                                <p><?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>Modelo</h1>
-                                <p>Asmotic</p>
+                                <p><?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>ID interno</h1>
-                                <p>8769534</p>
+                                <p><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>Setor</h1>
-                                <p>1</p>
+                                <p><?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?></p>
                             </div>
                         </div>
                         <div class="informacoes_basicas">
+
                             <div class="info_maquina">
                                 <h1>Operante</h1>
-                                <p>Túlio maravilha</p>
+                                <p><?php echo htmlspecialchars($maquina['operante_listar_maquina']) ?></p>
                             </div>
+
                             <div class="info_maquina">
                                 <h1>Status Atual</h1>
-                                <button id="ativa">ATIVA</button>
+                                <?php
+                                $status = strtoupper($maquina['status_listar_maquina']);
+
+                                switch ($status) {
+                                    case 'ATIVA':
+                                        $cor = '#009400';
+                                        break;
+                                    case 'MANUTENÇÃO':
+                                        $cor = '#c39200ff';
+                                        break;
+                                    case 'INATIVA':
+                                        $cor = '#bc1223ff';
+                                        break;
+                                    default:
+                                        $cor = '#6c757d';
+                                        break;
+                                }
+                                ?>
+                                <button class="status-botao" style="background-color: <?= $cor ?>;">
+                                    <p><?= htmlspecialchars($status) ?></p>
+                                </button>
                             </div>
+
                             <div class="info_maquina">
                                 <h1>Ultima operação</h1>
                                 <p>20:40</p>

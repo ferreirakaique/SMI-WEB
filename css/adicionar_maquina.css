@@ -21,12 +21,57 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background: radial-gradient(ellipse 200% 200% at 50% 0%, #033070, #001943 25%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
 main {
     margin-left: 16%;
     padding: 30px;
-    background: linear-gradient(180deg, #033070, #001943);
+    padding-top: 60px;
     min-height: 100vh;
 }
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo .icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo i {
+    font-size: 50px;
+    color: #005EFF;
+    margin-bottom: 10px;
+}
+
+.titulo h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.titulo p {
+    font-size: 16px;
+    color: #B0C4FF;
+}
+
+.adicionar_maquinas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 
 .adicionar_maquinas .titulo h1 {
     color: white;
@@ -47,14 +92,13 @@ main {
     transition: transform 0.2s;
     color: white;
     margin-top: 50px;
+    width: 80%;
 }
 
 #voltar {
     display: flex;
     align-items: center;
-    position: relative;
-    right: 520px;
-    bottom: 10px;
+    align-self: flex-start;
     cursor: pointer;
 }
 
@@ -74,7 +118,7 @@ main {
 }
 
 .container_adicionar_maquinas .informacoes_basicas .titulo h1 {
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .inputbox {

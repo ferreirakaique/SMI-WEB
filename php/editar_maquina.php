@@ -43,8 +43,13 @@ $foto_maquina = base64_encode($maquina['imagem_listar_maquina']);
         <section class="adicionar_maquinas">
 
             <div class="titulo">
-                <h1>Editar Máquina ID: <?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></h1>
+                <div class="icone">
+                    <i class='bx bx-edit-alt'></i>
+                    <h1>Editar Máquina — ID: <span><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></span></h1>
+                </div>
+                <p>Atualize informações, gerencie o status e mantenha o controle das máquinas de produção em tempo real.</p>
             </div>
+
 
             <div class="container_adicionar_maquinas">
                 <div id="voltar">
@@ -52,26 +57,30 @@ $foto_maquina = base64_encode($maquina['imagem_listar_maquina']);
                     <p>Voltar</p>
                 </div>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <div class="inputbox">
+                    <div class="foto_maquina">
                         <img src="data:/image;base64,<?php echo htmlspecialchars($foto_maquina) ?>" id="imagem_maquina" alt="">
                         <input type="file" name="imagem_digitado" required>
                     </div>
-                    <div class="inputbox">
-                        <input type="text" name="nome_maquina_digitado" value="<?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?>" required>
-                        <span>Nome da maquina</span>
+                    <div class="container_iput">
+                        <h1>Informações iniciais</h1>
+                        <div class="inputbox">
+                            <input type="text" name="nome_maquina_digitado" value="<?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?>" required>
+                            <span>Nome da maquina</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" name="modelo_digitado" value="<?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?>" required>
+                            <span>Modelo</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="number" name="id_interno_digitado" value="<?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?>" required>
+                            <span>Número de serie/ID interno</span>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" name="setor_digitado" value="<?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?>" required>
+                            <span>Setor</span>
+                        </div>
                     </div>
-                    <div class="inputbox">
-                        <input type="text" name="modelo_digitado" value="<?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?>" required>
-                        <span>Modelo</span>
-                    </div>
-                    <div class="inputbox">
-                        <input type="number" name="id_interno_digitado" value="<?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?>" required>
-                        <span>Número de serie/ID interno</span>
-                    </div>
-                    <div class="inputbox">
-                        <input type="text" name="setor_digitado" value="<?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?>" required>
-                        <span>Setor</span>
-                    </div>
+
                 </form>
 
                 <div class="opcoes">

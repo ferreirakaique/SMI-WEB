@@ -20,10 +20,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background: radial-gradient(ellipse 200% 200% at 50% 0%, #033070, #001943 25%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
 main {
     margin-left: 16%;
     padding: 30px;
-    background: linear-gradient(180deg,#001943, #033070, #001943);
 }
 
 .dashboard .titulo h1 {

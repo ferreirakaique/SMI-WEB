@@ -21,12 +21,21 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background: radial-gradient(ellipse 200% 200% at 50% 0%, #033070, #001943 25%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
 main {
     margin-left: 16%;
     padding: 30px;
-    background: linear-gradient(180deg, #033070, #001943);
+    padding-top: 60px;
     min-height: 100vh;
 }
+
 
 .relatorio_maquina {
     display: flex;
@@ -35,11 +44,35 @@ main {
     align-items: center;
 }
 
-.relatorio_maquina .titulo_relatorio h1 {
-    color: white;
+.titulo {
     text-align: center;
-    font-size: 40px;
+    margin-bottom: 20px;
 }
+
+.titulo .icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo i {
+    font-size: 50px;
+    color: #005EFF;
+    margin-bottom: 10px;
+}
+
+.titulo h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.titulo p {
+    font-size: 16px;
+    color: #B0C4FF;
+}
+
 
 .container_relatorio_maquina {
     background: rgba(255, 255, 255, 0.1);
@@ -49,23 +82,23 @@ main {
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s;
     color: white;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 90%;
 }
 
-.container_relatorio_maquina #voltar {
+#voltar {
     display: flex;
     align-items: center;
-    right: 520px;
-    bottom: 10px;
+    align-self: flex-start;
     cursor: pointer;
+    width: max-content;
 }
 
-.container_relatorio_maquina #voltar i {
+#voltar i {
     font-size: 50px;
 }
 
-.container_relatorio_maquina #voltar p {
+#voltar p {
     font-size: 18px;
 }
 
@@ -76,7 +109,11 @@ main {
 .container_relatorio_maquina .identificacao_maquina .titulo_identificacao h1 {
     font-size: 35px;
     text-align: center;
-    margin-top: -20px;
+    font-weight: bold;
+}
+
+.container_relatorio_maquina .identificacao_maquina .titulo_identificacao span {
+    color: #005EFF;
     font-weight: bold;
 }
 
@@ -161,14 +198,20 @@ main {
     font-weight: bold;
 }
 
-.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina #ativa {
-    background-color: #009400;
-    color: white;
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina .status-botao {
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 3px 15px;
     border: none;
     font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
 }
+
+.container_relatorio_maquina .identificacao_maquina .cards_identificacao .informacoes_basicas .info_maquina .status-botao p {
+    color: white;
+
+}
+
 
 .container_relatorio_maquina .dados_real_maquina {
     width: 100%;

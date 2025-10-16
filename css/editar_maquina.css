@@ -21,16 +21,57 @@
     font-family: 'Poppins', sans-serif;
 }
 
-main {
-    margin-left: 20%;
-    padding: 30px;
-    background: linear-gradient(180deg, #033070, #001943);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+body {
+    background: radial-gradient(ellipse 200% 200% at 50% 0%, #033070, #001943 25%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
 }
+
+main {
+    margin-left: 16%;
+    padding: 30px;
+    padding-top: 60px;
+    min-height: 100vh;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo .icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo .icone i {
+    font-size: 50px;
+    color: #005EFF;
+    margin-bottom: 10px;
+}
+
+.titulo .icone h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.titulo .icone span {
+    color: #005EFF;
+    text-shadow: 0 3px 3px black;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.titulo p {
+    font-size: 16px;
+    color: #B0C4FF;
+}
+
 
 .adicionar_maquinas {
     display: flex;
@@ -60,16 +101,14 @@ main {
     color: white;
     margin-top: 50px;
     text-align: center;
-    width: 65%;
+    width: 85%;
 }
 
 #voltar {
     display: flex;
     align-items: center;
-    align-self: flex-end;
+    align-self: flex-start;
     cursor: pointer;
-    width: 100%;
-    
 }
 
 #voltar i {
@@ -91,18 +130,37 @@ main {
     font-size: 25px;
 }
 
-.inputbox {
-    position: relative;
-    margin-top: 30px;
+.container_adicionar_maquinas form {
+    display: flex;
+    gap: 40px;
+}
+
+.container_adicionar_maquinas form .foto_maquina {
     width: 100%;
 }
 
-.inputbox #imagem_maquina {
-    width: 350px;
+.container_adicionar_maquinas form .foto_maquina img {
+    width: 75%;
 }
 
+.container_iput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+.inputbox {
+    position: relative;
+    margin-top: 45px;
+    width: 100%;
+}
+
+
 .inputbox input,
-.inputbox select {
+.inputbox select,
+.foto_maquina input {
     width: 100%;
     padding: 8px;
     border: 1px solid #0d72ff;
@@ -151,6 +209,13 @@ main {
     padding: 0 10px;
     border-radius: 20px;
 }
+
+
+/* SENSORES */
+/* SENSORES */
+/* SENSORES */
+/* SENSORES */
+
 
 .configuracao_sensores {
     margin-top: 50px;
