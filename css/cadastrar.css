@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
+
 body {
   margin: 0;
   height: 100vh;
@@ -15,28 +16,26 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins';
 }
 
 .login-container {
-  position: relative; 
+  position: relative;
   background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(12px); 
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 2px solid rgba(88, 196, 255, 0.8); 
+  border: 2px solid rgba(88, 196, 255, 0.8);
   border-radius: 10px;
   padding: 30px;
   width: 400px;
-  height: 510px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.25); 
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.25);
   color: #e0f7ff;
 }
-.login-container img {
-  width: 300px;
-  margin-top: -75px;
-  margin-bottom: 20px;
 
+.login-container img {
+  width: 250px;
+  margin-top: -70px;
 }
 
 .login-container h2 {
@@ -44,24 +43,26 @@ body {
   color: #e0f7ff;
   font-size: 35px;
 }
+
 .login-container button {
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background: rgba(255, 255, 255, 0.8); 
-  color: #003366; 
+  background: rgba(255, 255, 255, 0.8);
+  color: #003366;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   transition: 0.3s;
-  
+
 }
 
 .login-container button:hover {
   background: rgba(255, 255, 255, 0.933);
 }
+
 #formulario-login {
   margin-top: 5px;
 }
@@ -95,25 +96,54 @@ body {
   padding: 0 5px;
 }
 
-.input-container input:focus + label,
-.input-container input:not(:placeholder-shown) + label {
+.input-container input:focus+label,
+.input-container input:not(:placeholder-shown)+label {
   top: 0;
   left: 15px;
   transform: translateY(-50%);
   font-size: 14px;
   color: #fff;
-  background: #0a2c61; 
+  background: #0a2c61;
 }
+
 .voltar {
-margin-top: 5px;
-font-size: 14px;
-display: flex;
-justify-content: left;
+  margin-top: 5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: left;
 }
+
 .voltar a {
-color: #fff;
-text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
+
 .voltar a:hover {
-text-decoration: underline;
+  text-decoration: underline;
+}
+
+body {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+.voltar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.voltar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.voltar a:hover {
+  text-decoration: underline;
 }

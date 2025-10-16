@@ -59,12 +59,14 @@ main {
     flex: 1;
     min-width: 200px;
 }
+
 .container_perfil .info_grupo h1 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-   
+
 }
+
 .container_perfil .info h1 {
     font-size: 20px;
     font-weight: bold;
@@ -115,7 +117,7 @@ main {
 }
 
 .certificacoes {
-   background: #1D427A;
+    background: #1D427A;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);

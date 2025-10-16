@@ -1,4 +1,8 @@
 <?php
+
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location:login.php');
+}
 include('conexao.php');
 session_start();
 
