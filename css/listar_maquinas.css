@@ -56,7 +56,7 @@ main {
 
 .titulo h1 {
     color: white;
-    font-size: 36px;
+    font-size: 35px;
     margin-bottom: 5px;
 }
 
@@ -78,7 +78,7 @@ main {
 .maquinas_listadas .pesquisa i {
     position: absolute;
     top: 50%;
-    left: 130px;
+    left: 140px;
     transform: translateY(-50%);
     font-size: 20px;
     color: #001943;
@@ -124,7 +124,7 @@ main {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s;
+    transition: 0.3s ease-in-out;
     color: white;
 }
 
@@ -168,42 +168,46 @@ main {
     font-size: 18px;
 }
 
-/* .container_maquinas .maquina .informacoes_maquina .info p {
-    font-size: 12px;
-} */
 
 .container_maquinas .maquina .acoes {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     width: 100%;
     margin-top: 20px;
+    gap: 15px;
+}
+
+/* Estilo base dos botões */
+.container_maquinas .maquina .acoes .botao {
+    display: inline-block;
+    width: 30%;
+    padding: 5px 15px;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .container_maquinas .maquina .acoes .editar {
-    padding: 4px 15px;
     background-color: #005eff;
-    border-radius: 15px;
-    font-size: 15px;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
-    text-decoration: none;
 }
 
-.container_maquinas .maquina .acoes #relatorio {
-    padding: 4px 15px;
-    background-color: #009400;
-    border-radius: 15px;
-    font-size: 15px;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
-    text-decoration: none;
+.container_maquinas .maquina .acoes .editar:hover {
+    box-shadow: inset 0 0 35px 3px rgb(0, 43, 111);
+}
 
+.container_maquinas .maquina .acoes .relatorio {
+    background-color: #009400;
+}
+
+.container_maquinas .maquina .acoes .relatorio:hover {
+    box-shadow: inset 0 0 35px 3px #005d00;
 }
 
 .opcoes {
@@ -224,111 +228,6 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
-}
-
-
-/* Modal de editar */
-#modal_overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-}
-
-@keyframes modalHide {
-    from {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-}
-
-#modal_content.hide {
-    animation: modalHide 0.3s ease forwards;
-}
-
-#modal_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-
-#modal_content {
-    width: 35%;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border: 2px solid #005eff;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 999;
-    transform: scale(0.8);
-    opacity: 0;
-    animation: modalShow 0.3s ease forwards;
-}
-
-@keyframes modalShow {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-
-#sair_modal {
-    display: flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    color: white;
-    left: 180px;
-}
-
-#sair_modal i {
-    font-size: 50px;
-    filter: drop-shadow(2px 2px 2px #005eff);
-}
-
-#sair_modal p {
-    font-size: 18px;
-}
-
-#modal_content .titulo h1 {
-    color: white;
-    text-align: center;
-    font-size: 25px;
-}
-
-#modal_content .salvar #salvar_maquina {
-    padding: 10px 25px;
-    background-color: #005eff;
-    border-radius: 20px;
-    font-size: 15px;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
-    margin-top: 40px;
 }
 
 .inputbox {

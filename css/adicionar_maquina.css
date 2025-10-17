@@ -76,7 +76,7 @@ main {
 .adicionar_maquinas .titulo h1 {
     color: white;
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .container_adicionar_maquinas {
@@ -118,7 +118,7 @@ main {
 }
 
 .container_adicionar_maquinas .informacoes_basicas .titulo h1 {
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .inputbox {

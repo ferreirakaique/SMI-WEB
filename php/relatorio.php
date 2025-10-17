@@ -34,6 +34,7 @@ $maquina = $result_maquina->fetch_assoc();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/relatorio.css">
     <script src="../js/relatorio.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <title>Adicionar Maquinas</title>
 </head>
 
@@ -169,9 +170,6 @@ $maquina = $result_maquina->fetch_assoc();
                     </div>
                 </div>
 
-
-
-
                 <div class="producao_atual">
                     <div class="producao">
                         <i class="fa-solid fa-building"></i>
@@ -262,13 +260,42 @@ $maquina = $result_maquina->fetch_assoc();
 
 
                 <div class="opcoes">
-                    <button id="baixar_relatorio">Baixar Relatório</button>
+                    <a id="baixar_relatorio">Baixar relatório</a>
+                    <a href="#" data-id="<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>" class="excluir_maquina">Excluir máquina</a>
                 </div>
             </div>
         </section>
-
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function adicionarEventosExcluir() {
+                const botao_excluir_maquina = document.querySelectorAll('.excluir_maquina');
 
+                botao_excluir_maquina.forEach(botao => {
+                    botao.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const id_maquina = botao.getAttribute('data-id');
+
+                        Swal.fire({
+                            title: 'Tem certeza?',
+                            text: "Você não poderá reverter esta ação!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#DA020E',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Sim, excluir!',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `excluir_maquina.php?id=${id_maquina}`;
+                            }
+                        });
+                    })
+                })
+            }
+            adicionarEventosExcluir();
+        })
+    </script>
 </body>
 
 </html>

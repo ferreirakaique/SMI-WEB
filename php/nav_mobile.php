@@ -1,3 +1,12 @@
+<?php
+include('conexao.php');
+
+$nome_usuario = $_SESSION['nome_usuario'];
+$email_usuario = $_SESSION['email_usuario'];
+$cpf_usuario = $_SESSION['cpf_usuario'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +34,7 @@
                 <li><a href="qr_code.php" class="link link-href"><i class='bx bx-qr'></i>QR Code</a></li>
                 <li><a href="notificacoes.php" class="link link-href"><i class='bx bx-bell'></i>Notificações</a></li>
                 <li><a href="chat_bot.php" class="link link-href"><i class='bx bx-bot'></i>Chat-Bot</a></li>
-                <li><a href="perfil.php" class="link link-href"><i class='bx bx-user'></i>Meu Perfil</a></li>
+                <li><a href="perfil.php" class="link link-href"><i class='bx bx-user'></i>Olá, <?php echo htmlspecialchars($nome_usuario) ?></a></li>
             </ul>
 
             <button aria-label="Abrir Menu" id="btn-mobile" aria-haspopup="true" aria-controls="menu"
@@ -36,7 +45,6 @@
     </header>
 
     <script>
-
         const btnMobile = document.getElementById('btn-mobile');
 
         function toggleMenu(event) {

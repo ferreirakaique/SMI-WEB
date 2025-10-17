@@ -64,7 +64,7 @@ main {
 
 .titulo h1 {
     color: white;
-    font-size: 36px;
+    font-size: 35px;
     margin-bottom: 5px;
 }
 
@@ -107,7 +107,7 @@ main {
 }
 
 .container_relatorio_maquina .identificacao_maquina .titulo_identificacao h1 {
-    font-size: 35px;
+    font-size: 25px;
     text-align: center;
     font-weight: bold;
 }
@@ -219,7 +219,7 @@ main {
 }
 
 .container_relatorio_maquina .dados_real_maquina .titulo_dados h1 {
-    font-size: 35px;
+    font-size: 30px;
     text-align: left;
     font-weight: bold;
 }
@@ -338,7 +338,7 @@ main {
 }
 
 .container_relatorio_maquina .historico_grafico .titulo_historico_grafico h1 {
-    font-size: 35px;
+    font-size: 30px;
     text-align: left;
     font-weight: bold;
 }
@@ -396,7 +396,7 @@ main {
 
 
 .container_relatorio_maquina .sugestoes .titulo_sugestoes h1 {
-    font-size: 35px;
+    font-size: 30px;
     text-align: left;
     font-weight: bold;
 }
@@ -449,11 +449,12 @@ main {
 
 .container_relatorio_maquina .opcoes {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 50px;
+    width: 100%;
 }
 
-.container_relatorio_maquina .opcoes button {
+.container_relatorio_maquina .opcoes a {
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -466,4 +467,8 @@ main {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.container_relatorio_maquina .opcoes .excluir_maquina {
+    background-color: #b02020ff;
 }

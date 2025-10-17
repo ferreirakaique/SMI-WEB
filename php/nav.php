@@ -26,7 +26,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 <li><a href="../php/qr_code.php"><i class='bx bx-qr'></i>QR Code</a></li>
                 <li><a href="../php/notificacoes.php"><i class='bx bx-bell'></i>Notificações</a></li>
                 <li><a href="../php/chat_bot.php"><i class='bx bx-bot'></i>Chat-Bot</a></li>
-                <li><a href="../php/perfil.php"><i class='bx bx-user'></i>Meu Perfil</a></li>
+                <li><a href="perfil.php" class="link link-href"><i class='bx bx-user'></i>Olá, <?php echo htmlspecialchars($nome_usuario) ?></a></li>
                 <div class="logo">
                     <a href="inicio.php"><img src="../img/LOGO_SMI_BRANCA.png" alt="Logo"></a>
                 </div>

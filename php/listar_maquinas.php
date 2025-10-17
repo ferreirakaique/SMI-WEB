@@ -91,9 +91,14 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                                 </div>
                             </div>
                             <div class="acoes">
-                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>" class="editar">Editar</a>
-                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>" id="relatorio">Relatório</a>
+                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']); ?>" class="botao editar">
+                                    Editar
+                                </a>
+                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']); ?>" class="botao relatorio">
+                                    Relatório
+                                </a>
                             </div>
+
                         </div>
                     <?php endwhile; ?>
                 <?php endif; ?>
