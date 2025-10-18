@@ -233,7 +233,8 @@ $result_usuarios = $stmt_usuarios->get_result();
                     </div>
 
                     <div class="opcoes">
-                        <button id="salvar_maquina" type="submit">Salvar alterações</button>
+                        <button type="submit" id="salvar_maquina">Salvar alterações</button>
+                        <button class="excluir_maquina" type="button"><a href="#" data-id="<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>">Excluir máquina</a></button>
                     </div>
                 </form>
             </div>
@@ -271,6 +272,37 @@ $result_usuarios = $stmt_usuarios->get_result();
             });
         </script>
     <?php endif; ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function adicionarEventosExcluir() {
+                const botao_excluir_maquina = document.querySelectorAll('.excluir_maquina');
+
+                botao_excluir_maquina.forEach(botao => {
+                    botao.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const id_maquina = botao.getAttribute('data-id');
+
+                        Swal.fire({
+                            title: 'Tem certeza?',
+                            text: "Você não poderá reverter esta ação!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#DA020E',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Sim, excluir!',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `excluir_maquina.php?id=${id_maquina}`;
+                            }
+                        });
+                    })
+                })
+            }
+            adicionarEventosExcluir();
+        })
+    </script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@
 }
 
 body {
-    background: radial-gradient(ellipse 200% 200% at 50% 0%, #033070, #001943 25%);
+    background: radial-gradient(ellipse 200% 200% at 55% 10%, #0a3c83, #001943 25%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,13 +30,14 @@ body {
 
 main {
     margin-left: 16%;
-    padding: 15px 30px 30px 30px;
+    padding: 30px;
+    z-index: 999;
 }
 
 .dashboard .titulo h1 {
     font-size: 40px;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .card_container {
@@ -126,8 +127,9 @@ main {
 }
 
 .graficos_grandes {
-    width: 100%;
     display: flex;
+    width: 100%;
+    height: auto;
     gap: 30px;
 }
 
@@ -147,29 +149,32 @@ main {
 }
 
 .temperatura {
-    width: 100%;
-    height: 91%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
 }
 
-canvas {
+/* .temperatura h2 {
+    font-size: 20px;
+    font-weight: 300;
+} */
+
+/* canvas {
     width: 100% !important;
-    height: 92% !important;
-}
+} */
 
 .porcentagem {
-    width: 30%;
-    height: 350px;
-
+    width: 40%;
 }
 
 .consumo_energetico {
     width: 100%;
-    height: 500px;
 }
 
 .umidade_ambiente {
     width: 100%;
-    height: 500px;
 }
 
 .ativos {

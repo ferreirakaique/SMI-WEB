@@ -16,18 +16,24 @@ $dados = [];
 
 while ($row = $result->fetch_assoc()) {
     $maquina = $row['nome_listar_maquina'];
-    $hora = $row['hora_dados_maquina'];
     $temp = $row['temperatura_dados_maquina'];
+    $consumo = $row['consumo_dados_maquina'];
+    $umidade = $row['umidade_dados_maquina'];
+    $hora = $row['hora_dados_maquina'];
 
     if (!isset($dados[$maquina])) {
         $dados[$maquina] = [
-            'horas' => [],
-            'temperaturas' => []
+            'temperatura' => [],
+            'consumo' => [],
+            'umidade' => [],
+            'hora' => [],
         ];
     }
 
-    $dados[$maquina]['horas'][] = $hora;
-    $dados[$maquina]['temperaturas'][] = $temp;
+    $dados[$maquina]['temperatura'][] = $temp;
+    $dados[$maquina]['consumo'][] = $consumo;
+    $dados[$maquina]['umidade'][] = $umidade;
+    $dados[$maquina]['hora'][] = $hora;
 }
 
 echo json_encode($dados);

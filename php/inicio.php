@@ -43,7 +43,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                             <i class='bx bx-bolt-circle'></i>
                             <h2>Consumo médio</h2>
                         </div>
-                        <p><strong>350</strong> <span>KWH</span></p>
+                        <p><strong id="consumo_medio">TESTE</strong> <span>KWH</span></p>
                     </div>
 
                     <div class="card">
@@ -51,12 +51,12 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                             <i class='bx bx-bolt-circle'></i>
                             <h2>Consumo semanal</h2>
                         </div>
-                        <p><strong>1350</strong> <span>KWH</span></p>
+                        <p><strong id="consumo_semanal">TESTE</strong> <span>KWH</span></p>
                     </div>
 
                     <div class="card card_maquinas_ativas">
                         <div class="titulo_card_3">
-                            <p><strong>350</strong></p>
+                            <p><strong id="maquinas_ativas_numeros">TESTE</strong></p>
                             <span id="maquinas_ativas">Máquinas <br>Ativas</span>
                         </div>
                         <i id="icone_maquina_ativa" class='bx bx-cog'></i>
@@ -64,185 +64,224 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
 
                     <div class="card card_maquinas_ativas">
                         <div class="titulo_card_3">
-                            <p><strong>1080</strong></p>
-                            <span id="maquinas_ativas">Funcionarios <br>Ativos</span>
+                            <p><strong id="usuarios_numeros">TESTE</strong></p>
+                            <span id="usuarios">Funcionarios <br>Ativos</span>
                         </div>
                         <i id="icone_maquina_ativa" class='bx bx-group'></i>
                     </div>
                 </div>
 
+                <script>
+                    function atualizardados() {
+                        fetch('atualizar_dados.php')
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById('consumo_medio').textContent = data.consumo_medio
+                                document.getElementById('consumo_semanal').textContent = data.consumo_semanal
+                                document.getElementById('maquinas_ativas_numeros').textContent = data.maquinas_ativas
+                                document.getElementById('usuarios_numeros').textContent = data.usuarios
+                            })
+                            .catch(error => console.log('Erro ao atualizar', error))
+                    }
+                    setInterval(atualizardados, 1000)
+                    atualizardados();
+                </script>
+
 
                 <div class="graficos_grandes">
                     <div class="card_grafico temperatura">
                         <h2>Temperatura da máquina</h2>
-                        <canvas id="graficoTemperatura"></canvas>
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                        <script>
-                            const ctx = document.getElementById('graficoTemperatura').getContext('2d');
-                            let chart; // variável global para o gráfico
-                            let dadosAnteriores = null; // guarda o último estado dos dados
-
-                            function atualizarGrafico() {
-                                fetch('dados_maquina.php')
-                                    .then(response => response.json())
-                                    .then(dados => {
-
-                                        // Verifica se os dados mudaram
-                                        const dadosAtuais = JSON.stringify(dados);
-                                        if (dadosAnteriores === dadosAtuais) {
-                                            return; // não mudou nada, não precisa atualizar
-                                        }
-                                        dadosAnteriores = dadosAtuais; // atualiza o estado
-
-                                        // cores para cada máquina
-                                        const cores = ['#00BFFF', '#003A97', '#3279C0', '#FFD700', '#8A2BE2', '#FF69B4', '#00FA9A'];
-                                        const datasets = [];
-                                        let i = 0;
-
-                                        for (const maquina in dados) {
-                                            const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                                            gradient.addColorStop(0, cores[i % cores.length] + '80'); // topo semi-transparente
-                                            gradient.addColorStop(1, cores[i % cores.length] + '00'); // base transparente
-
-                                            datasets.push({
-                                                label: maquina,
-                                                data: dados[maquina].temperaturas,
-                                                borderColor: cores[i % cores.length],
-                                                backgroundColor: gradient,
-                                                borderWidth: 3,
-                                                tension: 0.35,
-                                                pointBackgroundColor: '#ffffff',
-                                                pointBorderColor: cores[i % cores.length],
-                                                pointHoverBackgroundColor: cores[i % cores.length],
-                                                pointHoverBorderColor: '#ffffff',
-                                                pointRadius: 5,
-                                                fill: true,
-                                            });
-
-                                            i++;
-                                        }
-
-                                        // Pega as horas da primeira máquina para o eixo X
-                                        const labels = Object.values(dados)[0].horas;
-
-                                        if (chart) {
-                                            chart.data.labels = labels;
-                                            chart.data.datasets = datasets;
-                                            chart.update();
-                                        } else {
-                                            chart = new Chart(ctx, {
-                                                type: 'line',
-                                                data: {
-                                                    labels: labels,
-                                                    datasets: datasets
-                                                },
-                                                options: {
-                                                    responsive: true,
-                                                    maintainAspectRatio: false,
-                                                    plugins: {
-                                                        legend: {
-                                                            labels: {
-                                                                color: '#ffffff',
-                                                                font: {
-                                                                    size: 14,
-                                                                    family: 'Poppins',
-                                                                }
-                                                            }
-                                                        },
-                                                        tooltip: {
-                                                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                                                            titleColor: '#00BFFF',
-                                                            bodyColor: '#ffffff',
-                                                            borderColor: '#00BFFF',
-                                                            borderWidth: 1,
-                                                            padding: 10,
-                                                            displayColors: false,
-                                                        },
-                                                    },
-                                                    scales: {
-                                                        x: {
-                                                            ticks: {
-                                                                color: '#cccccc',
-                                                                font: {
-                                                                    size: 12,
-                                                                    family: 'Poppins',
-                                                                }
-                                                            },
-                                                            grid: {
-                                                                color: 'rgba(255,255,255,0.05)'
-                                                            }
-                                                        },
-                                                        y: {
-                                                            beginAtZero: true,
-                                                            ticks: {
-                                                                color: '#cccccc',
-                                                                font: {
-                                                                    size: 12,
-                                                                    family: 'Poppins',
-                                                                }
-                                                            },
-                                                            grid: {
-                                                                color: 'rgba(255,255,255,0.05)'
-                                                            }
-                                                        }
-                                                    },
-                                                    layout: {
-                                                        padding: 25
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-                            }
-
-                            // Atualiza a cada 5 segundos
-                            atualizarGrafico();
-                            setInterval(atualizarGrafico, 1000);
-                        </script>
-
+                        <canvas id="grafico_temperatura"></canvas>
                     </div>
                     <div class="card_grafico porcentagem">
                         <h2>Produção sustentavel</h2>
-                        <p></p>
+                        <canvas id="producao_sustentavel"></canvas>
                     </div>
                 </div>
 
-            </div>
-
-            <div class="graficos_grandes">
-                <div class="card_grafico consumo_energetico">
-                    <h2>Consumo energetico</h2>
-                    <p></p>
-                </div>
-                <div class="card_grafico umidade_ambiente">
-                    <h2>Umidade do ambiente</h2>
-                    <p></p>
-                </div>
-            </div>
-
-            <div class="graficos_grandes">
-                <div class="card_grafico ativos">
-                    <div class="producao_ativa">
-                        <p>producao_ativa</p>
+                <div class="graficos_grandes">
+                    <div class="card_grafico consumo_energetico">
+                        <h2>Consumo energético</h2>
+                        <canvas id="consumo_energetico"></canvas>
                     </div>
-                    <div class="ia_produtiva">
-                        <p>ia_produtiva</p>
-                    </div>
-                    <div class="produto_descartados">
-                        <p>produto_descartados</p>
-                    </div>
-                    <div class="exportacao_internacional">
-                        <p>exportacao_internacional</p>
+                    <div class="card_grafico umidade_ambiente">
+                        <h2>Umidade do ambiente</h2>
+                        <canvas id="umidade_ambiente"></canvas>
                     </div>
                 </div>
+
+                <div class="graficos_grandes">
+                    <div class="card_grafico ativos">
+                        <div class="producao_ativa">
+                            <p>producao_ativa</p>
+                        </div>
+                        <div class="ia_produtiva">
+                            <p>ia_produtiva</p>
+                        </div>
+                        <div class="produto_descartados">
+                            <p>produto_descartados</p>
+                        </div>
+                        <div class="exportacao_internacional">
+                            <p>exportacao_internacional</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-            </div>
-
         </section>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function criarGrafico({
+            idCanvas,
+            urlDados,
+            tipoDado,
+            tipoGrafico = 'line',
+            corBase = '#00BFFF',
+            intervalo = 3000,
+            usarGradient = true
+        }) {
+            const ctx = document.getElementById(idCanvas).getContext('2d');
+            let chart = null;
+            let dadosAnteriores = null;
+
+            function atualizar() {
+                fetch(urlDados)
+                    .then(res => res.json())
+                    .then(dados => {
+                        const dadosAtuais = JSON.stringify(dados);
+                        if (dadosAtuais === dadosAnteriores) return;
+                        dadosAnteriores = dadosAtuais;
+
+                        const datasets = [];
+                        const cores = [
+                            '#1E90FF', // Dodger Blue
+                            '#4169E1', // Royal Blue
+                            '#4682B4', // Steel Blue
+                            '#5F9EA0', // Cadet Blue
+                            '#6495ED', // Cornflower Blue
+                            '#87CEFA', // Light Sky Blue
+                            '#00CED1', // Dark Turquoise / mais esverdeado
+                            '#007FFF', // Azure Blue
+                            '#3399FF', // Azul claro vibrante
+                            '#003366' // Azul muito escuro (quase marinho)
+                        ];
+
+                        let i = 0;
+                        for (const maquina in dados) {
+                            let cor = cores[i % cores.length];
+                            let background = usarGradient ?
+                                (() => {
+                                    const grad = ctx.createLinearGradient(0, 0, 0, 300);
+                                    grad.addColorStop(0, cor + '80');
+                                    grad.addColorStop(1, cor + '00');
+                                    return grad;
+                                })() :
+                                cor;
+
+                            datasets.push({
+                                label: maquina,
+                                data: dados[maquina][tipoDado],
+                                borderColor: cor,
+                                backgroundColor: background,
+                                fill: usarGradient,
+                                tension: tipoGrafico === 'line' ? 0.4 : 0,
+                                borderWidth: 3,
+                            });
+                            i++;
+                        }
+
+                        const labels = Object.values(dados)[0].hora;
+
+                        if (chart) {
+                            chart.data.labels = labels;
+                            chart.data.datasets = datasets;
+                            chart.update();
+                        } else {
+                            chart = new Chart(ctx, {
+                                type: tipoGrafico,
+                                data: {
+                                    labels,
+                                    datasets
+                                },
+                                options: {
+                                    responsive: true,
+                                    plugins: {
+                                        legend: {
+                                            labels: {
+                                                color: '#fff',
+                                                font: {
+                                                    family: 'Poppins',
+                                                    size: 14
+                                                }
+                                            }
+                                        }
+                                    },
+                                    scales: {
+                                        x: {
+                                            ticks: {
+                                                color: '#ccc'
+                                            },
+                                            grid: {
+                                                color: 'rgba(255,255,255,0.1)'
+                                            }
+                                        },
+                                        y: {
+                                            ticks: {
+                                                color: '#ccc'
+                                            },
+                                            grid: {
+                                                color: 'rgba(255,255,255,0.1)'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+            }
+
+            atualizar();
+            setInterval(atualizar, intervalo);
+        }
+
+        // gráfico de temperatura - linha com gradiente
+        criarGrafico({
+            idCanvas: 'grafico_temperatura',
+            urlDados: 'dados_maquina.php',
+            tipoDado: 'temperatura',
+            tipoGrafico: 'line',
+            intervalo: 2000,
+            usarGradient: true
+        });
+
+        criarGrafico({
+            idCanvas: 'consumo_energetico',
+            urlDados: 'dados_maquina.php',
+            tipoDado: 'consumo',
+            tipoGrafico: 'bar',
+            usarGradient: false
+        });
+
+        // gráfico de consumo - barras sólidas
+        criarGrafico({
+            idCanvas: 'producao_sustentavel',
+            urlDados: 'dados_maquina.php',
+            tipoDado: 'consumo',
+            tipoGrafico: 'pie',
+            usarGradient: false,
+        });
+
+        // gráfico de umidade - linha azul com gradiente leve
+        criarGrafico({
+            idCanvas: 'umidade_ambiente',
+            urlDados: 'dados_maquina.php',
+            tipoDado: 'umidade',
+            tipoGrafico: 'doughnut',
+            usarGradient: true
+        });
+    </script>
+
 </body>
 
 </html>
