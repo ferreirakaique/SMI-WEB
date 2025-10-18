@@ -19,23 +19,45 @@ main {
     margin-left: 16%;
     padding: 30px;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* padding-top: 60px;
+    min-height: 100vh; */
 }
 
-main h1 {
+main #titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+main #titulo i {
+    font-size: 40px;
+    color: #005EFF;
+}
+
+main #titulo h1 {
     color: white;
+    font-size: 35px;
 }
 
 main input {
     height: 40px;
-    width: 500px;
+    width: 60%;
     border-radius: 50px;
     color: black;
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
 }
 
 main #filtros {
     margin-top: 10px;
+    display: flex;
+    gap: 5px;
 }
 
 main #filtros .botao-filtro {
@@ -47,14 +69,14 @@ main #filtros .botao-filtro {
 }
 
 main #filtros #todas {
-    background-color: #005EFF;
+    background-color: #022253;
 }
 
 main #filtros #sucesso {
     background-color: #008727;
 }
 
-main #filtros #falha {
+main #filtros #alerta {
     background-color: #E63946;
 }
 
@@ -66,15 +88,18 @@ main #filtros #informacao {
     background-color: #005EFF;
 }
 
-main #filtros #sugestao {
+main #filtros #chatbot {
     background-color: #011838;
 }
 
 main #notificacoes {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    gap: 10px;
+    margin-top: 30px;
+    gap: 20px;
+    width: 70%;
+
+    /* align-items: center; */
 }
 
 main #notificacoes .notificacao {
@@ -83,7 +108,7 @@ main #notificacoes .notificacao {
     padding: 20px;
     border-radius: 10px;
     border: 2px solid #003FA9;
-    width: 800px;
+    width: 100%;
     justify-content: space-between;
     color: white;
 }
@@ -92,10 +117,73 @@ main #notificacoes .notificacao .status {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 200px;
+    width: 20%;
 }
 
-main #notificacoes #sucesso {
+main #notificacoes .notificacao .status h2 {
+    margin-left: 20px;
+}
+
+/* main #notificacoes .notificacao .stats {
+    width: 30%;
+} */
+
+main #notificacoes .notificacao .stats h3 {
+    font-size: 20px;
+}
+
+main #notificacoes .notificacao .stats h4 {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.bold {
+    font-weight: 450;
+}
+
+main #notificacoes .notificacao .info {
+    width: 30%;
+}
+
+main #notificacoes .notificacao .info h3 {
+    font-size: 20px;
+}
+
+main #notificacoes .notificacao .info h4 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+main #notificacoes .notificacao .data-e-hora {
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+main #notificacoes .notificacao .data-e-hora .data, main #notificacoes .notificacao .data-e-hora .hora {
+    display: flex;
+    justify-content: right;
+    font-weight: 400;
+}
+
+main #notificacoes .sucesso {
     background-color: #076454;
+}
+
+main #notificacoes .alerta {
+    background-color: #422454;
+}
+
+main #notificacoes .aviso {
+    background-color: #426454;
+}
+
+main #notificacoes .informacao {
+    background-color: #024794;
+}
+
+main #notificacoes .chatbot {
+    background-color: #021838;
 }

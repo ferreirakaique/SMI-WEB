@@ -10,7 +10,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -26,92 +26,123 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <?php include "nav_mobile.php" ?>
 
     <main>
-        <h1>Notificações</h1>
+        <div id="titulo">
+            <i class='bx  bx-bell'></i> 
+            <h1>Notificações</h1>
+        </div>
         <input type="text" placeholder="Pesquisar">
         <div id="filtros">
-            <button class="botao-filtro" id="todas">Todas</button>
-            <button class="botao-filtro" id="sucesso">Sucesso</button>
-            <button class="botao-filtro" id="falha">Falha</button>
-            <button class="botao-filtro" id="aviso">Aviso</button>
-            <button class="botao-filtro" id="informacao">Informação</button>
-            <button class="botao-filtro" id="sugestao">Sugestão</button>
+            <a href="notificacoes.php"><button class="botao-filtro" id="todas">Todas</button></a>
+            <a href="notificacoes_sucesso.php"><button class="botao-filtro" id="sucesso">Sucesso</button></a>
+            <a href="notificacoes_alerta.php"><button class="botao-filtro" id="alerta">Alerta</button></a>
+            <a href="notificacoes_aviso.php"><button class="botao-filtro" id="aviso">Aviso</button></a>
+            <a href="notificacoes_info.php"><button class="botao-filtro" id="informacao">Informação</button></a>
+            <a href="notificacoes_chatbot.php"><button class="botao-filtro" id="chatbot">Chat-Bot</button></a>
         </div>
         <div id="notificacoes">
-            <div class="notificacao" id="sucesso">
+
+            <div class="notificacao sucesso">
                 <div class="status">
-                    <img src="../img/success.png" alt="Sucesso!">
+                    <img src="../img/sucesso.png" alt="Sucesso!">
                     <h2>Sucesso</h2>
                 </div>
                 <div class="stats">
-                    <h3>NOME_MÁQUINA</h3>
-                    <h4><b>ID:</b> 998654</h4>
-                    <h4><b>Setor:</b> 3</h4>
+                    <h3>Torneadora</h3>
+                    <h4><b class="bold">ID:</b> 8769534</h4>
+                    <h4><b class="bold">Setor:</b> Comércio</h4>
                 </div>
                 <div class="info">
                     <h3>INFORMAÇÃO</h3>
-                    <h4><b>ID:</b>998654</h4>
+                    <h4>Produção diária finalizada.</h4>
                 </div>
                 <div class="data-e-hora">
-                    <h6>14/09/2025 10h41</h6>
+                    <h6 class="data">14/09/25</h6>
+                    <h6 class="hora">22h00</h6>
                 </div>
             </div>
-            <div class="notificacao" id="sucesso1">
+
+            <div class="notificacao chatbot">
                 <div class="status">
-                    <img src="../img/success.png" alt="Sucesso!">
-                    <h2>Erro</h2>
+                    <img src="../img/bot.png" alt="Chat-Bot">
+                    <h2>Chat-Bot</h2>
                 </div>
                 <div class="stats">
-                    <h3>NOME_MÁQUINA</h3>
-                    <h4><b>ID:</b> 998654</h4>
-                    <h4><b>Setor:</b> 3</h4>
+                    <h3>Prensa Hidráulica</h3>
+                    <h4><b class="bold">ID:</b> 2456321</h4>
+                    <h4><b class="bold">Setor:</b> Produção</h4>
                 </div>
                 <div class="info">
-                    <h3>INFORMAÇÃO</h3>
-                    <h4><b>ID:</b>998654</h4>
+                    <h3>SUGESTÃO</h3>
+                    <h4>Utilizar água da chuva para resfriamento.</h4>
                 </div>
                 <div class="data-e-hora">
-                    <h6>14/09/2025 10h41</h6>
+                    <h6 class="data">14/09/25</h6>
+                    <h6 class="hora">15h41</h6>
                 </div>
             </div>
-            <div class="notificacao" id="sucesso1">
+
+            <div class="notificacao alerta">
                 <div class="status">
-                    <img src="../img/success.png" alt="Sucesso!">
-                    <h2>Sucesso</h2>
+                    <img src="../img/erro.png" alt="Erro!">
+                    <h2>Alerta</h2>
                 </div>
                 <div class="stats">
-                    <h3>NOME_MÁQUINA</h3>
-                    <h4><b>ID:</b> 998654</h4>
-                    <h4><b>Setor:</b> 3</h4>
+                    <h3>Prensa Hidráulica</h3>
+                    <h4><b class="bold">ID:</b> 2456321</h4>
+                    <h4><b class="bold">Setor:</b> Produção</h4>
                 </div>
                 <div class="info">
                     <h3>INFORMAÇÃO</h3>
-                    <h4><b>ID:</b>998654</h4>
+                    <h4>Temperatura elevada.</h4>
                 </div>
                 <div class="data-e-hora">
-                    <h6>14/09/2025 10h41</h6>
+                    <h6 class="data">14/09/25</h6>
+                    <h6 class="hora">15h02</h6>
                 </div>
             </div>
-            <div class="notificacao" id="sucesso1">
+
+            <div class="notificacao aviso">
                 <div class="status">
-                    <img src="../img/success.png" alt="Sucesso!">
-                    <h2>Sucesso</h2>
+                    <img src="../img/alerta.png" alt="Alerta!">
+                    <h2>Aviso</h2>
                 </div>
                 <div class="stats">
-                    <h3>NOME_MÁQUINA</h3>
-                    <h4><b>ID:</b> 998654</h4>
-                    <h4><b>Setor:</b> 3</h4>
+                    <h3>Esteira Transportadora</h3>
+                    <h4><b class="bold">ID:</b> 8674539</h4>
+                    <h4><b class="bold">Setor:</b> Logística</h4>
                 </div>
                 <div class="info">
                     <h3>INFORMAÇÃO</h3>
-                    <h4><b>ID:</b>998654</h4>
+                    <h4>Em manutenção.</h4>
                 </div>
                 <div class="data-e-hora">
-                    <h6>14/09/2025 10h41</h6>
+                    <h6 class="data">14/09/25</h6>
+                    <h6 class="hora">10h32</h6>
                 </div>
             </div>
+
+            <div class="notificacao informacao">
+                <div class="status">
+                    <img src="../img/informacao.png" alt="Informação">
+                    <h2>Informação</h2>
+                </div>
+                <div class="stats">
+                    <h3>Torneadora</h3>
+                    <h4><b class="bold">ID:</b> 8769534</h4>
+                    <h4><b class="bold">Setor:</b> Comércio</h4>
+                </div>
+                <div class="info">
+                    <h3>INFORMAÇÃO</h3>
+                    <h4>Produção iniciada.</h4>
+                </div>
+                <div class="data-e-hora">
+                    <h6 class="data">14/09/25</h6>
+                    <h6 class="hora">8h00</h6>
+                </div>
+            </div>
+
         </div>
     </main>
-
 </body>
 
 </html>
