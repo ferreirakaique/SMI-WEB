@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['id_usuario'] = $usuario['id_usuario'];
       $_SESSION['nome_usuario'] = $usuario['nome_usuario'];
       $_SESSION['email_usuario'] = $usuario['email_usuario'];
+      $_SESSION['data_admissao'] = $usuario['data_admissao'];
       $_SESSION['cpf_usuario'] = $usuario['cpf_usuario'];
       $_SESSION['tipo_usuario'] = $usuario['tipo_usuario'];
       $_SESSION['setor'] = $usuario['setor'];

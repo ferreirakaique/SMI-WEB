@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #032F6F;
+}
+
+main {
+    margin-left: 16%;
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container_usuarios {
+    background: #1D427A;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #003FA9;
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.container_usuarios .titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.container_usuarios .titulo_textos {
+    flex: 1 1 60%;
+}
+
+.container_usuarios .titulo h1 {
+    display: flex;
+    align-items: center;
+    font-size: 48px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.container_usuarios .titulo h1 i {
+    margin-right: 15px;
+    color: #4a90e2;
+}
+
+.container_usuarios .titulo .subtitulo {
+    font-size: 20px;
+    color: #ccc;
+    margin-bottom: 40px;
+}
+.botoes .botao_voltar {
+    background-color: #005eff;
+    color: #fff;
+    padding: 10px 60px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%;
+}
+.container_usuarios table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.container_usuarios thead tr {
+    background-color: #003FA9;
+    color: #ffffff;
+    text-align: center;
+}
+
+.container_usuarios thead th {
+    padding: 12px 15px;
+    border-right: 1px solid #004bb5;
+}
+
+.container_usuarios thead th:last-child {
+    border-right: none;
+}
+
+.container_usuarios tbody tr {
+    background-color: #032F6F;
+    transition: background-color 0.3s;
+}
+
+.container_usuarios tbody td {
+    padding: 12px 15px;
+    color: #ffffff;
+    border-right: 1px solid #004bb5;
+    text-align: center;
+}
+
+.container_usuarios tbody td:last-child {
+    border-right: none;
+}
+
+.container_usuarios tbody tr:hover {
+    background-color: #004bb5;
+}
+
+.container_usuarios a {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 30.6%;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    margin-right: 5px;
+    text-align: center;
+}
+
+.container_usuarios a[href*="editar"] {
+    background-color: #005eff;
+    color: #fff;
+}
+
+.container_usuarios a[href*="editar"]:hover {
+    background-color: #003da5;
+    transform: translateY(-2px);
+}
+
+.container_usuarios a[href*="excluir"] {
+    background-color: #e63946;
+    color: #fff;
+}
+
+.container_usuarios a[href*="excluir"]:hover {
+    background-color: #b00020;
+    transform: translateY(-2px);
+}
+
+.container_usuarios a[href*="inativar"] {
+    background-color: #ffa500;
+    color: #fff;
+}
+
+.container_usuarios a[href*="inativar"]:hover {
+    background-color: #cc8400;
+    transform: translateY(-2px);
+}
+.linha_adicionar td {
+    background-color: #ffffff; 
+    padding: 7px;
+}
+
+
+
