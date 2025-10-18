@@ -131,9 +131,10 @@ $result_usuarios = $stmt_usuarios->get_result();
 
                     <div class="inputbox">
                         <select id="status_maquina" name="status_maquina" required>
+                            <option disabled selected>Selecione o estado da maquina</option>
                             <option value="ATIVA">ATIVA</option>
                             <option value="INATIVA">INATIVA</option>
-                            <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+                            <option value="MANUTENÇÃO">MANUTENÇÃO</option>
                         </select>
 
 

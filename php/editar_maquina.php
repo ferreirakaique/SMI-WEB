@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $stmt_usuarios = $conexao->prepare('SELECT nome_usuario FROM usuarios');
 $stmt_usuarios->execute();
 $result_usuarios = $stmt_usuarios->get_result();
-
 ?>
 
 <!DOCTYPE html>
@@ -174,7 +173,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                                 if ($result_usuarios->num_rows > 0):
                                     $operante_atual = $maquina['operante_listar_maquina']; // valor que está no banco
                                     while ($usuarios = $result_usuarios->fetch_assoc()):
-                                        $nome_usuario = htmlspecialchars($usuarios['nome_usuario']);
+                                        $nome_usuario = $usuarios['nome_usuario'];
                                         $selected = ($nome_usuario === $operante_atual) ? 'selected' : '';
                                         echo "<option value='$nome_usuario' $selected>$nome_usuario</option>";
                                     endwhile;
@@ -187,9 +186,14 @@ $result_usuarios = $stmt_usuarios->get_result();
 
                         <div class="inputbox">
                             <select id="status_maquina" name="status_maquina" required>
-                                <option value="ATIVA">ATIVA</option>
-                                <option value="INATIVA">INATIVA</option>
-                                <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+                                <?php
+                                $status_atual = $maquina['status_listar_maquina'];
+                                $opcoes = ['ATIVA', 'INATIVA', 'MANUTENÇÃO'];
+                                foreach ($opcoes as $opcao) {
+                                    $selected = ($status_atual === $opcao) ? 'selected' : '';
+                                    echo "<option value='$opcao' $selected>$opcao</option>";
+                                }
+                                ?>
                             </select>
 
 
@@ -205,7 +209,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                                         selectStatus.style.color = '#1ea21eff'; // verde
                                     } else if (valor === 'INATIVA') {
                                         selectStatus.style.color = '#b02020ff'; // vermelho
-                                    } else if (valor === 'EM MANUTENÇÃO') {
+                                    } else if (valor === 'MANUTENÇÃO') {
                                         selectStatus.style.color = '#ba9b23ff'; // amarelo
                                     }
                                 }

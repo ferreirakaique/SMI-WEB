@@ -30,7 +30,7 @@ body {
 
 main {
     margin-left: 16%;
-    padding: 30px;
+    padding: 15px 30px 30px 30px;
 }
 
 .dashboard .titulo h1 {
@@ -148,7 +148,12 @@ main {
 
 .temperatura {
     width: 100%;
-    height: 350px;
+    height: 91%;
+}
+
+canvas {
+    width: 100% !important;
+    height: 92% !important;
 }
 
 .porcentagem {

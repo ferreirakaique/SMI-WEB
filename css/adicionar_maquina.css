@@ -139,6 +139,10 @@ main {
     background-color: #0D274F;
 }
 
+.inputbox #status_maquina {
+    font-weight: bold;
+}
+
 .inputbox span {
     position: absolute;
     left: 0;
