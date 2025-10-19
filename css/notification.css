@@ -28,21 +28,66 @@ main {
     min-height: 100vh; */
 }
 
-main #titulo {
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.titulo .icone {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
-main #titulo i {
-    font-size: 40px;
+.titulo i {
+    font-size: 50px;
     color: #005EFF;
+    margin-bottom: 10px;
 }
 
-main #titulo h1 {
+.titulo h1 {
     color: white;
     font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.titulo p {
+    font-size: 16px;
+    color: #B0C4FF;
+}
+
+.pesquisa {
+    position: relative;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.pesquisa i {
+    position: absolute;
+    left: 15px;
+    top: 60%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #001943;
+    pointer-events: none;
+}
+
+.pesquisa input {
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid #001943;
+    padding: 5px 0px 5px 45px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+    font-size: 16px;
+}
+
+.pesquisa input:focus {
+    outline: none;
+    border-color: #005eff;
+    box-shadow: 0 6px 14px rgba(0, 94, 255, 0.2);
 }
 
 main input {
@@ -162,7 +207,8 @@ main #notificacoes .notificacao .data-e-hora {
     font-size: 20px;
 }
 
-main #notificacoes .notificacao .data-e-hora .data, main #notificacoes .notificacao .data-e-hora .hora {
+main #notificacoes .notificacao .data-e-hora .data,
+main #notificacoes .notificacao .data-e-hora .hora {
     display: flex;
     justify-content: right;
     font-weight: 400;

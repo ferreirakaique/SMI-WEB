@@ -26,11 +26,19 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <?php include "nav_mobile.php" ?>
 
     <main>
-        <div id="titulo">
-            <i class='bx  bx-bell'></i> 
-            <h1>Notificações</h1>
+        <div class="titulo">
+            <div class="icone">
+                <i class='bx bx-bell'></i>
+                <h1>Notificações</h1>
+            </div>
+            <p>Visualize, monitore e gerencie os alertas e atualizações das máquinas</p>
         </div>
-        <input type="text" placeholder="Pesquisar">
+
+        <div class="pesquisa">
+            <i class='bx bx-search'></i>
+            <input type="search" placeholder="Pesquisar">
+        </div>
+        
         <div id="filtros">
             <a href="notificacoes.php"><button class="botao-filtro" id="todas">Todas</button></a>
             <a href="notificacoes_sucesso.php"><button class="botao-filtro" id="sucesso">Sucesso</button></a>
@@ -59,7 +67,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                     <h6 class="data">14/09/25</h6>
                     <h6 class="hora">22h00</h6>
                 </div>
-            </div> 
+            </div>
 
         </div>
     </main>

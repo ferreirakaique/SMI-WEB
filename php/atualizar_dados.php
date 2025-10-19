@@ -7,7 +7,7 @@ $consumo_medio = $result_consumo_medio->fetch_assoc();
 $result_soma_listar_maquinas_ativas = $conexao->query("SELECT COUNT(id_listar_maquina) AS maquinas FROM listar_maquinas WHERE status_listar_maquina = 'ATIVA'");
 $soma_maquinas_ativas = $result_soma_listar_maquinas_ativas->fetch_assoc();
 
-$result_soma_usuarios = $conexao->query('SELECT COUNT(id_usuario) AS usuarios FROM usuarios');
+$result_soma_usuarios = $conexao->query('SELECT COUNT(id_usuario) AS usuarios FROM usuarios WHERE status_usuario = "ativo"');
 $soma_usuarios = $result_soma_usuarios->fetch_assoc();
 
 echo json_encode([

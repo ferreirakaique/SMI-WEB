@@ -43,7 +43,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                             <i class='bx bx-bolt-circle'></i>
                             <h2>Consumo médio</h2>
                         </div>
-                        <p><strong id="consumo_medio">TESTE</strong> <span>KWH</span></p>
+                        <p><strong id="consumo_medio"></strong> <span>KWH</span></p>
                     </div>
 
                     <div class="card">
@@ -51,12 +51,12 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                             <i class='bx bx-bolt-circle'></i>
                             <h2>Consumo semanal</h2>
                         </div>
-                        <p><strong id="consumo_semanal">TESTE</strong> <span>KWH</span></p>
+                        <p><strong id="consumo_semanal"></strong> <span>KWH</span></p>
                     </div>
 
                     <div class="card card_maquinas_ativas">
                         <div class="titulo_card_3">
-                            <p><strong id="maquinas_ativas_numeros">TESTE</strong></p>
+                            <p><strong id="maquinas_ativas_numeros"></strong></p>
                             <span id="maquinas_ativas">Máquinas <br>Ativas</span>
                         </div>
                         <i id="icone_maquina_ativa" class='bx bx-cog'></i>
@@ -64,7 +64,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
 
                     <div class="card card_maquinas_ativas">
                         <div class="titulo_card_3">
-                            <p><strong id="usuarios_numeros">TESTE</strong></p>
+                            <p><strong id="usuarios_numeros"></strong></p>
                             <span id="usuarios">Funcionarios <br>Ativos</span>
                         </div>
                         <i id="icone_maquina_ativa" class='bx bx-group'></i>
@@ -94,8 +94,16 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                         <canvas id="grafico_temperatura"></canvas>
                     </div>
                     <div class="card_grafico porcentagem">
-                        <h2>Produção sustentavel</h2>
-                        <canvas id="producao_sustentavel"></canvas>
+                        <div class="contanier_circulo">
+                            <div class="circulo_fora">
+                                <div class="porcentagem_numero">
+                                    <p>90%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Produção sustentável</h2>
+                        <p>A SMI é especializada em soluções sustentáveis e manutenção inteligente de máquinas industriais. Cooperando para uma melhora no desenvolvimento da empresa e para sustentabilidade ao ambiente</p>
+                        <button><a href="chat_bot.php">Saiba mais</a></button>
                     </div>
                 </div>
 
@@ -113,16 +121,44 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 <div class="graficos_grandes">
                     <div class="card_grafico ativos">
                         <div class="producao_ativa">
-                            <p>producao_ativa</p>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_producao">
+                                    <div class="porcentagem_numero">
+                                        <p>80%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Produção ativa</p>
                         </div>
                         <div class="ia_produtiva">
-                            <p>ia_produtiva</p>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_producao_ia_produtiva">
+                                    <div class="porcentagem_numero">
+                                        <p>60%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Ia produtiva</p>
                         </div>
                         <div class="produto_descartados">
-                            <p>produto_descartados</p>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_temperatura">
+                                    <div class="porcentagem_numero">
+                                        <p>90%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Temperatura estável</p>
                         </div>
                         <div class="exportacao_internacional">
-                            <p>exportacao_internacional</p>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_umidade">
+                                    <div class="porcentagem_numero">
+                                        <p>10%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Umidade estavel</p>
                         </div>
                     </div>
                 </div>
@@ -137,7 +173,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
             urlDados,
             tipoDado,
             tipoGrafico = 'line',
-            corBase = '#00BFFF',
+            corBase = '#00BFAF',
             intervalo = 3000,
             usarGradient = true
         }) {
@@ -201,8 +237,8 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                             chart = new Chart(ctx, {
                                 type: tipoGrafico,
                                 data: {
-                                    labels,
-                                    datasets
+                                    datasets,
+                                    labels
                                 },
                                 options: {
                                     responsive: true,
@@ -264,20 +300,13 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
         });
 
         // gráfico de consumo - barras sólidas
-        criarGrafico({
-            idCanvas: 'producao_sustentavel',
-            urlDados: 'dados_maquina.php',
-            tipoDado: 'consumo',
-            tipoGrafico: 'pie',
-            usarGradient: false,
-        });
 
         // gráfico de umidade - linha azul com gradiente leve
         criarGrafico({
             idCanvas: 'umidade_ambiente',
             urlDados: 'dados_maquina.php',
             tipoDado: 'umidade',
-            tipoGrafico: 'doughnut',
+            tipoGrafico: 'pie',
             usarGradient: true
         });
     </script>

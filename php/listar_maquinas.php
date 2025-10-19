@@ -48,6 +48,7 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                 <i class='bx bx-search'></i>
                 <input type="search" placeholder="Pesquisar">
             </div>
+            
             <?php if ($result_listar_maquinas->num_rows > 0): ?>
                 <div class="container_maquinas">
                     <?php while ($maquina = $result_listar_maquinas->fetch_assoc()): ?>

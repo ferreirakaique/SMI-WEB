@@ -65,36 +65,34 @@ main {
 }
 
 
-.maquinas_listadas .pesquisa {
-    margin: 20px;
+.pesquisa {
     position: relative;
-    width: 100%;
-    gap: 10px;
-    display: flex;
-    justify-content: center;
+    width: 80%;
+    margin: 20px auto;
 }
 
-.maquinas_listadas .pesquisa i {
+.pesquisa i {
     position: absolute;
+    left: 15px;
     top: 50%;
-    left: 140px;
     transform: translateY(-50%);
     font-size: 20px;
     color: #001943;
+    pointer-events: none;
 }
 
-.maquinas_listadas .pesquisa input {
-    width: 80%;
+.pesquisa input {
+    width: 100%;
     border-radius: 30px;
-    border: none;
-    padding: 8px 12px 8px 40px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #001943;
+    padding: 5px 0px 5px 45px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: 0.2s ease-in-out;
+    font-size: 16px;
 }
 
-.maquinas_listadas .pesquisa input:focus {
+.pesquisa input:focus {
     outline: none;
     border-color: #005eff;
     box-shadow: 0 6px 14px rgba(0, 94, 255, 0.2);
