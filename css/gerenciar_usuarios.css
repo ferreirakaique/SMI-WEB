@@ -114,14 +114,11 @@ main {
     border-right: none;
 }
 
-.container_usuarios tbody tr:hover {
-    background-color: #004bb5;
-}
 
 .container_usuarios a {
     display: inline-block;
     padding: 10px 20px;
-    width: 30.6%;
+    width: 30.8%;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
@@ -151,17 +148,180 @@ main {
     transform: translateY(-2px);
 }
 
-.container_usuarios a[href*="inativar"] {
-    background-color: #ffa500;
+.container_usuarios a.botao_acao {
     color: #fff;
 }
 
-.container_usuarios a[href*="inativar"]:hover {
+.container_usuarios a.botao_acao[data-acao="inativar"] {
+    background-color: #ffa500;
+}
+
+.container_usuarios a.botao_acao[data-acao="inativar"]:hover {
     background-color: #cc8400;
     transform: translateY(-2px);
 }
+
+/* Ativar */
+.container_usuarios a.botao_acao[data-acao="ativar"] {
+    background-color: #28a745;
+}
+
+.container_usuarios a.botao_acao[data-acao="ativar"]:hover {
+    background-color: #1e7e34;
+    transform: translateY(-2px);
+}
+
 
 .linha_adicionar td {
     background-color: #ffffff;
     padding: 7px;
 }
+.botao_adicionar_destaque {
+    background-color: #ffffff;
+    width: 100%;
+    color: #001943;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 6px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-conteudo {
+    background-color: #fefefe;
+    color: #001943;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-conteudo h2 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.modal-conteudo .fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-conteudo input,
+.modal-conteudo select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.botao_modal_salvar {
+    background-color: #001943;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+.botao_modal_salvar:hover {
+    background-color: #2373c8;
+}
+/* Modal de Adicionar Usuário */
+#modalNovoUsuario {
+    display: none;
+    position: fixed;
+    z-index: 1100; /* acima do modal de editar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* leve escurecimento de fundo */
+}
+
+/* Conteúdo do Modal */
+#modalNovoUsuario .modal-conteudo {
+    background-color: #ffffff;
+    color: #001943;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    width: 500px;
+    max-height: 90vh; /* ocupa até 90% da altura da tela */
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    overflow-y: auto; /* rolagem interna se necessário */
+}
+
+/* Título */
+#modalNovoUsuario .modal-conteudo h2 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Botão fechar */
+#modalNovoUsuario .modal-conteudo .fechar {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #001943;
+}
+
+#modalNovoUsuario .modal-conteudo .fechar:hover {
+    color: #2373c8;
+}
+
+/* Inputs e Selects */
+#modalNovoUsuario .modal-conteudo input,
+#modalNovoUsuario .modal-conteudo select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+/* Botão Salvar */
+#modalNovoUsuario .botao_modal_salvar {
+    background-color: #001943;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+#modalNovoUsuario .botao_modal_salvar:hover {
+    background-color: #2373c8;
+}
+

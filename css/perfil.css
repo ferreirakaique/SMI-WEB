@@ -106,11 +106,9 @@ main {
     letter-spacing: 0.5px;
 }
 
-/* ===== LAYOUT ===== */
 .container_perfil .info_container {
     display: flex;
     flex-direction: column;
-    /* empilha tudo verticalmente */
     gap: 40px;
 }
 
@@ -127,7 +125,6 @@ main {
 
 .container_perfil .info h2 {
     font-size: 18px;
-    /* aumentou um pouco */
     margin-bottom: 5px;
 }
 
@@ -146,9 +143,15 @@ main {
     outline: none;
     border-color: #4a90e2;
 }
-
-/* ===== AÇÕES (BOTÕES) ===== */
-/* ===== AÇÕES (BOTÕES) ===== */
+.container_perfil .info select {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #003FA9;
+    font-size: 17px;
+    background-color: #032F6F;
+    color: #fff;
+    margin-bottom: 10px;
+}
 .container_perfil .acoes {
     display: flex;
     flex-wrap: wrap;
@@ -156,7 +159,6 @@ main {
     margin-top: 20px;
 }
 
-/* Todos os botões */
 .container_perfil .acoes button {
     padding: 16px;
     border-radius: 40px;
@@ -169,7 +171,6 @@ main {
     color: #fff;
 }
 
-/* ===== BOTÃO SALVAR (OCUPA LINHA INTEIRA) ===== */
 .container_perfil .acoes #salvar {
     background-color: #005eff;
     width: 100%;
@@ -180,11 +181,9 @@ main {
     transform: translateY(-2px);
 }
 
-/* ===== BOTÕES SECUNDÁRIOS (50% CADA) ===== */
 .container_perfil .acoes #desconectar,
 .container_perfil .acoes #gerenciar {
     flex: 1 1 calc(50% - 10px);
-    /* divide igualmente o espaço */
     width: 560px;
 }
 
@@ -206,8 +205,6 @@ main {
     transform: translateY(-2px);
 }
 
-
-/* ===== SEÇÃO DE SENHA ===== */
 .senha_container {
     margin-top: 50px;
     padding-top: 30px;
@@ -218,7 +215,6 @@ main {
     color: #fff;
 }
 
-/* ===== TÍTULO ===== */
 .senha_container .titulo_senha h1 {
     display: flex;
     align-items: center;
@@ -239,7 +235,6 @@ main {
     margin-bottom: 15px;
 }
 
-/* ===== CAMPOS (LABELS E INPUTS IGUAL AO TOPO) ===== */
 .senha_container form {
     display: flex;
     flex-direction: column;
@@ -273,7 +268,6 @@ main {
     border-color: #4a90e2;
 }
 
-/* ===== BOTÃO (IGUAL AO “SALVAR”) ===== */
 #alterar_senha {
     width: 100%;
     background-color: #005eff;
