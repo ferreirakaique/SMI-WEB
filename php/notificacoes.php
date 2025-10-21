@@ -31,7 +31,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 <i class='bx bx-bell'></i>
                 <h1>Notificações</h1>
             </div>
-            <p>Visualize, monitore e gerencie os alertas e atualizações das máquinas</p>
+            <p>Visualize os alertas e atualizações das máquinas</p>
         </div>
 
         <div class="pesquisa">

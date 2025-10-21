@@ -81,7 +81,7 @@ $maquina = $result_maquina->fetch_assoc();
                                 <p><?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
-                                <h1>ID interno</h1>
+                                <h1>ID</h1>
                                 <p><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
