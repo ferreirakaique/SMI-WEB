@@ -31,7 +31,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <!-- Título geral -->
     <div class="titulo" style="width:100%; margin-bottom:30px; flex-wrap: wrap;">
         <div class="titulo_textos">
-            <h1><i class='bx bx-chat'></i> Chat Bot</h1>
+            <h1><i class='bx bx-bot'></i> Chat Bot</h1>
             <div class="subtitulo">Converse com o assistente e acompanhe alertas das máquinas em tempo real</div>
         </div>
     </div>

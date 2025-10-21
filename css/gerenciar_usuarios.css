@@ -325,3 +325,149 @@ main {
     background-color: #2373c8;
 }
 
+/* ===== RESPONSIVO ===== */
+@media (max-width: 1200px) {
+    main {
+        margin-left: 10%;
+        padding: 20px;
+    }
+
+    .container_usuarios .titulo h1 {
+        font-size: 32px;
+    }
+
+    .botoes .botao_voltar {
+        padding: 10px 40px;
+        font-size: 14px;
+    }
+
+    .container_usuarios table {
+        font-size: 14px;
+    }
+
+    .container_usuarios a {
+        font-size: 14px;
+        padding: 8px 15px;
+        width: 32%;
+    }
+}
+
+@media (max-width: 992px) {
+    main {
+        margin-left: 5%;
+        padding: 15px;
+    }
+
+    .container_usuarios {
+        padding: 20px;
+    }
+
+    .container_usuarios .titulo h1 {
+        font-size: 28px;
+    }
+
+    .container_usuarios table {
+        font-size: 13px;
+    }
+
+    .container_usuarios a {
+        font-size: 13px;
+        padding: 6px 12px;
+        width: 48%;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .container_usuarios {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .container_usuarios .titulo h1 {
+        font-size: 24px;
+    }
+
+    .container_usuarios table {
+        font-size: 12px;
+    }
+
+    .container_usuarios thead tr {
+        display: none; /* esconde cabeçalho em telas muito pequenas */
+    }
+
+    .container_usuarios tbody td {
+        display: block;
+        text-align: right;
+        padding: 10px;
+        position: relative;
+    }
+
+    .container_usuarios tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        color: #ccc;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .container_usuarios a {
+        font-size: 12px;
+        padding: 6px 10px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .botoes .botao_voltar {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+
+    /* Modal */
+    #modalNovoUsuario .modal-conteudo {
+        width: 90%;
+        margin-top: 10%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container_usuarios .titulo h1 {
+        font-size: 20px;
+    }
+
+    .container_usuarios table {
+        font-size: 11px;
+    }
+
+    .container_usuarios a {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+
+    .botoes .botao_voltar {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+    #modalNovoUsuario .modal-conteudo h2 {
+        font-size: 20px;
+    }
+
+    #modalNovoUsuario .modal-conteudo input,
+    #modalNovoUsuario .modal-conteudo select {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    #modalNovoUsuario .botao_modal_salvar {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

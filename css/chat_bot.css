@@ -153,3 +153,82 @@ main {
 .card.vermelho .alert-icon {
     color: #D0021B;
 }
+/* ===== Responsividade ===== */
+@media (max-width: 1200px) {
+    main {
+        margin-left: 10%;
+        padding: 20px;
+    }
+
+    .card {
+        flex: 1 1 calc(45% - 10px);
+    }
+}
+
+@media (max-width: 992px) {
+    main {
+        margin-left: 5%;
+        padding: 15px;
+    }
+
+    .container_perfil {
+        padding: 25px;
+    }
+
+    .chat-box {
+        max-height: 300px;
+    }
+
+    .card {
+        flex: 1 1 48%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .container_perfil {
+        padding: 20px;
+    }
+
+    .chat-container {
+        gap: 10px;
+    }
+
+    .chat-box {
+        max-height: 250px;
+    }
+
+    .cards-container {
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-box {
+        max-height: 200px;
+        font-size: 14px;
+    }
+
+    .input-box input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .input-box button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .card {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
