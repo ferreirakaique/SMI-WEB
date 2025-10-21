@@ -138,7 +138,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                                     </div>
                                 </div>
                             </div>
-                            <p>Ia produtiva</p>
+                            <p>I.A produtiva</p>
                         </div>
                         <div class="produto_descartados">
                             <div class="contanier_circulo">
@@ -158,7 +158,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                                     </div>
                                 </div>
                             </div>
-                            <p>Umidade estavel</p>
+                            <p>Umidade estável</p>
                         </div>
                     </div>
                 </div>

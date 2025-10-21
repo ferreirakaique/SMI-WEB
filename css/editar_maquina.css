@@ -206,6 +206,7 @@ main {
 
     .foto_maquina h2 {
         font-size: 22px;
+        margin-top: 40px;
     }
 
     .foto_maquina .overlay span {
@@ -374,4 +375,34 @@ main {
 .opcoes .excluir_maquina:hover {
     box-shadow: inset 0 0 35px 3px rgb(73, 10, 10);
     transform: translateY(-5px);
+}
+
+@media screen and (max-width:1024px) {
+    main {
+        margin-left: 0%;
+        padding: 20px;
+        z-index: 999;
+    }
+
+    .editar_maquina .titulo h1 {
+        font-size: 20px;
+    }
+
+    .titulo .icone span {
+        font-size: 20px;
+    }
+
+    .titulo .icone i {
+        font-size: 40px;
+    }
+
+    #voltar i {
+        font-size: 30px;
+    }
+
+    .opcoes {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }

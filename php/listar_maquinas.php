@@ -48,7 +48,7 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                 <i class='bx bx-search'></i>
                 <input type="search" placeholder="Pesquisar">
             </div>
-            
+
             <?php if ($result_listar_maquinas->num_rows > 0): ?>
                 <div class="container_maquinas">
                     <?php while ($maquina = $result_listar_maquinas->fetch_assoc()): ?>
@@ -104,7 +104,7 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                     <?php endwhile; ?>
                 <?php endif; ?>
                 <div class="opcoes">
-                    <a href="adicionar_maquina.php" id="adicionar_maquina">Adicionar Máquina</a>
+                    <a href="adicionar_maquina.php" id="adicionar_maquina"><i class='bx bx-cog bx-plus'></i>Adicionar Máquina</a>
                 </div>
         </section>
 

@@ -200,20 +200,29 @@ $maquina = $result_maquina->fetch_assoc();
                             <div class="titulo_eficiencia">
                                 <h1>Eficiência Energética</h1>
                             </div>
-                            <div class="grafico_pizza"></div>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_eficiencia_energetica">
+                                    <div class="porcentagem_numero">
+                                        <p>70%</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="manutencao_inteligente">
                             <div class="titulo_manutencao">
                                 <h1>Manutenção Inteligente</h1>
                             </div>
-                            <div class="grafico_coluna"></div>
+                            <div class="contanier_circulo">
+                                <div class="circulo_fora_manutencao_inteligente">
+                                    <div class="porcentagem_numero">
+                                        <p>40%</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-
 
                 <div class="sugestoes">
                     <div class="titulo_sugestoes">

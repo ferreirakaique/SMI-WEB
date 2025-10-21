@@ -212,16 +212,29 @@ main {
 }
 
 .porcentagem button {
-    width: 50%;
-    border-radius: 20px;
-    background-color: #007FFF;
-    padding: 10px;
+    background: linear-gradient(90deg, #007bff, #00b4ff);
+    color: white;
     border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .porcentagem button a {
     color: white;
     text-decoration: none;
+}
+
+.porcentagem button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #0056cc, #0099ff);
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
 }
 
 
@@ -319,4 +332,37 @@ main {
     height: 110px;
     background: #1D3A68;
     border-radius: 50%;
+}
+
+@media screen and (max-width:1024px) {
+    main {
+        margin-left: 0%;
+        padding: 20px;
+        z-index: 999;
+    }
+
+    .mini_cards {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .graficos_grandes {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .temperatura {
+        width: 100%;
+    }
+
+    .porcentagem {
+        width: 100%;
+    }
+
+    .ativos{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        gap: 50px;
+    }
 }
