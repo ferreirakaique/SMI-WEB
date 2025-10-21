@@ -1,3 +1,16 @@
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
+/* ===== Fontes e reset ===== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
@@ -19,4 +32,124 @@ main {
     margin-left: 16%;
     padding: 30px;
     z-index: 999;
+}
+.subtitulo {
+    font-size: 16px;
+    color: #ccc;
+    margin-top: 5px;
+}
+/* ===== Container principal ===== */
+.container_perfil {
+    background: rgba(29, 66, 122, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    border: 1px solid #003FA9;
+    color: #fff;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ===== Chat ===== */
+.chat-container {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #003FA9;
+    border-radius: 20px;
+    background-color: rgba(3, 47, 111, 0.85);
+    backdrop-filter: blur(5px);
+    height: 500px;
+    padding: 20px;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(10, 42, 102, 0.85);
+    margin-bottom: 10px;
+    backdrop-filter: blur(3px);
+}
+
+.user-message { color: #7ED321; margin: 5px 0; }
+.bot-message { color: #4A90E2; margin: 5px 0; }
+
+.input-box { display: flex; gap: 10px; }
+.input-box input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #003FA9;
+    background-color: rgba(3, 47, 111, 0.85);
+    color: #fff;
+}
+.input-box button {
+    padding: 12px 20px;
+    border-radius: 40px;
+    border: none;
+    background-color: #005EFF;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.input-box button:hover { background-color: #003da5; transform: translateY(-2px); }
+
+/* ===== Cards ===== */
+.cards-container {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.card {
+    background: rgba(3, 47, 111, 0.85);
+    border: 1px solid #003FA9;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+}
+
+.card strong { color: #4A90E2; }
+.card em { font-style: italic; color: #ccc; }
+
+/* ===== Alert Levels ===== */
+.card.amarelo {
+    border-color: #F5A623; /* laranja/ amarelo */
+    background-color: rgba(245, 166, 35, 0.15); /* fundo leve para destaque */
+}
+.card.vermelho {
+    border-color: #D0021B; 
+    background-color: rgba(240, 0, 28, 0.15); /* fundo leve vermelho */
+}
+
+/* Destacar texto de alerta */
+.card.amarelo em {
+    color: #F5A623;
+    font-weight: 600;
+}
+.card.vermelho em {
+    color: #ffffff;
+    font-weight: 600;
+}
+.card .alert-icon {
+    float: right;
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+/* Cores do ícone */
+.card.amarelo .alert-icon {
+    color: #F5A623;
+}
+.card.vermelho .alert-icon {
+    color: #D0021B;
 }
