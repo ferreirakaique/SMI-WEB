@@ -34,11 +34,36 @@ main {
     z-index: 999;
 }
 
-.dashboard .titulo h1 {
-    font-size: 40px;
-    color: white;
-    margin-bottom: 10px;
+
+.titulo {
+    text-align: left;
+    margin-bottom: 20px;
 }
+
+.titulo .icone {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo i {
+    font-size: 50px;
+    color: #007bff;
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+.titulo h1 {
+    color: white;
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+
+.titulo p {
+    font-size: 16px;
+    color: #B0C4FF;
+}
+
 
 .card_container {
     display: flex;
@@ -359,7 +384,7 @@ main {
         width: 100%;
     }
 
-    .ativos{
+    .ativos {
         display: flex;
         flex-direction: column;
         height: auto;

@@ -32,9 +32,15 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <main>
         <section class="dashboard">
 
+
             <div class="titulo">
-                <h1>Dashboard</h1>
+                <div class="icone">
+                    <i class='bx bx-cog icone'></i>
+                    <h1>Painel de Monitoramento</h1>
+                </div>
+                <p>Acompanhe o desempenho e o status das máquinas de produção em tempo real</p>
             </div>
+
 
             <div class="card_container">
                 <div class="mini_cards">

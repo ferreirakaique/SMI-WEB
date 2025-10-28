@@ -171,7 +171,7 @@ $maquina = $result_maquina->fetch_assoc();
                     </div>
                 </div>
 
-                <div class="producao_atual">
+                <!-- <div class="producao_atual">
                     <div class="producao">
                         <i class="fa-solid fa-building"></i>
                         <h1>Produção atual</h1>
@@ -187,7 +187,7 @@ $maquina = $result_maquina->fetch_assoc();
                             <h1>19.760<span> Leds</span></h1>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
 
