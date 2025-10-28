@@ -312,7 +312,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
             idCanvas: 'umidade_ambiente',
             urlDados: 'dados_maquina.php',
             tipoDado: 'umidade',
-            tipoGrafico: 'pie',
+            tipoGrafico: 'bar',
             usarGradient: true
         });
     </script>
