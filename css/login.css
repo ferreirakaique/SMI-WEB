@@ -28,15 +28,14 @@ body {
   border-radius: 10px;
   padding: 30px;
   width: 400px;
-  height: 490px;
+  height: 500px;
   text-align: center;
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.25);
   color: #e0f7ff;
 }
 
 .login-container img {
-  width: 300px;
-  margin-top: -75px;
+  width: 230px;
   margin-bottom: 20px;
 
 }
