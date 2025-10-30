@@ -38,7 +38,11 @@ main {
     color: #ccc;
     margin-top: 5px;
 }
-/* ===== Container principal ===== */
+.titulo_textos i{
+    font-size: 50px;
+    color: #007bff;
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
 .container_perfil {
     background: rgba(29, 66, 122, 0.95);
     padding: 40px;
@@ -51,7 +55,6 @@ main {
     flex-wrap: wrap;
 }
 
-/* ===== Chat ===== */
 .chat-container {
     flex: 1 1 400px;
     display: flex;
@@ -74,8 +77,8 @@ main {
     backdrop-filter: blur(3px);
 }
 
-.user-message { color: #7ED321; margin: 5px 0; }
-.bot-message { color: #4A90E2; margin: 5px 0; }
+.user-message { color: white; margin: 5px 0 }
+.bot-message { color:  #adadad; margin: 5px 0; }
 
 .input-box { display: flex; gap: 10px; }
 .input-box input {
@@ -98,7 +101,6 @@ main {
 }
 .input-box button:hover { background-color: #003da5; transform: translateY(-2px); }
 
-/* ===== Cards ===== */
 .cards-container {
     flex: 1 1 300px;
     display: flex;
@@ -121,14 +123,13 @@ main {
 .card strong { color: #4A90E2; }
 .card em { font-style: italic; color: #ccc; }
 
-/* ===== Alert Levels ===== */
 .card.amarelo {
-    border-color: #F5A623; /* laranja/ amarelo */
-    background-color: rgba(245, 166, 35, 0.15); /* fundo leve para destaque */
+    border-color: #F5A623;
+    background-color: rgba(245, 166, 35, 0.15); /
 }
 .card.vermelho {
     border-color: #D0021B; 
-    background-color: rgba(240, 0, 28, 0.15); /* fundo leve vermelho */
+    background-color: rgba(240, 0, 28, 0.15); 
 }
 
 /* Destacar texto de alerta */

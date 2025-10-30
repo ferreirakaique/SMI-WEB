@@ -68,7 +68,9 @@ main {
 
 .container_perfil .titulo h1 i {
     margin-right: 15px;
-    color: #4a90e2;
+    font-size: 50px;
+    color: #007bff;
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
 
 .container_perfil .titulo .subtitulo {
@@ -226,7 +228,9 @@ main {
 
 .senha_container .titulo_senha h1 i {
     margin-right: 15px;
-    color: #4a90e2;
+    font-size: 50px;
+    color: #007bff;
+    text-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
 }
 
 .senha_container .titulo_senha .subtitulo {

@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 include('conexao.php');
 
 $input = json_decode(file_get_contents('php://input'), true);
-$userMessage = strtolower($input['message'] ?? '');
+$userMessage = strtolower(trim($input['message'] ?? ''));
 
 // Pega todas as máquinas
 $sqlMaquinas = "SELECT id_listar_maquina, nome_listar_maquina FROM listar_maquinas";
@@ -79,9 +79,104 @@ while($maquina = mysqli_fetch_assoc($resultMaquinas)) {
     }
 }
 
-// ===== CHAT MELHORADO =====
+// ===== SISTEMA DE RESPOSTA DO CHAT =====
 $reply = "";
-if($userMessage){
+
+// ===== Lista de respostas genéricas =====
+$respostasGenericas = [
+    "saudacao" => [
+        "gatilhos" => ["oi", "oii", "oiii", "olá", "olaa", "ola", "eai", "eae", "iae", "fala", "falae", "opa", "salve", "tudo bem", "blz", "beleza"],
+        "respostas" => [
+            "Olá! 👋 Como posso ajudar você hoje?",
+            "Oi! Tudo bem por aí?",
+            "E aí! Pronto para monitorar as máquinas?",
+            "Opa! Tudo certo? Quer saber a temperatura, consumo ou status de alguma máquina?"
+        ]
+    ],
+    "ajuda" => [
+        "gatilhos" => ["ajuda", "como usar", "como funciona", "o que eu posso perguntar", "menu", "duvida", "help"],
+        "respostas" => [
+            "Você pode usar nosso ChatBot para perguntar informações de uso das máquinas da nossa empresa, por exemplo: 'Temperatura da prensa', 'Status da cortadora' ou 'Consumo da máquina 2'."
+        ]
+    ],
+    "agradecimento" => [
+        "gatilhos" => ["obrigado", "valeu", "agradeço", "tmj", "thanks"],
+        "respostas" => [
+            "De nada! 😊",
+            "Tamo junto!",
+            "Sempre à disposição!",
+            "Imagina! Conte comigo."
+        ]
+    ],
+    "despedida" => [
+        "gatilhos" => ["tchau", "até mais", "falou", "flw", "até logo", "até breve"],
+        "respostas" => [
+            "Até logo! 👋",
+            "Tchau! Volte sempre.",
+            "Até mais! Cuidar bem das máquinas é essencial 😉"
+        ]
+    ],
+    
+    "alerta_maquina" => [
+        "gatilhos" => ["alerta", "problema", "crítico", "erro", "aviso", "em risco"],
+        "respostas" => [
+            "Algumas máquinas podem estar com temperaturas elevadas ou consumo excessivo. Gostaria de verificar o status das máquinas agora?",
+            "Estou monitorando todos os parâmetros. Se alguma máquina estiver em alerta, vou te avisar imediatamente.",
+            "Se precisar, posso te informar os detalhes de qualquer alerta nas máquinas."
+        ]
+    ],
+    "status_maquina" => [
+        "gatilhos" => ["status", "estado", "situação", "como está", "tá bem", "tá normal", "tá ok", "funcionando"],
+        "respostas" => [
+            "Qual máquina você gostaria de saber o status? Digite o nome da máquina ou o número.",
+            "Verifiquei todas as máquinas e nenhuma está em estado crítico. Precisa de mais informações?",
+            "Todas as máquinas estão operando dentro dos parâmetros normais."
+        ]
+    ],
+    "informacoes" => [
+        "gatilhos" => ["informações", "dados", "relatório", "detalhes", "resultados", "última leitura"],
+        "respostas" => [
+            "Posso te mostrar as últimas leituras de cada máquina. Qual máquina você gostaria de consultar?",
+            "Você quer ver a leitura de temperatura, consumo ou umidade? Me fale o nome da máquina para eu te mostrar."
+        ]
+    ],
+    "temperatura" => [
+        "gatilhos" => ["temperatura", "quente", "calor", "fria", "frio"],
+        "respostas" => [
+            "Qual máquina você gostaria de saber a temperatura? Eu posso te mostrar a temperatura atual.",
+            "Posso verificar a temperatura de todas as máquinas. Qual delas você quer saber?"
+        ]
+    ],
+    "consumo" => [
+        "gatilhos" => ["consumo", "energia", "gasto", "kwh"],
+        "respostas" => [
+            "Eu posso te informar o consumo de energia das máquinas. Qual delas você quer saber?",
+            "O consumo de energia está variando. Precisa de informações sobre alguma máquina específica?"
+        ]
+    ],
+    "umidade" => [
+        "gatilhos" => ["umidade", "seca", "umido", "humidade", "umidade relativa"],
+        "respostas" => [
+            "Qual máquina você gostaria de saber a umidade? Eu posso te mostrar as últimas medições.",
+            "A umidade nas máquinas está dentro do padrão. Precisa de alguma informação mais detalhada?"
+        ]
+    ]
+];
+
+// ===== VERIFICA SE É MENSAGEM GENÉRICA =====
+$encontrouGenerica = false;
+
+foreach($respostasGenericas as $categoria){
+    foreach($categoria["gatilhos"] as $gatilho){
+        if(strpos($userMessage, $gatilho) !== false){
+            $reply = $categoria["respostas"][array_rand($categoria["respostas"])];
+            $encontrouGenerica = true;
+            break 2; // sai dos dois loops
+        }
+    }
+}
+
+if(!$encontrouGenerica && $userMessage){
     $encontrou = false;
 
     foreach($ultimaLeitura as $nome => $linha){
@@ -98,14 +193,13 @@ if($userMessage){
                 $status = ($linha['temperatura_dados_maquina']>70 || $linha['consumo_dados_maquina']>100 || $linha['umidade_dados_maquina']>85) ? "em alerta" : "normal";
                 $reply .= "Máquina - {$linha['nome_listar_maquina']} está $status. ";
             } else {
-                // Resumo da última leitura se nenhum parâmetro específico for pedido
                 $reply .= "Máquina - {$linha['nome_listar_maquina']} - Últimos valores: Temp: {$linha['temperatura_dados_maquina']}°C, Consumo: {$linha['consumo_dados_maquina']} kWh, Umidade: {$linha['umidade_dados_maquina']}%. ";
             }
         }
     }
 
     if(!$encontrou){
-        $reply = "Pergunta não reconhecida. Use o nome da máquina e parâmetro: temperatura, consumo, umidade ou status.";
+        $reply = "Não entendi 🤔. Tente algo como: 'temperatura da máquina 1', 'status da cortadora' ou 'consumo da prensa'.";
     }
 }
 
