@@ -4,6 +4,7 @@ session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
     header('Location:login.php');
+    exit();
 }
 
 $id_usuario = $_SESSION['id_usuario'];
@@ -13,17 +14,37 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
 
 if (!isset($_GET['id'])) {
     header('location:listar_maquinas.php');
+    exit();
 }
 
 $id_maquina = $_GET['id'];
 
-$stmt_maquina = $conexao->prepare('SELECT * FROM listar_maquinas WHERE id_listar_maquina = ?');
+// 🧱 Busca informações da máquina
+$stmt_maquina = $conexao->prepare('SELECT * FROM maquinas WHERE id_maquina = ?');
 $stmt_maquina->bind_param('i', $id_maquina);
 $stmt_maquina->execute();
 $result_maquina = $stmt_maquina->get_result();
 $maquina = $result_maquina->fetch_assoc();
 
+// ⚙️ Busca dados mais recentes da máquina na tabela de dados
+$stmt_dados = $conexao->prepare('SELECT *
+    FROM dados_iot
+    WHERE fk_id_maquina = ?
+    ORDER BY registro_dado DESC
+    LIMIT 1
+');
+$stmt_dados->bind_param('i', $id_maquina);
+$stmt_dados->execute();
+$result_dados = $stmt_dados->get_result();
+$dados = $result_dados->fetch_assoc();
+
+// Valores padrão caso não tenha dados ainda
+$temperatura = $dados ? $dados['temperatura_maquina'] : 0;
+$consumo = $dados ? $dados['consumo_maquina'] : 0;
+$umidade = $dados ? $dados['umidade_maquina'] : 0;
+$data_registro = $dados ? date('d/m/Y H:i:s', strtotime($dados['registro_dado'])) : "Sem dados";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +56,7 @@ $maquina = $result_maquina->fetch_assoc();
     <link rel="stylesheet" href="../css/relatorio.css">
     <script src="../js/relatorio.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
-    <title>Adicionar Maquinas</title>
+    <title>Relatório Maquinas</title>
 </head>
 
 <body>
@@ -67,39 +88,39 @@ $maquina = $result_maquina->fetch_assoc();
                     </div>
 
                     <div class="cards_identificacao">
-                        <?php $foto_maquina = base64_encode($maquina['imagem_listar_maquina']); ?>
+                        <?php $foto_maquina = base64_encode($maquina['imagem_maquina']); ?>
                         <div class="imagem_maquina">
                             <img src="data:image/jpeg;base64,<?= $foto_maquina ?>" alt="Imagem da máquina">
                         </div>
                         <div class="informacoes_basicas">
                             <div class="info_maquina">
                                 <h1>Nome</h1>
-                                <p><?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?></p>
+                                <p><?php echo htmlspecialchars($maquina['nome_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>Modelo</h1>
-                                <p><?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?></p>
+                                <p><?php echo htmlspecialchars($maquina['modelo_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>ID</h1>
-                                <p><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></p>
+                                <p><?php echo htmlspecialchars($maquina['numero_serial_maquina']) ?></p>
                             </div>
                             <div class="info_maquina">
                                 <h1>Setor</h1>
-                                <p><?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?></p>
+                                <p><?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
                             </div>
                         </div>
                         <div class="informacoes_basicas">
 
                             <div class="info_maquina">
                                 <h1>Operante</h1>
-                                <p><?php echo htmlspecialchars($maquina['operante_listar_maquina']) ?></p>
+                                <p><?php echo htmlspecialchars($maquina['operante_maquina']) ?></p>
                             </div>
 
                             <div class="info_maquina">
                                 <h1>Status Atual</h1>
                                 <?php
-                                $status = strtoupper($maquina['status_listar_maquina']);
+                                $status = strtoupper($maquina['status_maquina']);
 
                                 switch ($status) {
                                     case 'ATIVA':
@@ -143,8 +164,7 @@ $maquina = $result_maquina->fetch_assoc();
                                 <h1>Temperatura</h1>
                             </div>
                             <div class="dado_numero">
-                                <h1>120º<span>Máx</span></h1>
-                                <h1>80º<span>Min</span></h1>
+                                <h1><?= htmlspecialchars($temperatura) ?>º<span> C</span></h1>
                             </div>
                         </div>
 
@@ -154,7 +174,7 @@ $maquina = $result_maquina->fetch_assoc();
                                 <h1>Consumo elétrico</h1>
                             </div>
                             <div class="dado_numero">
-                                <h1>350<span> kwh</span></h1>
+                                <h1><?= htmlspecialchars($consumo) ?><span> kWh</span></h1>
                             </div>
                         </div>
 
@@ -164,12 +184,16 @@ $maquina = $result_maquina->fetch_assoc();
                                 <h1>Umidade</h1>
                             </div>
                             <div class="dado_numero">
-                                <h1>1050<span>%</span></h1>
+                                <h1><?= htmlspecialchars($umidade) ?><span>%</span></h1>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="ultima_atualizacao">
+                        <p><strong>Última atualização:</strong> <?= htmlspecialchars($data_registro) ?></p>
                     </div>
                 </div>
+
 
                 <!-- <div class="producao_atual">
                     <div class="producao">

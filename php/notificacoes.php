@@ -38,7 +38,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
             <i class='bx bx-search'></i>
             <input type="search" placeholder="Pesquisar">
         </div>
-        
+
         <div id="filtros">
             <a href="notificacoes.php"><button class="botao-filtro" id="todas">Todas</button></a>
             <a href="notificacoes_sucesso.php"><button class="botao-filtro" id="sucesso">Sucesso</button></a>

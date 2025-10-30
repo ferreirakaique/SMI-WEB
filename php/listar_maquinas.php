@@ -11,7 +11,7 @@ $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
 $cpf_usuario = $_SESSION['cpf_usuario'];
 
-$stmt_listar_maquinas = $conexao->prepare('SELECT * FROM listar_maquinas');
+$stmt_listar_maquinas = $conexao->prepare('SELECT * FROM maquinas');
 $stmt_listar_maquinas->execute();
 $result_listar_maquinas = $stmt_listar_maquinas->get_result();
 
@@ -52,20 +52,20 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
             <?php if ($result_listar_maquinas->num_rows > 0): ?>
                 <div class="container_maquinas">
                     <?php while ($maquina = $result_listar_maquinas->fetch_assoc()): ?>
-                        <?php $foto_maquina = base64_encode($maquina['imagem_listar_maquina']) ?>
+                        <?php $foto_maquina = base64_encode($maquina['imagem_maquina']) ?>
 
                         <div class="maquina">
-                            <?php if ($maquina['status_listar_maquina'] === 'ATIVA'): ?>
+                            <?php if ($maquina['status_maquina'] === 'ATIVA'): ?>
                                 <div class="estado_maquina">
-                                    <button style="background-color: #009400;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #009400;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
                                 </div>
-                            <?php elseif ($maquina['status_listar_maquina'] === 'INATIVA'): ?>
+                            <?php elseif ($maquina['status_maquina'] === 'INATIVA'): ?>
                                 <div class="estado_maquina">
-                                    <button style="background-color: #bc1223ff;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #bc1223ff;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
                                 </div>
-                            <?php elseif ($maquina['status_listar_maquina'] === 'MANUTENÇÃO'): ?>
+                            <?php elseif ($maquina['status_maquina'] === 'MANUTENÇÃO'): ?>
                                 <div class="estado_maquina">
-                                    <button style="background-color: #c39200ff;"><?php echo htmlspecialchars($maquina['status_listar_maquina']); ?></button>
+                                    <button style="background-color: #c39200ff;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
                                 </div>
                             <?php endif; ?>
                             <div class="imagem_logo">
@@ -74,28 +74,28 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                             <div class="informacoes_maquina">
                                 <div class="info">
                                     <h1>Nome</h1>
-                                    <p><?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?></p>
+                                    <p><?php echo htmlspecialchars($maquina['nome_maquina']) ?></p>
                                 </div>
                                 <div class="info">
                                     <h1>ID</h1>
-                                    <p><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></p>
+                                    <p><?php echo htmlspecialchars($maquina['numero_serial_maquina']) ?></p>
                                 </div>
                             </div>
                             <div class="informacoes_maquina">
                                 <div class="info">
                                     <h1>Modelo</h1>
-                                    <p><?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?></p>
+                                    <p><?php echo htmlspecialchars($maquina['modelo_maquina']) ?></p>
                                 </div>
                                 <div class="info">
                                     <h1>Setor</h1>
-                                    <p><?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?></p>
+                                    <p><?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
                                 </div>
                             </div>
                             <div class="acoes">
-                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']); ?>" class="botao editar">
+                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_maquina']); ?>" class="botao editar">
                                     Editar
                                 </a>
-                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_listar_maquina']); ?>" class="botao relatorio">
+                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_maquina']); ?>" class="botao relatorio">
                                     Relatório
                                 </a>
                             </div>

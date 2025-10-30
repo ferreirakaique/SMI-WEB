@@ -14,12 +14,12 @@ if (!isset($_GET['id'])) {
 
 $id_maquina = intval($_GET['id']);
 
-$stmt_maquina = $conexao->prepare('SELECT * FROM listar_maquinas WHERE id_listar_maquina =?');
+$stmt_maquina = $conexao->prepare('SELECT * FROM maquinas WHERE id_maquina =?');
 $stmt_maquina->bind_param('i', $id_maquina);
 $stmt_maquina->execute();
 $result_listar_maquina = $stmt_maquina->get_result();
 $maquina = $result_listar_maquina->fetch_assoc();
-$foto_maquina = base64_encode($maquina['imagem_listar_maquina']);
+$foto_maquina = base64_encode($maquina['imagem_maquina']);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,16 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_FILES['imagem_maquina']['tmp_name'])) {
         $imagem_binaria = file_get_contents($_FILES['imagem_maquina']['tmp_name']);
 
-        $stmt_update = $conexao->prepare('UPDATE listar_maquinas 
-            SET nome_listar_maquina = ?, 
-            modelo_listar_maquina = ?, 
-            id_interno_listar_maquina = ?, 
-            setor_listar_maquina = ?, 
-            operante_listar_maquina = ?, 
-            status_listar_maquina = ?, 
-            observacao_listar_maquina = ?, 
-            imagem_listar_maquina = ? 
-            WHERE id_listar_maquina = ?
+        $stmt_update = $conexao->prepare('UPDATE maquinas 
+            SET nome_maquina = ?, 
+            modelo_maquina = ?, 
+            id_interno_maquina = ?, 
+            setor_maquina = ?, 
+            operante_maquina = ?, 
+            status_maquina = ?, 
+            observacao_maquina = ?, 
+            imagem_maquina = ? 
+            WHERE id_maquina = ?
         ');
         $stmt_update->bind_param(
             'ssissssbi',
@@ -59,15 +59,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
         $stmt_update->send_long_data(7, $imagem_binaria);
     } else {
-        $stmt_update = $conexao->prepare('UPDATE listar_maquinas 
-            SET nome_listar_maquina = ?, 
-            modelo_listar_maquina = ?, 
-            id_interno_listar_maquina = ?, 
-            setor_listar_maquina = ?, 
-            operante_listar_maquina = ?, 
-            status_listar_maquina = ?, 
-            observacao_listar_maquina = ? 
-            WHERE id_listar_maquina = ?
+        $stmt_update = $conexao->prepare('UPDATE maquinas 
+            SET nome_maquina = ?, 
+            modelo_maquina = ?, 
+            numero_serial_maquina = ?, 
+            setor_maquina = ?, 
+            operante_maquina = ?, 
+            status_maquina = ?, 
+            observacao_maquina = ? 
+            WHERE id_maquina = ?
         ');
         $stmt_update->bind_param(
             'ssissssi',
@@ -115,7 +115,7 @@ $result_usuarios = $stmt_usuarios->get_result();
             <div class="titulo">
                 <div class="icone">
                     <i class='bx bx-edit-alt'></i>
-                    <h1>Editar Máquina — ID: <span><?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?></span></h1>
+                    <h1>Editar Máquina — ID: <span><?php echo htmlspecialchars($maquina['numero_serial_maquina']) ?></span></h1>
                 </div>
                 <p>Atualize informações, gerencie o status e mantenha o controle das máquinas de produção em tempo real.</p>
             </div>
@@ -148,22 +148,22 @@ $result_usuarios = $stmt_usuarios->get_result();
                         <h1>Informações iniciais</h1>
 
                         <div class="inputbox">
-                            <input type="text" name="nome_maquina" value="<?php echo htmlspecialchars($maquina['nome_listar_maquina']) ?>">
+                            <input type="text" name="nome_maquina" value="<?php echo htmlspecialchars($maquina['nome_maquina']) ?>">
                             <span>Nome da maquina</span>
                         </div>
 
                         <div class="inputbox">
-                            <input type="text" name="modelo_maquina" value="<?php echo htmlspecialchars($maquina['modelo_listar_maquina']) ?>" required>
+                            <input type="text" name="modelo_maquina" value="<?php echo htmlspecialchars($maquina['modelo_maquina']) ?>" required>
                             <span>Modelo</span>
                         </div>
 
                         <div class="inputbox">
-                            <input type="number" name="id_interno_maquina" value="<?php echo htmlspecialchars($maquina['id_interno_listar_maquina']) ?>" required>
+                            <input type="number" name="id_interno_maquina" value="<?php echo htmlspecialchars($maquina['numero_serial_maquina']) ?>" required>
                             <span>Número de serie/ID interno</span>
                         </div>
 
                         <div class="inputbox">
-                            <input type="text" name="setor_maquina" value="<?php echo htmlspecialchars($maquina['setor_listar_maquina']) ?>" required>
+                            <input type="text" name="setor_maquina" value="<?php echo htmlspecialchars($maquina['setor_maquina']) ?>" required>
                             <span>Setor</span>
                         </div>
 
@@ -171,7 +171,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                             <select name="operante_maquina" required>
                                 <?php
                                 if ($result_usuarios->num_rows > 0):
-                                    $operante_atual = $maquina['operante_listar_maquina']; // valor que está no banco
+                                    $operante_atual = $maquina['operante_maquina']; // valor que está no banco
                                     while ($usuarios = $result_usuarios->fetch_assoc()):
                                         $nome_usuario = $usuarios['nome_usuario'];
                                         $selected = ($nome_usuario === $operante_atual) ? 'selected' : '';
@@ -187,7 +187,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                         <div class="inputbox">
                             <select id="status_maquina" name="status_maquina" required>
                                 <?php
-                                $status_atual = $maquina['status_listar_maquina'];
+                                $status_atual = $maquina['status_maquina'];
                                 $opcoes = ['ATIVA', 'INATIVA', 'MANUTENÇÃO'];
                                 foreach ($opcoes as $opcao) {
                                     $selected = ($status_atual === $opcao) ? 'selected' : '';
@@ -226,7 +226,7 @@ $result_usuarios = $stmt_usuarios->get_result();
 
 
                         <div class="inputbox">
-                            <input type="text" name="observacao_maquina" value="<?php echo htmlspecialchars($maquina['observacao_listar_maquina']) ?>" required>
+                            <input type="text" name="observacao_maquina" value="<?php echo htmlspecialchars($maquina['observacao_maquina']) ?>" required>
                             <span>Observação</span>
                         </div>
 
@@ -234,7 +234,7 @@ $result_usuarios = $stmt_usuarios->get_result();
 
                     <div class="opcoes">
                         <button type="submit" id="salvar_maquina">Salvar alterações</button>
-                        <button class="excluir_maquina" type="button"><a href="#" data-id="<?php echo htmlspecialchars($maquina['id_listar_maquina']) ?>">Excluir máquina</a></button>
+                        <button class="excluir_maquina" type="button"><a href="#" data-id="<?php echo htmlspecialchars($maquina['id_maquina']) ?>">Excluir máquina</a></button>
                     </div>
                 </form>
             </div>
@@ -294,7 +294,7 @@ $result_usuarios = $stmt_usuarios->get_result();
                             cancelButtonText: 'Cancelar'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = `excluir_maquina.php?id=${id_maquina}`;
+                                window.location.href = `excluir_maquina.php?id=<?php echo htmlspecialchars($id_maquina) ?>`;
                             }
                         });
                     })

@@ -4,9 +4,9 @@ header('Content-Type: application/json');
 
 // Busca os dados junto com o nome da máquina
 $sql = "SELECT *
-    FROM dados_maquinas
-    JOIN listar_maquinas ON fk_id_maquina = id_listar_maquina
-    ORDER BY hora_dados_maquina ASC
+    FROM dados_iot
+    JOIN maquinas ON fk_id_maquina = id_maquina
+    ORDER BY registro_dado ASC
 ";
 
 $result = $conexao->query($sql);
@@ -15,11 +15,11 @@ $result = $conexao->query($sql);
 $dados = [];
 
 while ($row = $result->fetch_assoc()) {
-    $maquina = $row['nome_listar_maquina'];
-    $temp = $row['temperatura_dados_maquina'];
-    $consumo = $row['consumo_dados_maquina'];
-    $umidade = $row['umidade_dados_maquina'];
-    $hora = $row['hora_dados_maquina'];
+    $maquina = $row['nome_maquina'];
+    $temp = $row['temperatura_maquina'];
+    $consumo = $row['consumo_maquina'];
+    $umidade = $row['umidade_maquina'];
+    $hora = $row['registro_dado'];
 
     if (!isset($dados[$maquina])) {
         $dados[$maquina] = [

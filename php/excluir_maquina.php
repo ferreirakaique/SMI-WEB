@@ -10,8 +10,10 @@ if (!isset($_SESSION["id_usuario"])) {
 $id_maquina = $_GET['id'];
 
 if (isset($_GET['id'])) {
-    $stmt = $conexao->prepare('DELETE FROM listar_maquinas WHERE id_listar_maquina = ?');
+    $stmt = $conexao->prepare('DELETE FROM maquinas WHERE id_maquina = ?');
     $stmt->bind_param('i', $id_maquina);
     $stmt->execute();
     header('location:listar_maquinas.php');
+} else {
+    header('location:inicio.php');
 }

@@ -5,9 +5,9 @@ include('conexao.php');
 
 // 1️⃣ Pega todos os IDs únicos de máquinas existentes na tabela dados_maquinas
 $maquinas = [];
-$result = $conexao->query("SELECT id_listar_maquina FROM listar_maquinas");
+$result = $conexao->query("SELECT id_maquina FROM maquinas");
 while ($row = $result->fetch_assoc()) {
-    $maquinas[] = $row['id_listar_maquina'];
+    $maquinas[] = $row['id_maquina'];
 }
 
 // 2️⃣ Atualiza e insere dados para cada máquina
@@ -17,19 +17,19 @@ foreach ($maquinas as $fk_id_maquina) {
     $temperatura = rand(20, 40); // °C
     $consumo = rand(50, 200);    // unidade de consumo
     $umidade = rand(30, 80);     // %
-    $hora = date("H:i:s");
+    $hora = date("Y:H:i:s");
 
     // Atualiza a última linha da máquina
-    $stmtUpdate = $conexao->prepare("UPDATE dados_maquinas 
-            SET temperatura_dados_maquina = ?, 
-                consumo_dados_maquina = ?, 
-                umidade_dados_maquina = ?, 
-                hora_dados_maquina = ?
-            WHERE id_dados_maquina = (
-                SELECT id_dados_maquina 
-                FROM dados_maquinas 
+    $stmtUpdate = $conexao->prepare("UPDATE dados_iot
+            SET temperatura_maquina = ?, 
+                consumo_maquina = ?, 
+                umidade_maquina = ?, 
+                registro_dado = ?
+            WHERE fk_id_maquina = (
+                SELECT id_maquina 
+                FROM maquinas 
                 WHERE fk_id_maquina = ? 
-                ORDER BY id_dados_maquina DESC 
+                ORDER BY id_maquina DESC 
                 LIMIT 1
             )
         ");
@@ -37,7 +37,7 @@ foreach ($maquinas as $fk_id_maquina) {
     $stmtUpdate->execute();
 
     // Insere uma nova linha com os mesmos dados
-    $stmtInsert = $conexao->prepare("INSERT INTO dados_maquinas (fk_id_maquina, temperatura_dados_maquina, consumo_dados_maquina, umidade_dados_maquina, hora_dados_maquina)
+    $stmtInsert = $conexao->prepare("INSERT INTO dados_iot (fk_id_maquina, temperatura_maquina, consumo_maquina, umidade_maquina, registro_dado)
             VALUES (?, ?, ?, ?, ?)
         ");
     $stmtInsert->bind_param("iiiis", $fk_id_maquina, $temperatura, $consumo, $umidade, $hora);

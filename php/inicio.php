@@ -82,10 +82,10 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                         fetch('atualizar_dados.php')
                             .then(response => response.json())
                             .then(data => {
-                                document.getElementById('consumo_medio').textContent = data.consumo_medio
-                                document.getElementById('consumo_semanal').textContent = data.consumo_semanal
-                                document.getElementById('maquinas_ativas_numeros').textContent = data.maquinas_ativas
-                                document.getElementById('usuarios_numeros').textContent = data.usuarios
+                                document.getElementById('consumo_medio').textContent = data.consumoMedio
+                                document.getElementById('consumo_semanal').textContent = data.consumoMedioSemanal
+                                document.getElementById('maquinas_ativas_numeros').textContent = data.maquinasAtivas
+                                document.getElementById('usuarios_numeros').textContent = data.usuariosAtivos
                             })
                             .catch(error => console.log('Erro ao atualizar', error))
                     }

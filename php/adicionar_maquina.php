@@ -1,9 +1,11 @@
 <?php
 include('conexao.php');
 session_start();
+require_once '../phpqrcode/qrlib.php'; // 🧩 importa a lib de QR Code
 
 if (!isset($_SESSION['id_usuario'])) {
     header('Location:login.php');
+    exit;
 }
 
 $id_usuario = $_SESSION['id_usuario'];
@@ -20,16 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $status_maquina = $_POST['status_maquina'];
     $observacao_maquina = $_POST['observacao_maquina'];
 
-    $stmt_adicionar_maquina = $conexao->prepare('INSERT INTO listar_maquinas
-    (nome_listar_maquina,
-    modelo_listar_maquina,
-    id_interno_listar_maquina,
-    setor_listar_maquina,
-    operante_listar_maquina,
-    status_listar_maquina,
-    observacao_listar_maquina,
-    imagem_listar_maquina,
-    fk_id_usuario) VALUES (?,?,?,?,?,?,?,?,?)');
+    $stmt_adicionar_maquina = $conexao->prepare('INSERT INTO maquinas
+        (nome_maquina,
+         modelo_maquina,
+         numero_serial_maquina,
+         setor_maquina,
+         operante_maquina,
+         status_maquina,
+         observacao_maquina,
+         imagem_maquina,
+         criador_maquina)
+         VALUES (?,?,?,?,?,?,?,?,?)
+    ');
+
     $stmt_adicionar_maquina->bind_param(
         'sssssssbi',
         $nome_maquina,
@@ -42,17 +47,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $null,
         $id_usuario
     );
+
     $imagem_maquina = file_get_contents($_FILES['imagem_maquina']['tmp_name']);
     $stmt_adicionar_maquina->send_long_data(7, $imagem_maquina);
     $stmt_adicionar_maquina->execute();
-    $cadastro_maquina = true;
+
+    if ($stmt_adicionar_maquina->affected_rows > 0) {
+        // ✅ pega o ID gerado da máquina
+        $id_gerado = $conexao->insert_id;
+
+        // 📁 pasta onde os QRs serão salvos
+        $pasta_qr = 'qrcodes/';
+        if (!file_exists($pasta_qr)) {
+            mkdir($pasta_qr, 0777, true);
+        }
+
+        // 🔗 conteúdo que vai dentro do QR (pode ser ID, nome, link etc.)
+        $conteudo_qr = $id_gerado;
+
+        // 🖼️ nome do arquivo do QR
+        $arquivo_qr = $pasta_qr . 'maquina_' . $id_gerado . '.png';
+
+        // 🧩 gera o QR Code
+        QRcode::png($conteudo_qr, $arquivo_qr, QR_ECLEVEL_L, 10);
+
+        // 💾 atualiza o banco com o caminho do QR Code
+        $stmt_update_qr = $conexao->prepare('UPDATE maquinas SET qr_code_maquina = ? WHERE id_maquina = ?');
+        $stmt_update_qr->bind_param('si', $arquivo_qr, $id_gerado);
+        $stmt_update_qr->execute();
+
+        $cadastro_maquina = true;
+    }
 }
 
 $stmt_usuarios = $conexao->prepare('SELECT nome_usuario FROM usuarios');
 $stmt_usuarios->execute();
 $result_usuarios = $stmt_usuarios->get_result();
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -187,26 +219,24 @@ $result_usuarios = $stmt_usuarios->get_result();
             document.addEventListener("DOMContentLoaded", () => {
                 Swal.fire({
                     title: "Máquina adicionada!",
-                    text: "A máquina foi cadastrada com sucesso no sistema.",
+                    html: `
+                    <p>A máquina foi cadastrada com sucesso no sistema.</p>
+                    <p><b>QR Code gerado:</b></p>
+                    <img src="qrcodes/maquina_<?php echo $id_gerado; ?>.png" width="200">
+                `,
                     icon: "success",
                     confirmButtonText: "OK",
                     confirmButtonColor: "#3085d6",
                     background: "#fefefe",
                     color: "#333",
-                    timer: 3000,
-                    timerProgressBar: true,
-                    showClass: {
-                        popup: "animate__animated animate__fadeInDown"
-                    },
-                    hideClass: {
-                        popup: "animate__animated animate__fadeOutUp"
-                    }
+                    timerProgressBar: true
                 }).then(() => {
                     window.location.href = "listar_maquinas.php";
                 });
             });
         </script>
     <?php endif; ?>
+
 
 </body>
 
