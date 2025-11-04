@@ -144,7 +144,7 @@ $data_registro = $dados ? date('d/m/Y H:i:s', strtotime($dados['registro_dado'])
 
                             <div class="info_maquina">
                                 <h1>Ultima operação</h1>
-                                <p>20:40</p>
+                                <p><?php echo htmlspecialchars($dados['registro_dado']) ?></p>
                             </div>
                         </div>
                     </div>

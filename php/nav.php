@@ -5,16 +5,51 @@ $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
 $cpf_usuario = $_SESSION['cpf_usuario'];
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/nav.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* 🔔 Badge do contador */
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: bold;
+            display: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +59,15 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 <li><a href="../php/inicio.php"><i class='bx bx-home'></i> Início</a></li>
                 <li><a href="../php/listar_maquinas.php"><i class='bx bx-list-ul'></i>Listar Máquinas</a></li>
                 <li><a href="../php/qr_code.php"><i class='bx bx-qr'></i>QR Code</a></li>
-                <li><a href="../php/notificacoes.php"><i class='bx bx-bell'></i>Notificações</a></li>
+
+                <!-- 🔔 Ícone de notificação com badge -->
+                <li>
+                    <a href="../php/notificacoes.php" id="notifLink">
+                        <i class='bx bx-bell'></i> Notificações
+                        <span id="notifCount" class="notification-badge"></span>
+                    </a>
+                </li>
+
                 <li><a href="../php/chat_bot.php"><i class='bx bx-bot'></i>Chat-Bot</a></li>
                 <li><a href="perfil.php" class="link link-href"><i class='bx bx-user'></i>Olá, <?php echo htmlspecialchars($nome_usuario) ?></a></li>
                 <div class="logo">
@@ -33,6 +76,31 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
             </ul>
         </nav>
     </header>
+
+    <script>
+        // Função que busca o número de notificações
+        async function atualizarNotificacoes() {
+            try {
+                const resposta = await fetch('../php/contar_notificacoes.php');
+                const total = await resposta.text();
+
+                const badge = document.getElementById('notifCount');
+
+                if (parseInt(total) > 0) {
+                    badge.style.display = 'inline';
+                    badge.textContent = total;
+                } else {
+                    badge.style.display = 'none';
+                }
+            } catch (erro) {
+                console.error('Erro ao buscar notificações:', erro);
+            }
+        }
+
+        // Atualiza automaticamente a cada 5 segundos
+        setInterval(atualizarNotificacoes, 100);
+        atualizarNotificacoes();
+    </script>
 </body>
 
 </html>

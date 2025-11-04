@@ -1,3 +1,22 @@
+/* ======================== */
+/* SCROLLBAR PERSONALIZADA */
+/* ======================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #001333;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #003FA9;
+    border-radius: 10px;
+}
+
+/* ======================== */
+/* BASE */
+/* ======================== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
@@ -18,311 +37,319 @@ body {
 main {
     margin-left: 16%;
     padding: 30px;
-    z-index: 999;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-    /* padding-top: 60px;
-    min-height: 100vh; */
 }
 
+/* ======================== */
+/* TÍTULO */
+/* ======================== */
 .titulo {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .titulo .icone {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
-.titulo i {
-    font-size: 50px;
-    color: #005EFF;
-    margin-bottom: 10px;
+.titulo .icone i {
+    font-size: 2.2rem;
+    color: #00a8ff;
 }
 
 .titulo h1 {
-    color: white;
-    font-size: 35px;
-    margin-bottom: 5px;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .titulo p {
-    font-size: 16px;
-    color: #B0C4FF;
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 5px;
 }
 
+/* ======================== */
+/* PESQUISA */
+/* ======================== */
 .pesquisa {
-    position: relative;
-    width: 80%;
-    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 8px 15px;
+    width: 60%;
+    margin-bottom: 25px;
+    transition: 0.3s;
 }
 
 .pesquisa i {
-    position: absolute;
-    left: 15px;
-    top: 60%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #001943;
-    pointer-events: none;
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #00a8ff;
 }
 
 .pesquisa input {
-    width: 100%;
-    border-radius: 30px;
-    border: 1px solid #001943;
-    padding: 5px 0px 5px 45px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: 0.2s ease-in-out;
-    font-size: 16px;
-}
-
-.pesquisa input:focus {
-    outline: none;
-    border-color: #005eff;
-    box-shadow: 0 6px 14px rgba(0, 94, 255, 0.2);
-}
-
-main input {
-    height: 40px;
-    width: 60%;
-    border-radius: 50px;
-    color: black;
-    padding: 20px;
-    margin-top: 10px;
-}
-
-main #filtros {
-    margin-top: 10px;
-    display: flex;
-    gap: 5px;
-}
-
-main #filtros .botao-filtro {
-    padding: 10px;
-    border-radius: 20px;
-    color: white;
+    background: transparent;
     border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.pesquisa:hover {
+    box-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+}
+
+/* ======================== */
+/* BOTÕES DE FILTRO */
+/* ======================== */
+#filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.botao-filtro {
+    background: transparent;
+    border: 2px solid #00a8ff;
+    color: #00a8ff;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-weight: 500;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-main #filtros #todas {
-    background-color: #022253;
+#sucesso:hover {
+    background-color: #22c55e;
+    border: 1px solid #137437;
 }
 
-main #filtros #sucesso {
-    background-color: #008727;
+#alerta:hover {
+    background-color: #ef4444;
+    border: 1px solid #af2e2e;
 }
 
-main #filtros #alerta {
-    background-color: #E63946;
+#aviso:hover {
+    background-color: #facc15;
+    border: 1px solid #ad8e0f;
 }
 
-main #filtros #aviso {
-    background-color: #BFB900;
+#informacao:hover {
+    background-color: #3b82f6;
+    border: 1px solid #2759a9;
 }
 
-main #filtros #informacao {
-    background-color: #005EFF;
+#chatbot:hover {
+    background-color: #8b5cf6;
+    border: 1px solid #583b9c;
 }
 
-main #filtros #chatbot {
-    background-color: #011838;
+.botao-filtro:hover {
+    color: white;
+    transform: scale(1.05);
 }
 
-main #notificacoes {
+/* ======================== */
+/* NOTIFICAÇÕES */
+/* ======================== */
+#notificacoes {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     gap: 20px;
-    width: 70%;
-
-    /* align-items: center; */
+    width: 90%;
+    max-width: 1000px;
 }
 
-main #notificacoes .notificacao {
-    display: flex;
-    flex-direction: row;
+/* CARD */
+.notificacao {
+    background: rgba(255, 255, 255, 0.08);
+    border-left: 5px solid #00a8ff;
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 10px;
-    border: 2px solid #003FA9;
-    width: 100%;
-    justify-content: space-between;
-    color: white;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-main #notificacoes .notificacao .status {
+.notificacao:hover {
+    transform: translateY(-4px);
+}
+
+/* STATUS */
+.status {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    width: 20%;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-main #notificacoes .notificacao .status h2 {
-    margin-left: 20px;
+.status img {
+    width: 40px;
+    height: 40px;
 }
 
-/* main #notificacoes .notificacao .stats {
-    width: 30%;
-} */
-
-main #notificacoes .notificacao .stats h3 {
-    font-size: 20px;
+.status h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
-main #notificacoes .notificacao .stats h4 {
-    font-size: 16px;
-    font-weight: 300;
+/* INFORMAÇÕES GERAIS */
+.stats h3 {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.stats h4 {
+    font-size: 0.95rem;
+    color: #ccc;
 }
 
 .bold {
-    font-weight: 450;
+    color: #00a8ff;
 }
 
-main #notificacoes .notificacao .info {
-    width: 30%;
+/* INFO BOX */
+.info {
+    background: rgba(0, 168, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-top: 10px;
 }
 
-main #notificacoes .notificacao .info h3 {
-    font-size: 20px;
+.info h3 {
+    font-size: 0.9rem;
+    color: #00a8ff;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
 
-main #notificacoes .notificacao .info h4 {
-    font-size: 16px;
-    font-weight: 400;
+.info h4 {
+    font-size: 1rem;
+    color: white;
+    margin-top: 4px;
 }
 
-main #notificacoes .notificacao .data-e-hora {
-    width: 5%;
+/* DATA E HORA */
+.data-e-hora {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-main #notificacoes .notificacao .data-e-hora .data,
-main #notificacoes .notificacao .data-e-hora .hora {
-    display: flex;
-    justify-content: right;
-    font-weight: 400;
+.data,
+.hora {
+    font-size: 0.8rem;
+    color: #bbb;
 }
 
-main #notificacoes .sucesso {
-    background-color: #076454;
+/* BOTÃO DE EXCLUSÃO */
+.acoes {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
-main #notificacoes .alerta {
-    background-color: #422454;
+.btn-excluir {
+    background: #D84040;
+    border: none;
+    color: white;
+    padding: 6px 9px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-main #notificacoes .aviso {
-    background-color: #426454;
+.btn-excluir:hover {
+    background: #A31D1D;
+    transform: scale(1.1);
 }
 
-main #notificacoes .informacao {
-    background-color: #024794;
+/* ======================== */
+/* CORES POR STATUS */
+/* ======================== */
+.notificacao.sucesso {
+    border-left-color: #22c55e;
 }
 
-main #notificacoes .chatbot {
-    background-color: #021838;
+.notificacao.alerta {
+    border-left-color: #ef4444;
 }
-/* 🔹 Responsividade */
-@media (max-width: 1200px) {
+
+.notificacao.aviso {
+    border-left-color: #facc15;
+}
+
+.notificacao.informacao {
+    border-left-color: #3b82f6;
+}
+
+.notificacao.chat-bot {
+    border-left-color: #8b5cf6;
+}
+
+/* ======================== */
+/* HOVER COM COR POR STATUS */
+/* ======================== */
+.notificacao.sucesso:hover {
+    background: rgba(34, 197, 94, 0.15);
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.notificacao.alerta:hover {
+    background: rgba(239, 68, 68, 0.15);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.notificacao.aviso:hover {
+    background: rgba(250, 204, 21, 0.15);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.4);
+}
+
+.notificacao.informacao:hover {
+    background: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.notificacao.chat-bot:hover {
+    background: rgba(139, 92, 246, 0.15);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+/* ======================== */
+/* RESPONSIVIDADE */
+/* ======================== */
+@media (max-width: 768px) {
     main {
         margin-left: 0;
-        padding: 20px;
-    }
-
-    main #notificacoes {
-        width: 85%;
-    }
-}
-
-@media (max-width: 768px) {
-    .titulo h1 {
-        font-size: 28px;
+        padding: 15px;
     }
 
     .pesquisa {
         width: 90%;
     }
 
-    main #filtros {
-        flex-wrap: wrap;
-        justify-content: center;
+    #notificacoes {
+        width: 100%;
     }
 
-    main #notificacoes {
-        width: 90%;
-    }
-
-    main #notificacoes .notificacao {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    main #notificacoes .notificacao .data-e-hora {
-        text-align: left;
-        font-size: 14px;
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .titulo h1 {
-        font-size: 24px;
-    }
-
-    .titulo p {
-        font-size: 14px;
-    }
-
-    .pesquisa input {
-        font-size: 14px;
-        padding: 8px 10px 8px 40px;
-    }
-
-    main #filtros .botao-filtro {
-        font-size: 12px;
-        padding: 8px 15px;
-    }
-
-    main #notificacoes {
-        width: 95%;
-    }
-
-    main #notificacoes .notificacao {
+    .notificacao {
         padding: 15px;
     }
 
-    main #notificacoes .notificacao .status {
-        width: 80%;
-    }
-
-    main #notificacoes .notificacao .info {
-        width: 100%;
-    }
-
-    main #notificacoes .notificacao h3 {
-        font-size: 16px;
-    }
-
-    main #notificacoes .notificacao h4 {
-        font-size: 14px;
-    }
-
-    main #notificacoes .notificacao .data-e-hora {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        font-size: 18px;
+    .btn-excluir {
+        font-size: 1rem;
+        padding: 5px 7px;
     }
 }

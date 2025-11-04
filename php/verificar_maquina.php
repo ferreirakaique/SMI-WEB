@@ -10,7 +10,7 @@ if (!isset($_GET['id'])) {
 
 $id = intval($_GET['id']);
 
-$stmt = $conexao->prepare("SELECT id_listar_maquina FROM listar_maquinas WHERE id_listar_maquina = ?");
+$stmt = $conexao->prepare("SELECT id_maquina FROM maquinas WHERE id_maquina = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();

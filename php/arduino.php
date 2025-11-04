@@ -14,9 +14,9 @@ while ($row = $result->fetch_assoc()) {
 foreach ($maquinas as $fk_id_maquina) {
 
     // Novos dados simulados do "Arduino"
-    $temperatura = rand(20, 40); // °C
-    $consumo = rand(50, 200);    // unidade de consumo
-    $umidade = rand(30, 80);     // %
+    $temperatura = rand(20, 80); // °C
+    $consumo = rand(50, 100);    // unidade de consumo
+    $umidade = rand(30, 70);     // %
     $hora = date("Y-m-d H:i:s"); // ✅ formato correto
 
     // Atualiza a última linha da máquina
