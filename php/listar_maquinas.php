@@ -4,29 +4,24 @@ session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
     header('Location:login.php');
+    exit;
 }
 
 $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
 $cpf_usuario = $_SESSION['cpf_usuario'];
-
-$stmt_listar_maquinas = $conexao->prepare('SELECT * FROM maquinas');
-$stmt_listar_maquinas->execute();
-$result_listar_maquinas = $stmt_listar_maquinas->get_result();
-
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link flex href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/listar_maquinas.css">
-    <script src="../js/listar_maquinas.js" defer></script>
-    <title>Listar Maquinas</title>
+    <title>Listar Máquinas</title>
 </head>
 
 <body>
@@ -44,71 +39,55 @@ $result_listar_maquinas = $stmt_listar_maquinas->get_result();
                 <p>Visualize, monitore e gerencie o status das máquinas de produção</p>
             </div>
 
+            <!-- 🔍 Campo de pesquisa -->
             <div class="pesquisa">
                 <i class='bx bx-search'></i>
-                <input type="search" placeholder="Pesquisar">
+                <input
+                    type="search"
+                    id="pesquisa"
+                    placeholder="Pesquisar por nome, modelo ou setor..."
+                    autocomplete="off">
             </div>
 
-            <?php if ($result_listar_maquinas->num_rows > 0): ?>
-                <div class="container_maquinas">
-                    <?php while ($maquina = $result_listar_maquinas->fetch_assoc()): ?>
-                        <?php $foto_maquina = base64_encode($maquina['imagem_maquina']) ?>
+            <!-- 🔄 Container que será atualizado dinamicamente -->
+            <div id="resultado_maquinas"></div>
 
-                        <div class="maquina">
-                            <?php if ($maquina['status_maquina'] === 'ATIVA'): ?>
-                                <div class="estado_maquina">
-                                    <button style="background-color: #009400;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
-                                </div>
-                            <?php elseif ($maquina['status_maquina'] === 'INATIVA'): ?>
-                                <div class="estado_maquina">
-                                    <button style="background-color: #bc1223ff;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
-                                </div>
-                            <?php elseif ($maquina['status_maquina'] === 'MANUTENÇÃO'): ?>
-                                <div class="estado_maquina">
-                                    <button style="background-color: #c39200ff;"><?php echo htmlspecialchars($maquina['status_maquina']); ?></button>
-                                </div>
-                            <?php endif; ?>
-                            <div class="imagem_logo">
-                                <img src="data:/image;base64,<?php echo htmlspecialchars($foto_maquina) ?>" alt="">
-                            </div>
-                            <div class="informacoes_maquina">
-                                <div class="info">
-                                    <h1>Nome</h1>
-                                    <p><?php echo htmlspecialchars($maquina['nome_maquina']) ?></p>
-                                </div>
-                                <div class="info">
-                                    <h1>ID</h1>
-                                    <p><?php echo htmlspecialchars($maquina['numero_serial_maquina']) ?></p>
-                                </div>
-                            </div>
-                            <div class="informacoes_maquina">
-                                <div class="info">
-                                    <h1>Modelo</h1>
-                                    <p><?php echo htmlspecialchars($maquina['modelo_maquina']) ?></p>
-                                </div>
-                                <div class="info">
-                                    <h1>Setor</h1>
-                                    <p><?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
-                                </div>
-                            </div>
-                            <div class="acoes">
-                                <a href="editar_maquina.php?id=<?php echo htmlspecialchars($maquina['id_maquina']); ?>" class="botao editar">
-                                    Editar
-                                </a>
-                                <a href="relatorio.php?id=<?php echo htmlspecialchars($maquina['id_maquina']); ?>" class="botao relatorio">
-                                    Relatório
-                                </a>
-                            </div>
-
-                        </div>
-                    <?php endwhile; ?>
-                <?php endif; ?>
-                <div class="opcoes">
-                    <a href="adicionar_maquina.php" id="adicionar_maquina"><i class='bx bx-cog bx-plus'></i>Adicionar Máquina</a>
-                </div>
+            <div class="opcoes">
+                <a href="adicionar_maquina.php" id="adicionar_maquina">
+                    <i class='bx bx-cog bx-plus'></i>Adicionar Máquina
+                </a>
+            </div>
         </section>
-
     </main>
+
+    <!-- 🔗 Script para pesquisa em tempo real -->
+    <script>
+        const inputPesquisa = document.getElementById('pesquisa');
+        const container = document.getElementById('resultado_maquinas');
+        let timeout = null;
+
+        // Função para buscar resultados
+        async function buscarMaquinas(query = "") {
+            try {
+                const response = await fetch(`buscar_maquinas.php?pesquisa=${encodeURIComponent(query)}`);
+                const html = await response.text();
+                container.innerHTML = html;
+            } catch (err) {
+                container.innerHTML = "<p style='text-align:center;color:red;'>Erro ao buscar máquinas.</p>";
+            }
+        }
+
+        // Evento de digitação com "debounce"
+        inputPesquisa.addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                buscarMaquinas(inputPesquisa.value.trim());
+            }, 0);
+        });
+
+        // Carrega todas as máquinas ao iniciar
+        buscarMaquinas();
+    </script>
 
 </body>
 

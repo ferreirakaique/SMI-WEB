@@ -17,7 +17,7 @@ foreach ($maquinas as $fk_id_maquina) {
     $temperatura = rand(20, 40); // °C
     $consumo = rand(50, 200);    // unidade de consumo
     $umidade = rand(30, 80);     // %
-    $hora = date("Y:H:i:s");
+    $hora = date("Y-m-d H:i:s"); // ✅ formato correto
 
     // Atualiza a última linha da máquina
     $stmtUpdate = $conexao->prepare("UPDATE dados_iot
