@@ -30,6 +30,10 @@ if (isset($_GET['status']) && !empty($_GET['status'])) {
     $result = $conexao->query($query);
 }
 
+
+$atualizarVisualizadas = "UPDATE notificacoes SET visualizada = 1 WHERE visualizada = 0";
+$conexao->query($atualizarVisualizadas);
+
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +128,9 @@ if (isset($_GET['status']) && !empty($_GET['status'])) {
         campoBusca.addEventListener('input', () => {
             const valor = campoBusca.value.toLowerCase();
             document.querySelectorAll('.notificacao').forEach(div => {
-                div.style.display = div.innerText.toLowerCase().includes(valor) ? 'flex' : 'none';
+                div.style.display = div.innerText.toLowerCase().includes(valor.toLowerCase()) ? 'flex' : 'none';
+                div.style.flexDirection = 'column';
+
             });
         });
 

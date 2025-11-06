@@ -2,8 +2,8 @@
 include('conexao.php');
 session_start();
 
-// Conta quantas notificações de alerta ainda não foram vistas
-$query = "SELECT COUNT(*) AS total FROM notificacoes WHERE status_notificacao = 'Alerta'";
+// Conta apenas notificações que ainda não foram visualizadas
+$query = "SELECT COUNT(*) AS total FROM notificacoes WHERE visualizada = 0";
 $result = $conexao->query($query);
 
 $row = $result->fetch_assoc();

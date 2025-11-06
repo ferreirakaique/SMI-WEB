@@ -294,7 +294,9 @@ $data_registro = $dados ? date('d/m/Y H:i:s', strtotime($dados['registro_dado'])
 
 
                 <div class="opcoes">
-                    <a id="baixar_relatorio">Baixar relatório</a>
+                    <a href="baixar_relatorio_excel.php?id=<?= $id_maquina ?>" class="botao_excel">
+                        Baixar Relatório em Excel
+                    </a>
                 </div>
             </div>
         </section>

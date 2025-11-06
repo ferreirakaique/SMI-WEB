@@ -73,6 +73,28 @@ main {
 }
 
 
+.qrcode_maquina {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.qrcode_maquina h1 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.qrcode_maquina img {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    background: #fff;
+}
+
+
+
 .container_relatorio_maquina {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #003FA9;
@@ -533,6 +555,21 @@ main {
     background: #1D3A68;
     border-radius: 50%;
 }
+
+.botao_excel {
+    background-color: #459EB5;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.botao_excel:hover {
+    background-color: #367f94;
+}
+
 
 
 @media screen and (max-width:1024px) {

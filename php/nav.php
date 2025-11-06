@@ -15,41 +15,6 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/nav.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        /* 🔔 Badge do contador */
-        .notification-badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
-            font-weight: bold;
-            display: none;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-    </style>
 </head>
 
 <body>
