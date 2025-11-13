@@ -195,26 +195,6 @@ $data_registro = $dados ? date('d/m/Y H:i:s', strtotime($dados['registro_dado'])
                 </div>
 
 
-                <!-- <div class="producao_atual">
-                    <div class="producao">
-                        <i class="fa-solid fa-building"></i>
-                        <h1>Produção atual</h1>
-                    </div>
-                    <div class="producao_numeros">
-                        <div class="produtos">
-                            <h1>15.760<span> Capacitores</span></h1>
-                        </div>
-                        <div class="produtos">
-                            <h1>5.760<span> Pilhas</span></h1>
-                        </div>
-                        <div class="produtos">
-                            <h1>19.760<span> Leds</span></h1>
-                        </div>
-                    </div>
-                </div> -->
-
-
-
                 <div class="historico_grafico">
                     <div class="titulo_historico_grafico">
                         <h1>Histórico e Gráficos</h1>
