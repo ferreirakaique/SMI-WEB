@@ -10,7 +10,83 @@ $id_usuario = $_SESSION['id_usuario'];
 $nome_usuario = $_SESSION['nome_usuario'];
 $email_usuario = $_SESSION['email_usuario'];
 $cpf_usuario = $_SESSION['cpf_usuario'];
+
+// -----------------------------------------------------------------------------
+// FUNÇÃO: BUSCAR DADOS DO IOT (MANTIDA)
+// -----------------------------------------------------------------------------
+function buscarDadosIoT($conexao) {
+    $sql = "SELECT fk_id_maquina, temperatura_maquina, consumo_maquina, umidade_maquina, registro_dado 
+            FROM dados_iot 
+            ORDER BY registro_dado DESC 
+            ";
+
+    $resultado = $conexao->query($sql);
+    $dados_formatados = "DADOS_IOT (CSV):\n";
+    $dados_formatados .= "MAQUINA_ID,TEMPERATURA,CONSUMO,UMIDADE,REGISTRO\n";
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($linha = $resultado->fetch_assoc()) {
+            $dados_formatados .= sprintf(
+                "%s,%.2f,%.2f,%.2f,%s\n",
+                $linha['fk_id_maquina'],
+                $linha['temperatura_maquina'],
+                $linha['consumo_maquina'],
+                $linha['umidade_maquina'],
+                $linha['registro_dado']
+            );
+        }
+    } else {
+        $dados_formatados .= "NENHUM_DADO\n";
+    }
+    return $dados_formatados;
+}
+
+// -----------------------------------------------------------------------------
+// NOVA FUNÇÃO: BUSCAR TODAS AS MÁQUINAS DO BANCO
+// -----------------------------------------------------------------------------
+function buscarMaquinas($conexao) {
+    $sql = "SELECT * FROM maquinas";
+    $resultado = $conexao->query($sql);
+
+    // Vamos montar um texto para o bot entender
+    $texto = "LISTA_DE_MAQUINAS:\n";
+    $texto .= "ID,NOME,MODELO,SERIAL,SETOR,OPERANTE,STATUS,OBS\n";
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($m = $resultado->fetch_assoc()) {
+            // Cada máquina vira uma linha
+            $texto .= sprintf(
+                "%s,%s,%s,%s,%s,%s,%s,%s\n",
+                $m['id_maquina'],
+                $m['nome_maquina'],
+                $m['modelo_maquina'],
+                $m['numero_serial_maquina'],
+                $m['setor_maquina'],
+                $m['operante_maquina'],
+                $m['status_maquina'],
+                $m['observacao_maquina']
+            );
+        }
+    } else {
+        $texto .= "NENHUMA_MAQUINA_ENCONTRADA\n";
+    }
+
+    return $texto;
+}
+
+// -----------------------------------------------------------------------------
+// EXECUTANDO AS BUSCAS
+// -----------------------------------------------------------------------------
+$dadosIoT = buscarDadosIoT($conexao);
+$dadosMaquinas = buscarMaquinas($conexao);
+
+// AGORA ISSO AQUI SERÁ ENVIADO PARA O CHAT (VIA JS -> chat.php depois)
+// Mas neste arquivo, só armazenamos:
+$_SESSION['contexto_maquinas'] = $dadosMaquinas;
+$_SESSION['contexto_iot'] = $dadosIoT;
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +106,6 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
     <main>
         <div class="container_perfil">
 
-            <!-- Título geral -->
             <div class="titulo" style="width:100%; margin-bottom:30px; flex-wrap: wrap;">
                 <div class="titulo_textos">
                     <h1><i class='bx bx-bot'></i> Chat Bot</h1>
@@ -38,7 +113,7 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 </div>
             </div>
 
-            <!-- Chat -->
+            <!-- CHAT PRINCIPAL -->
             <div class="chat-container">
                 <div class="chat-title" style="margin-bottom:10px; font-weight:500; color:#ccc;">
                     Digite sua pergunta abaixo para receber informações das máquinas:
@@ -50,85 +125,96 @@ $cpf_usuario = $_SESSION['cpf_usuario'];
                 </div>
             </div>
 
-            <!-- Cards de alertas -->
+            <!-- AREA DOS CARDS DE ALERTAS -->
             <div class="cards-container" id="cardsContainer"></div>
 
         </div>
     </main>
 
-    <script>
-        // Função para carregar cards de alertas
-        async function carregarCards() {
-            const resposta = await fetch('chat.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({})
-            });
-            const data = await resposta.json();
-            const container = document.getElementById('cardsContainer');
-            container.innerHTML = "";
+<script>
+// ------------------------------------------------------------------
+// FUNÇÕES DO CHAT COM GEMINI
+// ------------------------------------------------------------------
 
-            if (data.cards.length === 0) return; // Nenhum alerta por padrão
+function adicionarMensagem(autor, texto) {
+    const chatBox = document.getElementById('chatBox');
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('mensagem', autor === 'user' ? 'user-msg' : 'bot-msg');
 
-            data.cards.forEach(card => {
-                // Escolher ícone e classe conforme o nível
-                let icone = card.nivel === 'vermelho' ? 'bx-x-circle' : 'bx-error';
-                container.innerHTML += `
-        <div class="card ${card.nivel}">
-            <strong>Máquina - ${card.maquina}</strong>
-            <i class='bx ${icone} alert-icon'></i><br>
-            <em>${card.alerta} – ${card.sugestao}</em><br>
-            <small>${card.hora}</small>
-        </div>
+    // Nome do autor
+    const nomeAutor = autor === 'user' ? '<?php echo $nome_usuario; ?>' : 'Bot';
+
+    // ----------------------------------------------------
+    // ⚠️ NOVO CÓDIGO AQUI: CONVERTE MARKDOWN EM HTML
+    // A conversão só é aplicada se for a mensagem do bot (autor !== 'user')
+    // ----------------------------------------------------
+    let htmlTexto = texto;
+    
+    if (autor !== 'user') {
+        // 1. Converte Negrito e Itálico (***texto***)
+        htmlTexto = htmlTexto.replace(/\*\*\*([^\*]+)\*\*\*/g, '<strong><em>$1</em></strong>'); 
+        // 2. Converte apenas Negrito (**texto**)
+        htmlTexto = htmlTexto.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+        // 3. Converte apenas Itálico (*texto*)
+        htmlTexto = htmlTexto.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+    }
+    
+    // Converte quebras de linha para <br> (mantendo sua lógica original)
+    htmlTexto = htmlTexto.replace(/\n/g, '<br>');
+    
+    // ----------------------------------------------------
+
+    msgDiv.innerHTML = `
+        <span class="autor">${nomeAutor}</span>
+        <p>${htmlTexto}</p>
     `;
-            });
 
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 
-        }
-        carregarCards();
-        setInterval(carregarCards, 20000); // Atualiza a cada 20s
+async function enviarMensagem() {
+    const inputField = document.getElementById('userInput');
+    const mensagem = inputField.value.trim();
 
-        // Enviar mensagem do usuário
-        async function enviarMensagem() {
-            const input = document.getElementById('userInput');
-            const msg = input.value.trim();
-            if (!msg) return;
+    if (mensagem === "") return;
 
-            const chatBox = document.getElementById('chatBox');
-            chatBox.innerHTML += `<div class="user-message">Você: ${msg}</div>`;
-            input.value = "";
+    adicionarMensagem('user', mensagem);
+    inputField.value = '';
 
-            const resposta = await fetch('chat.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: msg
-                })
-            });
-            const data = await resposta.json();
-            chatBox.innerHTML += `<div class="bot-message">Bot: ${data.reply}</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
+    adicionarMensagem('bot', 'Pensando...');
 
-        // Enter envia a mensagem (com suporte a IME)
-        const inputEl = document.getElementById('userInput');
-        let composing = false;
-
-        inputEl.addEventListener('compositionstart', () => composing = true);
-        inputEl.addEventListener('compositionend', () => composing = false);
-
-        inputEl.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !composing) {
-                e.preventDefault();
-                enviarMensagem();
-            }
+    try {
+        const response = await fetch('chat.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mensagem: mensagem })
         });
-    </script>
+
+        const data = await response.json();
+        const chatBox = document.getElementById('chatBox');
+        chatBox.lastElementChild.remove();
+
+        if (data.resposta) {
+            adicionarMensagem('bot', data.resposta);
+        } else {
+            adicionarMensagem('bot', 'Desculpe, houve um erro na comunicação com a IA.');
+        }
+
+    } catch (error) {
+        const chatBox = document.getElementById('chatBox');
+        chatBox.lastElementChild.remove();
+        adicionarMensagem('bot', 'Erro de rede: Não foi possível conectar ao servidor.');
+        console.error('Erro no Fetch:', error);
+    }
+}
+
+document.getElementById('userInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') enviarMensagem();
+});
+</script>
 
 </body>
-
 </html>

@@ -1,208 +1,241 @@
 <?php
-header('Content-Type: application/json');
+// chat.php
+
+// ------------------------------------------------
+// 0. CONEXÃO COM O BANCO DE DADOS
+// ------------------------------------------------
 include('conexao.php');
 
-$input = json_decode(file_get_contents('php://input'), true);
-$userMessage = strtolower(trim($input['message'] ?? ''));
 
-// ====== PEGA TODAS AS MÁQUINAS ======
-$sqlMaquinas = "SELECT id_maquina, nome_maquina FROM maquinas";
-$resultMaquinas = mysqli_query($conexao, $sqlMaquinas);
+// ------------------------------------------------
+// 1. CONFIGURAÇÃO DA API
+// ------------------------------------------------
+$apiKey = "AIzaSyDU0n2jxqryQRnla_lwW_igI8f6nR_3MJY";
+$endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
 
-$cards = [];
-$dados = [];
-$ultimaLeitura = []; // Última leitura de cada máquina
 
-while ($maquina = mysqli_fetch_assoc($resultMaquinas)) {
-    $idMaquina = $maquina['id_maquina'];
-    $nomeMaquina = $maquina['nome_maquina'];
+// ------------------------------------------------
+// 2. BUSCAR DADOS IoT (RECENTES)
+// ------------------------------------------------
+function buscarDadosIoT($conexao) {
 
-    // Busca últimas leituras da tabela correta
-    $sql = "SELECT * FROM dados_iot
-            WHERE fk_id_maquina = $idMaquina
-            ORDER BY registro_dado DESC
-            LIMIT 2";
-    $res = mysqli_query($conexao, $sql);
-
-    while ($linha = mysqli_fetch_assoc($res)) {
-        $linha['nome_maquina'] = $nomeMaquina;
-        $dados[] = $linha;
-
-        // Guarda a última leitura para o chat
-        if (!isset($ultimaLeitura[strtolower($nomeMaquina)])) {
-            $ultimaLeitura[strtolower($nomeMaquina)] = $linha;
-        }
-
-        // ===== LÓGICA DE ALERTAS (NÃO ALTERAR) =====
-        $alerta = "";
-        $sugestao = "";
-        $nivel = ""; // vermelho ou amarelo
-
-        if ($linha['temperatura_maquina'] > 70) {
-            $alerta = "Temperatura crítica ({$linha['temperatura_maquina']}°C)";
-            $sugestao = "Reduzir carga imediatamente ou ligar resfriamento";
-            $nivel = "vermelho";
-        } elseif ($linha['temperatura_maquina'] >= 50) {
-            $alerta = "Temperatura alta ({$linha['temperatura_maquina']}°C)";
-            $sugestao = "Fique atento e monitore a máquina";
-            $nivel = "amarelo";
-        }
-
-        if ($linha['consumo_maquina'] > 100) {
-            $alerta = "Consumo crítico ({$linha['consumo_maquina']} kWh)";
-            $sugestao = "Reduzir operação imediatamente";
-            $nivel = "vermelho";
-        } elseif ($linha['consumo_maquina'] >= 80) {
-            $alerta = "Consumo alto ({$linha['consumo_maquina']} kWh)";
-            $sugestao = "Avaliar operação";
-            $nivel = "amarelo";
-        }
-
-        if ($linha['umidade_maquina'] > 85) {
-            $alerta = "Umidade crítica ({$linha['umidade_maquina']}%)";
-            $sugestao = "Verificar ventilação imediatamente";
-            $nivel = "vermelho";
-        } elseif ($linha['umidade_maquina'] >= 70) {
-            $alerta = "Umidade alta ({$linha['umidade_maquina']}%)";
-            $sugestao = "Atenção à ventilação";
-            $nivel = "amarelo";
-        }
-
-        if ($alerta != "") {
-            $cards[] = [
-                'maquina' => $nomeMaquina,
-                'alerta' => $alerta,
-                'sugestao' => $sugestao,
-                'nivel' => $nivel,
-                'hora' => $linha['registro_dado']
-            ];
-        }
+    if (!isset($conexao) || $conexao->connect_error) {
+        return "ERRO: Conexão inválida ao buscar dados IoT.";
     }
+
+    $sql = "SELECT fk_id_maquina, temperatura_maquina, consumo_maquina, umidade_maquina, registro_dado 
+            FROM dados_iot 
+            ORDER BY registro_dado DESC";
+
+    $resultado = $conexao->query($sql);
+
+    $texto = "DADOS IoT COMPLETOS (CSV):\n";
+    $texto .= "MAQUINA_ID,TEMPERATURA(C),CONSUMO(kW),UMIDADE(%),REGISTRO_HORA\n";
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($linha = $resultado->fetch_assoc()) {
+            $texto .= sprintf(
+                "%s,%.2f,%.2f,%.2f,%s\n",
+                $linha['fk_id_maquina'],
+                $linha['temperatura_maquina'],
+                $linha['consumo_maquina'],
+                $linha['umidade_maquina'],
+                $linha['registro_dado']
+            );
+        }
+    } else {
+        $texto .= "NENHUM_DADO_ENCONTRADO\n";
+    }
+
+    return $texto;
 }
 
-// ====== SISTEMA DE RESPOSTA DO CHAT ======
-$reply = "";
 
-// ====== LISTA DE RESPOSTAS GENÉRICAS ======
-$respostasGenericas = [
-    "saudacao" => [
-        "gatilhos" => ["oi", "oii", "oiii", "olá", "olaa", "ola", "eai", "eae", "iae", "fala", "falae", "opa", "salve", "tudo bem", "blz", "beleza"],
-        "respostas" => [
-            "Olá! 👋 Como posso ajudar você hoje?",
-            "Oi! Tudo bem por aí?",
-            "E aí! Pronto para monitorar as máquinas?",
-            "Opa! Tudo certo? Quer saber a temperatura, consumo ou status de alguma máquina?"
-        ]
-    ],
-    "ajuda" => [
-        "gatilhos" => ["ajuda", "como usar", "como funciona", "o que eu posso perguntar", "menu", "duvida", "help"],
-        "respostas" => [
-            "Você pode usar nosso ChatBot para perguntar informações das máquinas, por exemplo: 'Temperatura da prensa', 'Status da cortadora' ou 'Consumo da máquina 2'."
-        ]
-    ],
-    "agradecimento" => [
-        "gatilhos" => ["obrigado", "valeu", "agradeço", "tmj", "thanks"],
-        "respostas" => [
-            "De nada! 😊",
-            "Tamo junto!",
-            "Sempre à disposição!",
-            "Imagina! Conte comigo."
-        ]
-    ],
-    "despedida" => [
-        "gatilhos" => ["tchau", "até mais", "falou", "flw", "até logo", "até breve"],
-        "respostas" => [
-            "Até logo! 👋",
-            "Tchau! Volte sempre.",
-            "Até mais! Cuidar bem das máquinas é essencial 😉"
-        ]
-    ],
-    "alerta_maquina" => [
-        "gatilhos" => ["alerta", "problema", "crítico", "erro", "aviso", "em risco"],
-        "respostas" => [
-            "Algumas máquinas podem estar com temperaturas elevadas ou consumo excessivo. Quer ver o status delas agora?",
-            "Estou monitorando todos os parâmetros. Se alguma máquina estiver em alerta, te aviso imediatamente.",
-            "Se quiser, posso te informar os detalhes de qualquer alerta nas máquinas."
-        ]
-    ],
-    "status_maquina" => [
-        "gatilhos" => ["status", "estado", "situação", "como está", "tá bem", "tá normal", "tá ok", "funcionando"],
-        "respostas" => [
-            "Qual máquina você gostaria de saber o status?",
-            "Verifiquei todas as máquinas e nenhuma está em estado crítico. Quer detalhes?",
-            "Todas as máquinas estão operando dentro dos parâmetros normais."
-        ]
-    ],
-    "informacoes" => [
-        "gatilhos" => ["informações", "dados", "relatório", "detalhes", "resultados", "última leitura"],
-        "respostas" => [
-            "Posso te mostrar as últimas leituras. Qual máquina você quer consultar?",
-            "Você quer ver temperatura, consumo ou umidade? Me diga o nome da máquina."
-        ]
-    ],
-    "temperatura" => [
-        "gatilhos" => ["temperatura", "quente", "calor", "fria", "frio"],
-        "respostas" => [
-            "Qual máquina você gostaria de saber a temperatura?",
-            "Posso verificar a temperatura de todas as máquinas. Qual delas você quer?"
-        ]
-    ],
-    "consumo" => [
-        "gatilhos" => ["consumo", "energia", "gasto", "kwh"],
-        "respostas" => [
-            "Posso te informar o consumo de energia das máquinas. Qual delas você quer saber?",
-            "O consumo de energia está variando. Deseja saber sobre alguma específica?"
-        ]
-    ],
-    "umidade" => [
-        "gatilhos" => ["umidade", "seca", "umido", "humidade", "umidade relativa"],
-        "respostas" => [
-            "Qual máquina você gostaria de saber a umidade?",
-            "A umidade está dentro do padrão. Quer detalhes de alguma máquina?"
+// ------------------------------------------------
+// 3. BUSCAR TODAS AS MÁQUINAS DO BANCO
+// ------------------------------------------------
+function buscarMaquinas($conexao) {
+
+    if (!isset($conexao) || $conexao->connect_error) {
+        return "ERRO: Conexão inválida ao buscar máquinas.";
+    }
+
+    $sql = "SELECT 
+                id_maquina, 
+                nome_maquina, 
+                modelo_maquina, 
+                numero_serial_maquina, 
+                setor_maquina, 
+                operante_maquina, 
+                status_maquina, 
+                observacao_maquina
+            FROM maquinas";
+
+    $resultado = $conexao->query($sql);
+
+    $texto = "LISTA DE MÁQUINAS (CSV):\n";
+    $texto .= "ID,NOME,MODELO,SERIAL,SETOR,OPERANTE,STATUS,OBS\n";
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($m = $resultado->fetch_assoc()) {
+            $texto .= sprintf(
+                "%s,%s,%s,%s,%s,%s,%s,%s\n",
+                $m['id_maquina'],
+                $m['nome_maquina'],
+                $m['modelo_maquina'],
+                $m['numero_serial_maquina'],
+                $m['setor_maquina'],
+                $m['operante_maquina'],
+                $m['status_maquina'],
+                $m['observacao_maquina']
+            );
+        }
+    } else {
+        $texto .= "NENHUMA_MAQUINA_ENCONTRADA\n";
+    }
+
+    return $texto;
+}
+
+
+// ------------------------------------------------
+// 4. COLETAR DADOS DA FÁBRICA
+// ------------------------------------------------
+$dadosIoT = buscarDadosIoT($conexao);
+$dadosMaquinas = buscarMaquinas($conexao);
+
+
+// ------------------------------------------------
+// 5. INSTRUÇÃO DO SISTEMA (PROMPT)
+// ------------------------------------------------
+$systemInstruction = "
+Você é o **Assistente de Operações Inteligente (AOI)**.
+
+Você possui duas bases de conhecimento IMPORTANTES:
+
+1️⃣ **LISTA COMPLETA DE MÁQUINAS**  
+(usar para identificar máquinas pelo nome ou pelo ID)
+
+2️⃣ **TODOS OS DADOS IoT**  
+(usar para responder sobre consumo, temperatura, umidade e horário)
+
+REGRAS IMPORTANTES:
+- Se o usuário disser um **nome**, encontre o **ID correspondente** na lista.
+- Se disser o **ID**, use diretamente.
+- Se o usuário pedir algo fora do contexto industrial e de questões pertinentes a empresa, responda:
+  'Minha função é limitada ao suporte operacional da fábrica. Como posso ajudá-lo com as informações das máquinas ou sustentabilidade?'
+
+- Seja técnico, direto e objetivo.
+
+Seu foco é exclusivamente:
+
+- Operações industriais
+- Dados de sensores e máquinas
+- Sustentabilidade
+- Procedimentos de segurança
+- Alertas técnicos
+
+Você deve responder normalmente:
+- Saudações
+- Perguntas sobre a empresa
+- Dúvidas sobre o uso do chatbot
+- Agradecimentos ou pedidos educados
+- Duvidas sobre questoes de empresa e sustentabilidade
+
+Seu tom é profissional, direto, claro.
+Evite textos longos.
+Responda apenas o necessário.
+
+================ LISTA DE MÁQUINAS ================
+$dadosMaquinas
+===================================================
+
+================ DADOS IoT COMPLETOS ==============
+$dadosIoT
+===================================================
+
+Agora responda a mensagem do usuário:
+";
+
+
+// ------------------------------------------------
+// 6. RECEBER A MENSAGEM DO FRONT
+// ------------------------------------------------
+header('Content-Type: application/json');
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (!isset($data['mensagem'])) {
+    echo json_encode(['resposta' => 'Erro: nenhuma mensagem recebida.']);
+    exit;
+}
+
+$userMessage = $data['mensagem'];
+
+
+// ------------------------------------------------
+// 7. MONTAR O PROMPT FINAL
+// ------------------------------------------------
+$finalPrompt = $systemInstruction . $userMessage;
+
+$payloadArray = [
+    "contents" => [
+        [
+            "role" => "user",
+            "parts" => [
+                ["text" => $finalPrompt]
+            ]
         ]
     ]
 ];
 
-// ===== VERIFICA SE É MENSAGEM GENÉRICA =====
-$encontrouGenerica = false;
+$payload = json_encode($payloadArray);
 
-foreach ($respostasGenericas as $categoria) {
-    foreach ($categoria["gatilhos"] as $gatilho) {
-        if (strpos($userMessage, $gatilho) !== false) {
-            $reply = $categoria["respostas"][array_rand($categoria["respostas"])];
-            $encontrouGenerica = true;
-            break 2;
-        }
-    }
+
+// ------------------------------------------------
+// 8. ENVIAR PARA O GEMINI
+// ------------------------------------------------
+$ch = curl_init($endpoint);
+
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Content-Length: " . strlen($payload)
+]);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo json_encode(['resposta' => 'Erro de cURL: ' . curl_error($ch)]);
+    curl_close($ch);
+    exit;
 }
 
-if (!$encontrouGenerica && $userMessage) {
-    $encontrou = false;
+curl_close($ch);
 
-    foreach ($ultimaLeitura as $nome => $linha) {
-        if (strpos($userMessage, $nome) !== false) {
-            $encontrou = true;
 
-            if (strpos($userMessage, "temperatura") !== false) {
-                $reply .= "Máquina {$linha['nome_maquina']}: temperatura atual é {$linha['temperatura_maquina']}°C. ";
-            } elseif (strpos($userMessage, "consumo") !== false) {
-                $reply .= "Máquina {$linha['nome_maquina']}: consumo atual é {$linha['consumo_maquina']} kWh. ";
-            } elseif (strpos($userMessage, "umidade") !== false) {
-                $reply .= "Máquina {$linha['nome_maquina']}: umidade atual é {$linha['umidade_maquina']}%. ";
-            } elseif (strpos($userMessage, "status") !== false) {
-                $status = ($linha['temperatura_maquina'] > 70 || $linha['consumo_maquina'] > 100 || $linha['umidade_maquina'] > 85)
-                    ? "em alerta" : "normal";
-                $reply .= "Máquina {$linha['nome_maquina']} está $status. ";
-            } else {
-                $reply .= "Máquina {$linha['nome_maquina']} - Últimos valores: Temp: {$linha['temperatura_maquina']}°C, Consumo: {$linha['consumo_maquina']} kWh, Umidade: {$linha['umidade_maquina']}%. ";
-            }
-        }
+// ------------------------------------------------
+// 9. PROCESSAR RESPOSTA DO GEMINI
+// ------------------------------------------------
+$result = json_decode($response, true);
+
+if ($httpCode !== 200 || 
+    !isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+
+    $errorMessage = "Erro ao processar a resposta. Código HTTP: {$httpCode}.";
+
+    if (isset($result['error']['message'])) {
+        $errorMessage .= " Detalhes: " . $result['error']['message'];
     }
 
-    if (!$encontrou) {
-        $reply = "Não entendi 🤔. Tente algo como: 'temperatura da máquina 1', 'status da cortadora' ou 'consumo da prensa'.";
-    }
+    echo json_encode(['resposta' => $errorMessage]);
+    exit;
 }
 
-echo json_encode(['reply' => $reply, 'cards' => $cards]);
-exit;
+$geminiResponse = $result['candidates'][0]['content']['parts'][0]['text'];
+
+echo json_encode(['resposta' => $geminiResponse]);
+?>
