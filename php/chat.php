@@ -1,5 +1,6 @@
 <?php
 // chat.php
+include('load_env.php'); // agora a chave vem daqui
 
 // ------------------------------------------------
 // 0. CONEXÃO COM O BANCO DE DADOS
@@ -10,7 +11,7 @@ include('conexao.php');
 // ------------------------------------------------
 // 1. CONFIGURAÇÃO DA API
 // ------------------------------------------------
-$apiKey = "AIzaSyDU0n2jxqryQRnla_lwW_igI8f6nR_3MJY";
+$apiKey = $API_KEY_GEMINI;
 $endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $apiKey;
 
 

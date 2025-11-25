@@ -250,7 +250,8 @@ main {
     display: flex;
     justify-content: space-evenly;
     align-items: stretch;
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     width: 100%;
     gap: 20px;
 }
@@ -412,61 +413,81 @@ main {
 
 
 
-.container_relatorio_maquina .sugestoes .titulo_sugestoes {
-    margin-top: 40px;
+/* ===== SUGESTÕES IA ===== */
+.container_relatorio_maquina .sugestoes {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px; /* maior espaçamento entre os cards */
 }
-
 
 .container_relatorio_maquina .sugestoes .titulo_sugestoes h1 {
-    font-size: 30px;
-    text-align: left;
+    font-size: 32px;
     font-weight: bold;
+    color: #ffffff;
 }
 
-.container_relatorio_maquina .cards {
-    margin-top: 30px;
+/* Cards de sugestões IA */
+.container_relatorio_maquina .sugestoes .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
 }
 
-
-
+/* Cada card individual (Eficiência ou Manutenção) */
 .container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva,
 .container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     width: 100%;
-    padding: 20px;
-    background: linear-gradient(180deg, #02224e, #000f28);
-    box-shadow: 0 0 3px black;
-    border: 1px solid #005eff;
-    border-radius: 10px;
-    margin-top: 10px;
+    padding: 30px;
+    background: #01204a; /* azul escuro */
+    box-shadow: 0 0 10px rgba(0, 95, 255, 0.4);
+    border: 1px solid #005EFF;
+    border-radius: 12px;
+    min-height: 200px;
+    gap: 20px;
 }
 
+/* Título do card */
 .container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia,
 .container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
 }
-
 
 .container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia i,
 .container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao i {
     font-size: 40px;
+    flex-shrink: 0;
+    color: #00A1FF;
 }
-
 
 .container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .titulo_ia_eficiencia h1,
 .container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .titulo_ia_manutencao h1 {
     font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.3;
 }
 
-.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .info_maquina_eficiencia h1,
-.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .sugestao_ia_eficiencia h1,
-.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .info_maquina_manutencao h1,
-.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .sugestao_ia_manutencao h1 {
-    font-size: 25px;
+/* Texto das sugestões */
+.container_relatorio_maquina .sugestoes .cards .ia_eficiencia_produtiva .sugestao_ia_eficiencia,
+.container_relatorio_maquina .sugestoes .cards .ia_manutencao_inteligente .sugestao_ia_manutencao {
+    background: rgba(0, 95, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px; /* menor texto */
+    line-height: 1.5;
+    color: #DCE6FF;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
+
+
 
 
 .container_relatorio_maquina .opcoes {

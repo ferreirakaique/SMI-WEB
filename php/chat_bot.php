@@ -125,9 +125,7 @@ $_SESSION['contexto_iot'] = $dadosIoT;
                 </div>
             </div>
 
-            <!-- AREA DOS CARDS DE ALERTAS -->
-            <div class="cards-container" id="cardsContainer"></div>
-
+        <div class="cards-container" id="cardsContainer"></div>
         </div>
     </main>
 
@@ -162,8 +160,6 @@ function adicionarMensagem(autor, texto) {
     // Converte quebras de linha para <br> (mantendo sua lógica original)
     htmlTexto = htmlTexto.replace(/\n/g, '<br>');
     
-    // ----------------------------------------------------
-
     msgDiv.innerHTML = `
         <span class="autor">${nomeAutor}</span>
         <p>${htmlTexto}</p>
@@ -214,6 +210,61 @@ async function enviarMensagem() {
 document.getElementById('userInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') enviarMensagem();
 });
+
+// --------------------------------------------------
+// ALERTAS SELETIVOS COM RIGOR E DATA
+// --------------------------------------------------
+function atualizarAlertasRigorosos() {
+    const container = document.getElementById('cardsContainer');
+    container.innerHTML = ''; // limpa os cards
+
+    const dadosIoT = `<?php echo addslashes($dadosIoT); ?>`;
+    const linhas = dadosIoT.split('\n').slice(2); // ignora cabeçalho
+
+    linhas.forEach(linha => {
+        if (!linha.trim() || linha.includes('NENHUM_DADO')) return;
+
+        const [id, temp, consumo, umidade, registro] = linha.split(',');
+
+        let mensagens = [];
+        let classe = '';
+
+        // Thresholds mais rigorosos para atenção (amarelo)
+        if (parseFloat(temp) >= 70 && parseFloat(temp) < 75) mensagens.push("Variação significativa na temperatura");
+        if (parseFloat(consumo) >= 70 && parseFloat(consumo) < 75) mensagens.push("Consumo acima do normal");
+        if (parseFloat(umidade) >= 75 && parseFloat(umidade) < 80) mensagens.push("Umidade acima do normal");
+
+        // Thresholds para crítico (vermelho)
+        if (parseFloat(temp) >= 80) mensagens.push("Alteração crítica na temperatura");
+        if (parseFloat(consumo) >= 80) mensagens.push("Consumo crítico detectado");
+        if (parseFloat(umidade) >= 85) mensagens.push("Umidade crítica detectada");
+
+        // Determina cor do card
+        if (mensagens.length > 0) {
+            classe = mensagens.some(m => m.includes("crítico")) ? 'vermelho' : 'amarelo';
+
+            const card = document.createElement('div');
+            card.classList.add('card', classe);
+
+            card.innerHTML = `
+                <span class="alert-icon">⚠️</span>
+                <strong>Máquina ${id}</strong>
+                <p>${mensagens.join(', ')}</p>
+                <p>Data do registro: <em>${registro}</em></p>
+                <p>Consulte o chat bot para detalhes e causas.</p>
+            `;
+
+            container.appendChild(card);
+        }
+    });
+}
+
+// Atualiza os alertas ao carregar a página
+atualizarAlertasRigorosos();
+
+// Atualização periódica, se quiser (ex: a cada 15s):
+// setInterval(atualizarAlertasRigorosos, 15000);
+
 </script>
 
 </body>
