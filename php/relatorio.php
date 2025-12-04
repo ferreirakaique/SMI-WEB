@@ -52,15 +52,15 @@ $maquina_id_url = $_GET['id'] ?? 'N/A'; // Assume 'id' na URL, use 'N/A' se não
 // 2. Busca os detalhes da máquina no banco de dados para definir as variáveis
 if ($maquina_id_url !== 'N/A' && isset($conexao)) {
     // ⚠️ SUBSTITUA PELO SEU CÓDIGO DE CONSULTA REAL PARA PEGAR O SETOR!
-    $sql = "SELECT setor FROM maquinas WHERE id = ?"; 
+    $sql = "SELECT setor FROM maquinas WHERE id = ?";
     // Execute a consulta...
 
     //  a consulta retorna o setor
-    $id_maquina_atual = $maquina_id_url; 
+    $id_maquina_atual = $maquina_id_url;
     $setor_atual = "Setor encontrado"; // Substitua pela variável do banco
 } else {
     // Caso não encontre o ID na URL ou a conexão falhe
-    $id_maquina_atual = 'N/A'; 
+    $id_maquina_atual = 'N/A';
     $setor_atual = 'Desconhecido';
 }
 
@@ -220,43 +220,45 @@ if ($maquina_id_url !== 'N/A' && isset($conexao)) {
                     <div class="titulo_sugestoes">
                         <h1>Sugestões</h1>
                     </div>
-                    
+
                     <div class="cards">
-                        
+
                         <div class="ia_eficiencia_produtiva">
                             <div class="titulo_ia_eficiencia">
                                 <i class="fa-solid fa-robot"></i>
                                 <h1>I.A Eficiência Produtiva</h1>
                             </div>
-                            
+
                             <div class="info_maquina_eficiencia">
                                 <h1>Máquina</h1>
-                                <p><strong>ID:</strong> <span id="maquinaIdEficiencia"><?php echo $id_maquina_atual; ?></span></p> 
-                                <p>Setor:  <?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
+                                <p><strong>ID:</strong> <span
+                                        id="maquinaIdEficiencia"><?php echo $id_maquina_atual; ?></span></p>
+                                <p>Setor: <?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
                             </div>
-                            
+
                             <div class="sugestao_ia_eficiencia" id="eficienciaSugestao">
                                 <p>Analisando dados...</p>
                             </div>
                         </div>
-                        
+
                         <div class="ia_manutencao_inteligente">
                             <div class="titulo_ia_manutencao">
                                 <i class="fa-solid fa-robot"></i>
                                 <h1>I.A Manutenção Inteligente</h1>
                             </div>
-                            
+
                             <div class="info_maquina_manutencao">
                                 <h1>Máquina</h1>
-                                <p><strong>ID:</strong> <span id="maquinaIdManutencao"><?php echo $id_maquina_atual; ?></span></p>
-                                <p>Setor:  <?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
+                                <p><strong>ID:</strong> <span
+                                        id="maquinaIdManutencao"><?php echo $id_maquina_atual; ?></span></p>
+                                <p>Setor: <?php echo htmlspecialchars($maquina['setor_maquina']) ?></p>
                             </div>
-                            
+
                             <div class="sugestao_ia_manutencao" id="manutencaoSugestao">
                                 <p>Analisando dados...</p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="opcoes">
@@ -268,108 +270,143 @@ if ($maquina_id_url !== 'N/A' && isset($conexao)) {
         </section>
     </main>
     <script>
-    // ----------------------------------------------------
-    //  1. OBTENÇÃO DO ID DA MÁQUINA
-    // ----------------------------------------------------
-    // Esta linha tenta obter o ID da máquina que o PHP inseriu no HTML
-    // O ID está na tag span dentro da div de informação.
-    const ID_MAQUINA_ATUAL = document.getElementById('maquinaIdEficiencia').textContent.trim();
-    
-
-    // ----------------------------------------------------
-    // 2. FUNÇÃO AUXILIAR: CONVERSÃO DE MARKDOWN PARA HTML
-    // ----------------------------------------------------
-    // Esta função garante que a resposta da IA (negritos, títulos) seja exibida corretamente.
-    function converterMarkdown(texto) {
-        let htmlTexto = texto;
-        
-        // 1. Converte Negrito e Itálico (***texto***)
-        htmlTexto = htmlTexto.replace(/\*\*\*([^\*]+)\*\*\*/g, '<strong><em>$1</em></strong>'); 
-        // 2. Converte apenas Negrito (**texto**)
-        htmlTexto = htmlTexto.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
-        // 3. Converte apenas Itálico (*texto*)
-        htmlTexto = htmlTexto.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
-        // 4. Converte Títulos H2 (##) para <h2> (usado para separar os cards)
-        htmlTexto = htmlTexto.replace(/^##\s*(.*)$/gm, '<h2>$1</h2>');
-        // 5. Converte quebras de linha para <br>
-        htmlTexto = htmlTexto.replace(/\n/g, '<br>');
-        
-        return htmlTexto;
-    }
+        // ----------------------------------------------------
+        //  1. OBTENÇÃO DO ID DA MÁQUINA
+        // ----------------------------------------------------
+        // Esta linha tenta obter o ID da máquina que o PHP inseriu no HTML
+        // O ID está na tag span dentro da div de informação.
+        const ID_MAQUINA_ATUAL = document.getElementById('maquinaIdEficiencia').textContent.trim();
 
 
-    // ----------------------------------------------------
-    // 3. FUNÇÃO PRINCIPAL: REQUISIÇÃO E RENDERIZAÇÃO
-    // ----------------------------------------------------
-    async function carregarAnaliseIA(maquinaId) {
-        const eficienciaDiv = document.getElementById('eficienciaSugestao');
-        const manutencaoDiv = document.getElementById('manutencaoSugestao');
-        
-        // Exibe loader
-        eficienciaDiv.innerHTML = '<h1>Sugestão</h1><p>Analisando dados... <i class="fa-solid fa-spinner fa-spin"></i></p>';
-        manutencaoDiv.innerHTML = '<h1>Sugestão</h1><p>Analisando dados... <i class="fa-solid fa-spinner fa-spin"></i></p>';
-        
-        try {
-            // Envia o ID da máquina para o novo endpoint PHP (Passo 26)
-            const response = await fetch('analisar_maquina.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_maquina: maquinaId })
-            });
+        // ----------------------------------------------------
+        // 2. FUNÇÃO AUXILIAR: CONVERSÃO DE MARKDOWN PARA HTML
+        // ----------------------------------------------------
+        // Esta função garante que a resposta da IA (negritos, títulos) seja exibida corretamente.
+        function converterMarkdown(texto) {
+            let htmlTexto = texto;
 
-            const data = await response.json();
+            // 1. Converte Negrito e Itálico (***texto***)
+            htmlTexto = htmlTexto.replace(/\*\*\*([^\*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+            // 2. Converte apenas Negrito (**texto**)
+            htmlTexto = htmlTexto.replace(/\*\*([^\*]+)\*\*/g, '<strong>$1</strong>');
+            // 3. Converte apenas Itálico (*texto*)
+            htmlTexto = htmlTexto.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+            // 4. Converte Títulos H2 (##) para <h2> (usado para separar os cards)
+            htmlTexto = htmlTexto.replace(/^##\s*(.*)$/gm, '<h2>$1</h2>');
+            // 5. Converte quebras de linha para <br>
+            htmlTexto = htmlTexto.replace(/\n/g, '<br>');
 
-            if (data.erro || !data.analise) {
-                eficienciaDiv.innerHTML = '<h1>Sugestão</h1><p>Erro na API: ' + (data.erro || 'Resposta inválida.') + '</p>';
-                manutencaoDiv.innerHTML = '<h1>Sugestão</h1><p>Erro na API.</p>';
-                return;
-            }
-
-            const analiseCompleta = data.analise;
-
-            // 4. SEPARAÇÃO DO CONTEÚDO (Baseado na instrução da IA usar ##)
-            
-            // Separa a string em blocos usando o marcador ## e remove entradas vazias
-            const blocos = analiseCompleta.split(/##\s*/).filter(bloco => bloco.trim() !== '');
-
-            let eficiencia = 'Análise não encontrada.';
-            let manutencao = 'Análise não encontrada.';
-
-            blocos.forEach(bloco => {
-                const blocoLimpo = bloco.trim();
-                // Verifica o título para saber onde injetar o conteúdo
-                if (blocoLimpo.startsWith('Eficiência Produtiva')) {
-                    // Remove o título do Markdown para renderizar apenas o conteúdo
-                    eficiencia = blocoLimpo.replace('Eficiência Produtiva', '').trim(); 
-                } else if (blocoLimpo.startsWith('Manutenção Inteligente')) {
-                    // Remove o título do Markdown para renderizar apenas o conteúdo
-                    manutencao = blocoLimpo.replace('Manutenção Inteligente', '').trim();
-                }
-            });
-            
-            // 5. INSERÇÃO E RENDERIZAÇÃO
-            // Adiciona o título estático e renderiza o conteúdo da IA
-            eficienciaDiv.innerHTML = '<h1>Sugestão</h1>' + converterMarkdown(eficiencia);
-            manutencaoDiv.innerHTML = '<h1>Sugestão</h1>' + converterMarkdown(manutencao);
-            
-        } catch (error) {
-            eficienciaDiv.innerHTML = `<h1>Sugestão</h1><p>Erro de conexão: ${error.message}</p>`;
-            manutencaoDiv.innerHTML = `<h1>Sugestão</h1><p>Erro de conexão: ${error.message}</p>`;
+            return htmlTexto;
         }
-    }
 
-    // ----------------------------------------------------
-    // 6. INICIA O PROCESSO AUTOMATICAMENTE
-    // ----------------------------------------------------
-    // Esta função será chamada assim que a página terminar de carregar
-    if (ID_MAQUINA_ATUAL && ID_MAQUINA_ATUAL !== 'undefined') {
-        carregarAnaliseIA(ID_MAQUINA_ATUAL);
-    } else {
-        document.getElementById('eficienciaSugestao').innerHTML = '<h1>Sugestão</h1><p>Erro: ID da máquina não encontrado.</p>';
-        document.getElementById('manutencaoSugestao').innerHTML = '<h1>Sugestão</h1><p>Erro: ID da máquina não encontrado.</p>';
-    }
 
-</script>
+        // ----------------------------------------------------
+        // 3. FUNÇÃO PRINCIPAL: REQUISIÇÃO E RENDERIZAÇÃO
+        // ----------------------------------------------------
+        async function carregarAnaliseIA(maquinaId) {
+            const eficienciaDiv = document.getElementById('eficienciaSugestao');
+            const manutencaoDiv = document.getElementById('manutencaoSugestao');
+
+            // Exibe loader
+            eficienciaDiv.innerHTML = '<h1>Sugestão</h1><p>Analisando dados... <i class="fa-solid fa-spinner fa-spin"></i></p>';
+            manutencaoDiv.innerHTML = '<h1>Sugestão</h1><p>Analisando dados... <i class="fa-solid fa-spinner fa-spin"></i></p>';
+
+            try {
+                // Envia o ID da máquina para o novo endpoint PHP (Passo 26)
+                const response = await fetch('analisar_maquina.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_maquina: maquinaId })
+                });
+
+                const data = await response.json();
+
+                if (data.erro || !data.analise) {
+                    eficienciaDiv.innerHTML = '<h1>Sugestão</h1><p>Erro na API: ' + (data.erro || 'Resposta inválida.') + '</p>';
+                    manutencaoDiv.innerHTML = '<h1>Sugestão</h1><p>Erro na API.</p>';
+                    return;
+                }
+
+                const analiseCompleta = data.analise;
+
+                // 4. SEPARAÇÃO DO CONTEÚDO (Baseado na instrução da IA usar ##)
+
+                // Separa a string em blocos usando o marcador ## e remove entradas vazias
+                const blocos = analiseCompleta.split(/##\s*/).filter(bloco => bloco.trim() !== '');
+
+                let eficiencia = 'Análise não encontrada.';
+                let manutencao = 'Análise não encontrada.';
+
+                blocos.forEach(bloco => {
+                    const blocoLimpo = bloco.trim();
+                    // Verifica o título para saber onde injetar o conteúdo
+                    if (blocoLimpo.startsWith('Eficiência Produtiva')) {
+                        // Remove o título do Markdown para renderizar apenas o conteúdo
+                        eficiencia = blocoLimpo.replace('Eficiência Produtiva', '').trim();
+                    } else if (blocoLimpo.startsWith('Manutenção Inteligente')) {
+                        // Remove o título do Markdown para renderizar apenas o conteúdo
+                        manutencao = blocoLimpo.replace('Manutenção Inteligente', '').trim();
+                    }
+                });
+
+                // 5. INSERÇÃO E RENDERIZAÇÃO
+                // Adiciona o título estático e renderiza o conteúdo da IA
+                eficienciaDiv.innerHTML = '<h1>Sugestão</h1>' + converterMarkdown(eficiencia);
+                manutencaoDiv.innerHTML = '<h1>Sugestão</h1>' + converterMarkdown(manutencao);
+
+            } catch (error) {
+                eficienciaDiv.innerHTML = `<h1>Sugestão</h1><p>Erro de conexão: ${error.message}</p>`;
+                manutencaoDiv.innerHTML = `<h1>Sugestão</h1><p>Erro de conexão: ${error.message}</p>`;
+            }
+        }
+
+        // ----------------------------------------------------
+        // 6. INICIA O PROCESSO AUTOMATICAMENTE
+        // ----------------------------------------------------
+        // Esta função será chamada assim que a página terminar de carregar
+        if (ID_MAQUINA_ATUAL && ID_MAQUINA_ATUAL !== 'undefined') {
+            carregarAnaliseIA(ID_MAQUINA_ATUAL);
+        } else {
+            document.getElementById('eficienciaSugestao').innerHTML = '<h1>Sugestão</h1><p>Erro: ID da máquina não encontrado.</p>';
+            document.getElementById('manutencaoSugestao').innerHTML = '<h1>Sugestão</h1><p>Erro: ID da máquina não encontrado.</p>';
+        }
+
+
+        // ----------------------------------------------------
+        // 7. ATUALIZAÇÃO EM TEMPO REAL DOS DADOS
+        // ----------------------------------------------------
+        async function atualizarDadosEmTempoReal(maquinaId) {
+            try {
+                const response = await fetch(`dados_realtime.php?id=${maquinaId}`);
+                const data = await response.json();
+
+                if (!data.erro) {
+                    // Atualiza os elementos na página
+                    document.querySelector('.dados_maquina:nth-child(1) .dado_numero h1').innerHTML =
+                        `${data.temperatura}º<span> C</span>`;
+                    document.querySelector('.dados_maquina:nth-child(2) .dado_numero h1').innerHTML =
+                        `${data.consumo}<span> kWh</span>`;
+                    document.querySelector('.dados_maquina:nth-child(3) .dado_numero h1').innerHTML =
+                        `${data.umidade}<span>%</span>`;
+
+                    document.querySelector('.ultima_atualizacao p').innerHTML =
+                        `<strong>Última atualização:</strong> ${data.registro}`;
+                }
+            } catch (error) {
+                console.error('Erro ao buscar dados em tempo real:', error);
+            }
+        }
+
+        // Atualiza os dados a cada 5 segundos
+        setInterval(() => {
+            if (ID_MAQUINA_ATUAL) {
+                atualizarDadosEmTempoReal(ID_MAQUINA_ATUAL);
+            }
+        }, 5000);
+
+
+    </script>
 </body>
 </body>
+
 </html>
